@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "generate": "npx ts-node src/index.ts",
+    "generate:run": "npx ts-node src/run.ts",
     "generate:batch": "npx ts-node src/batch-runner.ts"
   },
   "dependencies": {

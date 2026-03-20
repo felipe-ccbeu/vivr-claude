@@ -48,7 +48,7 @@ Explique ao usuário como usar:
 
 **Style refs** (estética visual):
 - [descreva a estética — ex: Pixar 3D render, warm lighting, gradient background]
-- Nota: o estilo VivaVr é sempre 3D rounded cartoon, friendly adult characters, brand gradient (#26b6cd → #80cb5e → #8378b6 → #fd8c61)
+- Nota: o estilo VivaVr é sempre 3D rounded cartoon, friendly adult characters, brand gradient (#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a)
 
 ---
 
@@ -86,11 +86,15 @@ Todo prompt deve incluir:
 - `3D animated cartoon character, Pixar/Disney style, rounded friendly features`
 - `adult, diverse` (nunca childish ou infantil)
 - Ambiente real: `café`, `kitchen`, `living room`, `hotel lobby`, `airport`
-- `brand gradient background: cyan #26b6cd to green #80cb5e to purple #8378b6 to orange #fd8c61`
-- `speech bubble with English dialogue`
+- `brand gradient background: blue #89c7fe to mint #8bfbd1 to lavender #ae90fb to pink #f599b5 to yellow #fdd38a`
 - `clean, airy layout, white rounded frame`
 - `game-like energy, premium, immersive`
 - Evitar: `stock photo`, `flat design`, `pixel art`, `childish`, `generic`
+
+**REGRA IMPORTANTE — sem balões de fala:**
+Nunca inclua `speech bubble`, `dialog bubble`, `text overlay` ou qualquer texto na imagem.
+O personagem pode estar em postura de fala (boca aberta, gesticulando), mas sem balão.
+Os balões são gerados depois via HTML no template do post.
 
 ## Após a geração
 
