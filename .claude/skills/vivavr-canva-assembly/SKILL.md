@@ -70,11 +70,11 @@ Retorne o link de edição de cada design gerado.
 
 - Brand kit ID: `kAHEUEC405c` — sempre passar no `generate-design`
 - Font: **Nunito** — bold para headlines, regular para support copy
-- Gradiente de marca: `#26b6cd → #80cb5e → #8378b6 → #fd8c61` (135deg diagonal)
+- Gradiente de marca: `#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a` (135deg diagonal)
   - Tons pastel/dessaturados são permitidos quando o layout pede leveza
 - Contraste principal: **branco (#FFFFFF) sobre fundo gradiente**
 - Fundo alternativo: branco com texto em gradiente (usar sparingly)
-- CTA: pill branca, texto em roxo `#8378b6` ou ciano `#26b6cd`
+- CTA: pill branca, texto em lavanda `#ae90fb` ou azul `#89c7fe`
 - Layout limpo, espaçamento generoso, sem poluição visual
 - Hierarquia clara: headline grande → support copy menor → CTA
 
@@ -86,11 +86,11 @@ Use este template ao montar o prompt de cada variação:
 [Headline da variação] — [Support copy]
 
 DESIGN DIRECTION:
-- Background: diagonal gradient from #26b6cd (cyan) to #80cb5e (green) to #8378b6 (purple) to #fd8c61 (orange coral). Can use pastel/desaturated version for softness.
+- Background: diagonal gradient from #89c7fe (blue) to #8bfbd1 (mint) to #ae90fb (lavender) to #f599b5 (pink) to #fdd38a (yellow). Can use pastel/desaturated version for softness.
 - Typography: Nunito font. Headline bold, large, white (#FFFFFF). Support copy regular, smaller, white.
 - Hero image: [descrição da imagem ou referência ao asset]
 - Layout: hero image occupies [left half / bottom / center], headline text on [right / top] with high contrast
-- CTA button: white pill shape, text in #8378b6, bottom of design
+- CTA button: white pill shape, text in #ae90fb, bottom of design
 - Style: clean, airy, premium. Rounded corners everywhere. No visual clutter.
 - Do NOT use: stock photo backgrounds, flat design, pixel art, serif fonts
 ```

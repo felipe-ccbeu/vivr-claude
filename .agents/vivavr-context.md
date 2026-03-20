@@ -36,14 +36,15 @@ Language-learning mobile app. AR + game-based mechanics. iOS first.
 ### Color palette — exact brand tokens
 | Role | Hex | Use |
 |------|-----|-----|
-| Brand cyan/teal | `#26b6cd` | Primary accent, gradient start |
-| Brand green | `#80cb5e` | Secondary accent, gradient mid |
-| Brand purple | `#8378b6` | Gradient mid-dark, backgrounds |
-| Brand orange/coral | `#fd8c61` | Warm accent, gradient end, CTA warmth |
+| Brand blue (light) | `#89c7fe` | Primary accent, gradient start |
+| Brand mint | `#8bfbd1` | Secondary accent, gradient step 2 |
+| Brand lavender | `#ae90fb` | Gradient mid, backgrounds |
+| Brand pink | `#f599b5` | Gradient step 4 |
+| Brand yellow | `#fdd38a` | Warm accent, gradient end, CTA warmth |
 | Text / overlay | `#FFFFFF` | All text on gradient or dark backgrounds |
 | Background dark | `#1A1030` | Near-black fallback for premium layouts |
 
-**Primary gradient (brand):** `#26b6cd → #80cb5e → #8378b6 → #fd8c61`
+**Primary gradient (brand):** `#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a`
 Direction: diagonal (135deg) or left-to-right depending on layout.
 
 - **Secondary**: warm beige/cream backgrounds, light sky tones
@@ -164,7 +165,7 @@ Young adults and adults who respond well to game mechanics and want learning to 
 
 ## Design direction for ads
 - Use the Nunito font or a similar rounded, friendly sans-serif
-- Lead with the gradient (`#26b6cd → #80cb5e → #8378b6 → #fd8c61`) as the primary brand signal
+- Lead with the gradient (`#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a`) as the primary brand signal
 - Feature 3D characters and scenarios when possible — they are the product's biggest visual differentiator
 - Use rounded shapes, pill buttons, arched frames
 - Keep layouts clean with strong typographic hierarchy
@@ -173,9 +174,9 @@ Young adults and adults who respond well to game mechanics and want learning to 
 
 ### Canva Prompt Conventions
 When generating or describing designs for Canva, always specify:
-- Gradient: `#26b6cd` to `#80cb5e` to `#8378b6` to `#fd8c61`, 135deg diagonal
+- Gradient: `#89c7fe` to `#8bfbd1` to `#ae90fb` to `#f599b5` to `#fdd38a`, 135deg diagonal
 - Font: Nunito, bold for headlines, regular for support copy
-- CTA button: white pill shape, max border-radius, text in `#8378b6` or `#26b6cd`
+- CTA button: white pill shape, max border-radius, text in `#ae90fb` or `#89c7fe`
 - Character frame: white rounded arch/oval, subtle drop shadow, placed center-bottom
 - Always pass `brand_kit_id: kAEHfG4cI0M` when using Canva MCP generate-design
 - App full name: **Viva Vr - Language Learning**

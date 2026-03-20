@@ -14,5 +14,11 @@ export interface CampaignBrief {
     whiskPrompt: string
     scene: string
     mood: string
+    template?: 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt'
+    refs?: {
+      subject?: string  // file path or URL
+      scene?: string    // file path or URL
+      style?: string    // file path or URL
+    }
   }
 }

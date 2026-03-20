@@ -1,6 +1,4 @@
 node_modules/
 dist/
 .env
-outputs/campaigns/*/scene.webp
-outputs/campaigns/*/post.png
-outputs/campaigns/*/post.html
+outputs/

@@ -4,6 +4,7 @@ import { CampaignBrief } from './types'
 import { generateSceneImage } from './whisk-client'
 import { renderPost } from './renderer'
 import { exportPNG } from './screenshot'
+import { DEFAULT_REFS } from './config'
 
 function log(step: string, message: string) {
   const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
@@ -20,17 +21,18 @@ export async function generateCampaign(brief: CampaignBrief): Promise<void> {
 
   // 2. Generate scene image via Whisk
   log('whisk', `Generating scene image...`)
-  const imagePath = await generateSceneImage(brief.visual.whiskPrompt, brief.id)
+  const refs = { ...DEFAULT_REFS, ...brief.visual.refs }
+  const imagePath = await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs)
 
   // 3. Render HTML
   log('renderer', `Building HTML post...`)
-  const htmlPath = await renderPost(brief, imagePath)
+  const htmlPath = await renderPost(brief, imagePath, 'post-v1')
 
   // 4. Export PNG
-  const pngPath = path.join(outputDir, 'post.png')
+  const pngPath = htmlPath.replace('.html', '.png')
   log('screenshot', `Exporting PNG...`)
   await exportPNG(htmlPath, pngPath)
 
   log('done', `Campaign "${brief.id}" complete → ${outputDir}`)
-  log('done', `Files: brief.json | scene.webp | post.html | post.png`)
+  log('done', `Files: brief.json | scene.webp | post-v1.html | post-v1.png`)
 }
