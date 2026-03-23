@@ -24,15 +24,21 @@ export async function generateCampaign(brief: CampaignBrief): Promise<void> {
   const refs = { ...DEFAULT_REFS, ...brief.visual.refs }
   const imagePath = await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs)
 
-  // 3. Render HTML
-  log('renderer', `Building HTML post...`)
-  const htmlPath = await renderPost(brief, imagePath, 'post-v1')
+  // 3. Build copy list: primary + variants
+  const copies = [brief.copy, ...(brief.copyVariants ?? [])]
+  const files: string[] = []
 
-  // 4. Export PNG
-  const pngPath = htmlPath.replace('.html', '.png')
-  log('screenshot', `Exporting PNG...`)
-  await exportPNG(htmlPath, pngPath)
+  for (let i = 0; i < copies.length; i++) {
+    const version = `post-copy-${i + 1}`
+    const variantBrief = { ...brief, copy: copies[i] }
+    log('renderer', `Building HTML ${version} — "${copies[i].headline}"`)
+    const htmlPath = await renderPost(variantBrief, imagePath, version)
+    const pngPath = htmlPath.replace('.html', '.png')
+    log('screenshot', `Exporting ${version}.png...`)
+    await exportPNG(htmlPath, pngPath)
+    files.push(`${version}.html | ${version}.png`)
+  }
 
   log('done', `Campaign "${brief.id}" complete → ${outputDir}`)
-  log('done', `Files: brief.json | scene.webp | post-v1.html | post-v1.png`)
+  log('done', `Files: brief.json | scene.webp | ${files.join(' | ')}`)
 }

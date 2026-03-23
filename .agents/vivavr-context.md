@@ -1,4 +1,4 @@
-# VivaVr Marketing Context
+# Vivr Marketing Context
 
 ## What the product is
 Vivr (also referred to as VivaVr) is a language-learning app that uses AR (Augmented Reality) and game-based mechanics to teach English through real-life immersive scenarios. Users interact with 3D animated characters inside everyday environments (kitchen, café, living room) and practice language through dialogues, choices, and situational challenges.
@@ -18,6 +18,7 @@ Language-learning mobile app. AR + game-based mechanics. iOS first.
 
 ## Website & Legal
 - Site: viva-vr.com
+- App full name: **Viva Vr - Language Learning**
 - EULA: https://viva-vr.com/eula/
 - Privacy: https://viva-vr.com/privacy/
 
@@ -30,10 +31,20 @@ Language-learning mobile app. AR + game-based mechanics. iOS first.
 
 ### Logo
 - Wordmark: **"vivr"** in lowercase
-- Logo uses a **colorful gradient** (purple → pink → orange), applied directly on the letterforms
+- The logo "V" uses a **multicolor gradient**: orange `#FF6B35` → red `#E8334A` → purple `#7B4FBF` → green `#4CAF50`
 - Clean, minimal, playful but premium
 
-### Color palette — exact brand tokens
+### Color system — two distinct palettes that coexist
+
+#### 1. Logo palette
+| Role | Hex |
+|------|-----|
+| Logo orange | `#FF6B35` |
+| Logo red | `#E8334A` |
+| Logo purple | `#7B4FBF` |
+| Logo green | `#4CAF50` |
+
+#### 2. App UI palette (screens, marketing backgrounds)
 | Role | Hex | Use |
 |------|-----|-----|
 | Brand blue (light) | `#89c7fe` | Primary accent, gradient start |
@@ -44,42 +55,87 @@ Language-learning mobile app. AR + game-based mechanics. iOS first.
 | Text / overlay | `#FFFFFF` | All text on gradient or dark backgrounds |
 | Background dark | `#1A1030` | Near-black fallback for premium layouts |
 
-**Primary gradient (brand):** `#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a`
+**App UI gradient (used in screen backgrounds and marketing):**
+`#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a`
 Direction: diagonal (135deg) or left-to-right depending on layout.
 
-- **Secondary**: warm beige/cream backgrounds, light sky tones
-- **Accent**: white (for text overlays), colorful confetti spectrum (celebration states)
-- **Dark tones**: used sparingly for contrast
+**Additional UI accents:** golden yellow `#F5C842`, mint `#7FDDBB`
+
+### When to use each palette
+- **Logo gradient (orange/red/purple/green):** wordmark, icon, brand badges, logo lockups
+- **App UI gradient (blue → yellow):** screen backgrounds, hero images, marketing layouts, Canva posts, ad backgrounds
+- Both can appear together — logo over a UI gradient background is the canonical brand composition
 
 ### Canva Brand Kit
 - Brand Kit ID: `kAHEUEC405c`
 - Brand Kit URL: https://www.canva.com/brand/kAHEUEC405c
 - Use this ID when calling `generate-design` with `brand_kit_id` parameter to ensure color and font consistency.
 
-### 3D Characters & Scenarios
-- Characters are **3D animated avatars** — stylized, friendly, diverse (different skin tones, hair colors, body types)
-- Scenarios are **real-life environments**: kitchen, café/restaurant, living room, outdoor
-- Characters appear inside a **rounded arch/oval frame**, creating a "portal into another world" effect
-- Interactions include **speech bubbles** with dialogue and **multiple-choice answer buttons** (white pill buttons)
+---
+
+## 3D Characters & Visual Style
+
+### Character style — canonical definition
+Vivr characters are **3D stylized adult cartoons with elongated proportions** — NOT Pixar/Disney rounded. This distinction is critical for AI image generation.
+
+**Correct style descriptors (use in Whisk/image prompts):**
+- `3D stylized adult cartoon, elongated proportions`
+- `expressive exaggerated features`
+- `slightly prominent nose, large but non-infantile eyes`
+- `lean body, thin limbs, small hands`
+- `skin texture with subtle bump — not smooth or shiny`
+- `high-fidelity 3D render`
+- `cinematic warm lighting, soft shadows, subtle rim light`
+
+**Forbidden descriptors (never use in image prompts):**
+- ❌ `Pixar style` — generates wrong rounded/infantile look
+- ❌ `Disney style` — idem
+- ❌ `rounded friendly features` — wrong
+- ❌ `smooth skin` — wrong
+- ❌ `chibi` — wrong
+- ❌ `friendly blob characters` — wrong
+
+### Canonical character roster
+
+**Protagonist (primary — use as default):**
+> Adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers. Open, curious expression.
+
+**Supporting cast:**
+> Bald adult man, red long-sleeve shirt with number 25, gray pants, blue sneakers.
+> Professional woman, short auburn/red bob hair, black blazer, red bow tie, red shoes. Confident posture.
+> Young man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers.
+> Blonde woman with glasses, medium-length hair, casual outfit.
+
+### Canonical environments
+| Environment | Description |
+|---|---|
+| Living room | Modern living room, wooden coffee table, sofa, natural window light, warm neutral tones |
+| Kitchen | Checkerboard tile floor, wooden counter, appliances, warm overhead light |
+| Restaurant/café | Brick wall, round wooden tables, pendant warm lights, city view through large window, evening atmosphere |
+| Office | Open plan, desk with laptop, natural light, neutral tones |
+| Airport | Departure hall, gate signage, travelers in background, cool blue-white lighting |
+
+### App UI visual elements
+- Characters appear inside a **rounded arch/oval frame** — "portal into another world" effect
+- **Speech bubbles** with dialogue (English phrases)
+- **Multiple-choice answer buttons** — white pill buttons
 - **Celebration feedback**: confetti animations on correct answers
-
-### UI Style
 - Rounded corners everywhere (buttons, frames, cards)
-- White text on gradient or scene backgrounds
-- Clean, airy layouts — no visual clutter
-- Strong use of **whitespace**
-- Confetti and particle effects for positive reinforcement
+- Clean, airy layouts with strong use of whitespace
 
-### Screenshot copy examples (from app store)
-- "Se divirta enquanto aprende de verdade"
-- "Expanda seu vocabulário falando"
-- "Você pode começar a falar inglês hoje!"
-- "O aplicativo mais divertido para aprender inglês!"
-- "Aprenda inglês mais rápido, jogando!"
+### Reference assets (available in repo)
+| File | Use as |
+|---|---|
+| `Personagens.png` | Subject reference — canonical character roster |
+| `WhiskImagemExemploQueGostei.png` | Style reference — target rendering quality, cinematic lighting, group scene |
+| `scene.webp` | Scene reference — living room environment |
+| `230x498bb_1.webp` | Scene reference — kitchen environment |
+| `230x498bb_2.webp` | Scene reference — café/vocabulary scene |
+| `ImagemDaLoja.webp` | App store hero — full character group |
 
 ---
 
-## Positioning idea
+## Positioning
 Vivr is the language app that puts you *inside* the language — through real scenarios, animated characters, and game-based interaction — instead of drilling you with flashcards and grammar exercises.
 
 ## Main target audiences
@@ -133,7 +189,7 @@ Young adults and adults who respond well to game mechanics and want learning to 
 - Create contrast between "old way of learning" (repetitive, boring, disconnected) and "immersive practice" (vivid, fun, effective).
 - Lead with fun — but always connect fun to real outcomes.
 
-## Angles that can work
+## Angles that work
 - You studied the language, but real life still catches you off guard.
 - Stop collecting vocabulary and start living the language.
 - Learning should feel real, not mechanical.
@@ -153,33 +209,78 @@ Young adults and adults who respond well to game mechanics and want learning to 
 
 ---
 
+## Competitive intelligence — Duolingo BR (Mar 2026)
+
+Source: Meta Ad Library + Google Ads Transparency Center. Scraped March 2026.
+
+### What Duolingo is running in Brazil right now
+
+**Active Meta copies (4 unique, 27 ads total):**
+
+| Copy | Formato | Insight |
+|---|---|---|
+| "Stop scrolling. Start checkmating. Learn chess for free with Duolingo." | VIDEO | Hook de interrupção de scroll + expansão para xadrez |
+| "Learn a language for free with fun lessons designed to keep you motivated!" | VIDEO | Genérico — zero diferenciação real |
+| "Game-like lessons and fun characters keep you motivated to build solid skills across language, music, math, and chess." | Static | Pivotando para plataforma de aprendizado geral |
+| `{{product.name}}` / `{{product.brand}}` | Dynamic | Catalog ad — retargeting de produto |
+
+**Google Ads BR: 101 criativos ativos — 100% vídeo e display, zero texto Search.**
+
+### Strategic gaps Vivr should own
+
+1. **Duolingo não fala em resultado real** — copy nunca menciona "falar inglês de verdade", "conversar com confiança", "passar em entrevista". Vivr pode ownar o território de resultado concreto.
+
+2. **"Stop scrolling" é o hook dominante deles** — Vivr deve evitar esse ângulo gastado e ir para o oposto: "aprende enquanto vive" (no bar, no Uber, na viagem).
+
+3. **Duolingo está virando plataforma geral** (chess, math, music) — abre espaço para Vivr ownar "inglês conversacional imersivo" como especialista, não generalista.
+
+4. **Copy extremamente curto e vago** — Vivr pode se diferenciar com copy específico, emocional e situacional que o Duolingo não usa.
+
+5. **Sem apelo adulto** — Duolingo soa neutro/infantil. Vivr fala com adultos que travam em situações reais.
+
+### Angles to exploit against Duolingo
+
+- "Duolingo te motiva. O Vivr te prepara." (implícito, nunca explícito)
+- Cenários reais vs. exercícios gamificados sem contexto
+- Conversação de verdade vs. acumular XP
+- Adultos que já tentaram o Duolingo e ainda travam
+
+---
+
 ## Brand tone
-- Modern
-- Clear
+- Modern and clear
 - Warm and inviting (not cold tech)
 - Playful but not childish
 - Premium
-- Engaging
 - Confident
 - Slightly bold when appropriate
 
-## Design direction for ads
-- Use the Nunito font or a similar rounded, friendly sans-serif
-- Lead with the gradient (`#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a`) as the primary brand signal
-- Feature 3D characters and scenarios when possible — they are the product's biggest visual differentiator
-- Use rounded shapes, pill buttons, arched frames
-- Keep layouts clean with strong typographic hierarchy
-- White text on gradient or dark backgrounds performs well
-- Avoid stock photography — the 3D illustrated world IS the product
+---
 
-### Canva Prompt Conventions
-When generating or describing designs for Canva, always specify:
-- Gradient: `#89c7fe` to `#8bfbd1` to `#ae90fb` to `#f599b5` to `#fdd38a`, 135deg diagonal
+## Design direction for ads
+
+### Image generation (Whisk)
+- Always use the correct style descriptors from the "Character style" section above
+- Use `WhiskImagemExemploQueGostei.png` as the style reference image whenever possible
+- Use `Personagens.png` as the subject reference for character anchoring
+- Never describe characters as Pixar/Disney rounded — use the canonical elongated adult cartoon descriptors
+- No text, speech bubbles, or written words in generated images
+
+### Canva / HTML layouts
+- Lead with the **app UI gradient** (`#89c7fe → #fdd38a`) as the primary background signal
+- Feature 3D characters and scenarios — they are the product's biggest visual differentiator
+- Use rounded shapes, pill buttons, arched frames
+- White text on gradient or dark backgrounds
 - Font: Nunito, bold for headlines, regular for support copy
 - CTA button: white pill shape, max border-radius, text in `#ae90fb` or `#89c7fe`
-- Character frame: white rounded arch/oval, subtle drop shadow, placed center-bottom
-- Always pass `brand_kit_id: kAEHfG4cI0M` when using Canva MCP generate-design
-- App full name: **Viva Vr - Language Learning**
+- Always pass `brand_kit_id: kAHEUEC405c` when using Canva MCP generate-design
+
+### Screenshot copy examples (from app store)
+- "Se divirta enquanto aprende de verdade"
+- "Expanda seu vocabulário falando"
+- "Você pode começar a falar inglês hoje!"
+- "O aplicativo mais divertido para aprender inglês!"
+- "Aprenda inglês mais rápido, jogando!"
 
 ## Common call to action styles
 - Comece a praticar de verdade
