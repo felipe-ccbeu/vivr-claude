@@ -1,15 +1,18 @@
+export interface CopyBlock {
+  hook: string
+  headline: string
+  accentWord: string
+  body: string
+  cta: string
+}
+
 export interface CampaignBrief {
   id: string
   audience: string
   pain: string
   angle: string
-  copy: {
-    hook: string
-    headline: string
-    accentWord: string
-    body: string
-    cta: string
-  }
+  copy: CopyBlock
+  copyVariants?: CopyBlock[]
   visual: {
     whiskPrompt: string
     scene: string

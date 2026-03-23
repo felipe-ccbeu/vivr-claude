@@ -1,6 +1,6 @@
 ---
 name: vivavr-whisk-hero
-description: Gera prompts estruturados para criação de hero images no Whisk (whisk.google.com) a partir do brief visual da campanha VivaVr
+description: Gera prompts estruturados para criação de hero images no Whisk (whisk.google.com) a partir do brief visual da campanha Vivr
 ---
 
 Read `.agents/vivavr-context.md` before starting.
@@ -15,9 +15,65 @@ Whisk (whisk.google.com) é uma ferramenta do Google que gera imagens a partir d
 
 Whisk não tem API — o usuário usa a interface web. Sua função é gerar instruções detalhadas para que o usuário execute no Whisk e traga de volta a imagem gerada.
 
+---
+
+## Identidade visual canônica — leia antes de gerar qualquer prompt
+
+### Estilo de personagem do Vivr
+O estilo visual do Vivr é **3D cartoon adulto de proporções alongadas** — NÃO é Pixar/Disney arredondado.
+
+Características obrigatórias nos prompts:
+- Corpos esguios, membros finos
+- Faces expressivas com traços levemente exagerados (nariz proeminente, olhos grandes mas não infantis)
+- Textura de pele com leve bump — não lisa e brilhante
+- Iluminação cinemática com sombras suaves e rim light colorido
+
+**Proibido nos prompts:**
+- `Pixar style` — gera personagens arredondados/infantis (errado)
+- `Disney style` — idem
+- `rounded friendly features` — errado
+- `smooth skin` — errado
+- `chibi` — errado
+- Qualquer termo que remeta a infantilização
+
+**Fórmula de estilo correta:**
+```
+3D stylized adult cartoon, elongated proportions, expressive exaggerated features,
+high-fidelity render, cinematic warm lighting, soft shadows, subtle rim light,
+depth of field. Style: adult animated series. NOT Pixar, NOT Disney rounded.
+```
+
+### Personagens canônicos (usar sempre um destes)
+
+**Protagonista principal:**
+> Bearded adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers. Open curious expression.
+
+**Elenco de suporte:**
+> Bald adult man, red long-sleeve shirt with number 25, gray pants, blue sneakers.
+> Professional woman, short auburn/red bob hair, black blazer, red bow tie, red shoes. Confident posture.
+> Young man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers.
+> Blonde woman with glasses, medium-length hair, casual outfit.
+
+### Ambientes canônicos (usar sempre um destes)
+- **Sala de estar:** modern living room, wooden coffee table, sofa, natural window light, warm tones
+- **Cozinha:** kitchen with checkerboard tile floor, wooden counter, appliances, warm overhead light
+- **Restaurante/café:** brick wall restaurant, round wooden tables, pendant lights, warm evening atmosphere, city window in background
+- **Escritório:** open plan office, desk with laptop, natural light, neutral tones
+- **Aeroporto:** departure hall, gate signage, travelers in background, cool blue-white lighting
+
+### Paleta de cores da marca
+- **Logo gradient:** laranja `#FF6B35` → vermelho `#E8334A` → roxo `#7B4FBF` → verde `#4CAF50`
+- **UI gradient (fundo das telas do app):** roxo `#9C6FE4` → rosa `#E87BB0`
+- **Acentos:** amarelo dourado `#F5C842`, menta `#7FDDBB`
+- ❌ **NÃO usar:** `blue #89c7fe to mint #8bfbd1 to lavender #ae90fb` — paleta errada
+
+---
+
 ## Seu trabalho
 
-Receba o **Whisk Brief** gerado pelo `/vivavr-static-campaign` (ou uma direção visual do usuário) e retorne instruções completas e 3 variações de prompt para o usuário testar no Whisk.
+Receba o **Whisk Brief** gerado pelo `/vivavr-static-campaign` (ou uma direção visual do usuário) e retorne:
+1. Instruções de uso no Whisk com as referências certas a usar
+2. 3 variações de prompt para testar
 
 ---
 
@@ -25,39 +81,39 @@ Receba o **Whisk Brief** gerado pelo `/vivavr-static-campaign` (ou uma direção
 
 ### INSTRUÇÕES DE USO NO WHISK
 
-Explique ao usuário como usar:
 1. Acesse whisk.google.com
-2. Em **Subject**: [o que buscar ou usar como referência de imagem]
-3. Em **Scene**: [o que buscar ou usar como referência de ambiente]
-4. Em **Style**: [o que buscar ou usar como referência de estética]
+2. Em **Subject**: [qual personagem canônico usar + onde encontrar a imagem de referência]
+3. Em **Scene**: [qual ambiente canônico usar + referência sugerida]
+4. Em **Style**: [referência de estética — use screenshots do app do Vivr ou a imagem do restaurante como style ref]
 5. Em **Prompt**: cole o texto da variação escolhida
-6. Gere 4+ imagens e escolhe a melhor
-7. Faça download e traga a URL ou o arquivo para `/vivavr-canva-assembly`
+6. Gere 4+ imagens, escolha a melhor
+7. Faça download e traga para `/vivavr-canva-assembly`
 
 ---
 
-### REFERÊNCIAS SUGERIDAS
+### REFERÊNCIAS RECOMENDADAS
 
-**Subject refs** (descreva imagens para buscar ou usar):
-- [descrição da imagem de referência do personagem/sujeito]
-- [alternativa]
+**Subject refs:**
+- [personagem canônico escolhido — descrição física exata para o usuário buscar referência]
+- Use `Personagens.png` do repositório como referência de sujeito sempre que disponível
 
-**Scene refs** (ambiente/cenário):
-- [descrição da cena de referência]
-- [alternativa]
+**Scene refs:**
+- [ambiente canônico escolhido]
+- Screenshots das telas do app (`scene.webp`, `230x498bb_1.webp`, `230x498bb_2.webp`) funcionam bem como scene ref
 
-**Style refs** (estética visual):
-- [descreva a estética — ex: Pixar 3D render, warm lighting, gradient background]
-- Nota: o estilo VivaVr é sempre 3D rounded cartoon, friendly adult characters, brand gradient (#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a)
+**Style refs:**
+- `WhiskImagemExemploQueGostei.png` do repositório é a referência de estilo ideal — iluminação cinemática, qualidade de render, grupo de personagens interagindo
+- Alternativamente: qualquer screenshot do app Vivr
 
 ---
 
 ### VARIAÇÃO 1 — Principal
 
 ```
-[Prompt completo em inglês para colar no Whisk.
-Inclua: sujeito, ambiente, ação, iluminação, estética, elementos de marca.
-Seja específico. Whisk performa melhor com prompts descritivos e visuais.]
+[Prompt completo em inglês.
+Usar a fórmula de estilo correta acima.
+Especificar: personagem canônico (com descrição física exata) + ação + ambiente canônico + iluminação.
+Ser visual e descritivo. Nenhum texto, balão ou legenda na imagem.]
 ```
 
 ---
@@ -65,41 +121,74 @@ Seja específico. Whisk performa melhor com prompts descritivos e visuais.]
 ### VARIAÇÃO 2 — Emocional
 
 ```
-[Variação com foco no momento emocional — expressão do personagem,
-conexão humana, sensação de conquista ou confiança]
+[Mesma estrutura, foco no estado emocional do personagem.
+Especificar a expressão facial e postura corporal que transmitem o sentimento da campanha.
+Ex: "eyebrows raised in pleasant surprise, slight smile, relaxed shoulders"]
 ```
 
 ---
 
-### VARIAÇÃO 3 — Provocativa / Dinâmica
+### VARIAÇÃO 3 — Ângulo/Composição diferente
 
 ```
-[Variação mais energética, ângulo diferente, composição mais ousada
-ou elemento de surpresa visual]
+[Mesma estrutura, câmera ou composição distinta das variações 1 e 2.
+Opções: close-up no rosto / plano aberto mostrando o ambiente / POV shot /
+over-the-shoulder / low angle looking up / bird's eye]
 ```
 
 ---
 
-## Padrão de prompt Whisk para VivaVr
+## Template de prompt Whisk para Vivr
 
-Todo prompt deve incluir:
-- `3D animated cartoon character, Pixar/Disney style, rounded friendly features`
-- `adult, diverse` (nunca childish ou infantil)
-- Ambiente real: `café`, `kitchen`, `living room`, `hotel lobby`, `airport`
-- `brand gradient background: blue #89c7fe to mint #8bfbd1 to lavender #ae90fb to pink #f599b5 to yellow #fdd38a`
-- `clean, airy layout, white rounded frame`
-- `game-like energy, premium, immersive`
-- Evitar: `stock photo`, `flat design`, `pixel art`, `childish`, `generic`
+Use este template, substituindo os campos em MAIÚSCULAS:
 
-**REGRA IMPORTANTE — sem balões de fala:**
-Nunca inclua `speech bubble`, `dialog bubble`, `text overlay` ou qualquer texto na imagem.
-O personagem pode estar em postura de fala (boca aberta, gesticulando), mas sem balão.
-Os balões são gerados depois via HTML no template do post.
+```
+3D stylized adult cartoon character, elongated proportions, expressive exaggerated features,
+high-fidelity 3D render. PERSONAGEM_DESCRIÇÃO_FÍSICA. AÇÃO_ESPECÍFICA.
+AMBIENTE_CANÔNICO. Cinematic warm lighting, soft shadows, subtle colored rim light,
+depth of field, background slightly blurred.
+Style: adult animated series, elongated cartoon proportions.
+NOT Pixar, NOT Disney rounded, NOT smooth faces, NOT childish proportions.
+No speech bubbles, no dialog balloons, no text, no written words anywhere in the image.
+ÂNGULO_DE_CÂMERA. ESTADO_EMOCIONAL do personagem.
+```
+
+### Exemplo preenchido (protagonista no restaurante):
+```
+3D stylized adult cartoon character, elongated proportions, expressive exaggerated features,
+high-fidelity 3D render. Adult man with full dark beard, short brown hair, purple t-shirt,
+gray denim shorts. Sitting at a round wooden table, leaning forward engaged in conversation,
+mouth slightly open mid-sentence, gesturing with one hand.
+Brick wall restaurant, pendant warm lights overhead, city view through large window,
+evening atmosphere, other patrons blurred in background.
+Cinematic warm lighting, soft shadows, subtle orange rim light, depth of field.
+Style: adult animated series, elongated proportions. NOT Pixar, NOT Disney rounded.
+No speech bubbles, no text anywhere. Medium shot, slightly low angle.
+Expression: confident and animated, enjoying the conversation.
+```
+
+---
+
+## Regra de variação
+
+Cada campanha deve usar combinação única de:
+
+| Dimensão | Opções |
+|---|---|
+| Personagem | Barbudo roxo / Careca vermelho / Profissional ruiva / Loiro xadrez |
+| Cenário | Sala / Cozinha / Restaurante / Escritório / Aeroporto |
+| Ângulo | Close / Médio / Aberto / POV / Over-shoulder / Low angle |
+| Emoção | Surpresa / Confiante / Aliviado / Divertido / Focado / Orgulhoso |
+
+Nunca repita a mesma combinação de personagem + cenário da campanha anterior.
+
+---
 
 ## Após a geração
 
 Quando o usuário trouxer a imagem escolhida, passe para `/vivavr-canva-assembly` com:
-- URL ou asset da hero image
-- Headline (P1, P2, P3)
+- URL ou asset da hero image gerada
+- Headline (P1, P2, P3) do brief
 - Support copy
 - CTA
+- Registro da combinação usada: `personagem / cenário / ângulo / emoção`
