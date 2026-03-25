@@ -5,6 +5,7 @@ import { generateSceneImage } from './whisk-client'
 import { renderPost } from './renderer'
 import { exportPNG } from './screenshot'
 import { DEFAULT_REFS } from './config'
+import { pushToReplit } from './replit-sync'
 
 function log(step: string, message: string) {
   const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
@@ -37,6 +38,19 @@ export async function generateCampaign(brief: CampaignBrief): Promise<void> {
     log('screenshot', `Exporting ${version}.png...`)
     await exportPNG(htmlPath, pngPath)
     files.push(`${version}.html | ${version}.png`)
+
+    // Push first copy to Replit editor so the user can edit the layout
+    if (i === 0) {
+      try {
+        const html = await fs.readFile(htmlPath, 'utf8')
+        log('replit', 'Uploading post-copy-1 to visual editor...')
+        const { editorUrl } = await pushToReplit(html)
+        log('replit', `Open editor: ${editorUrl}`)
+        log('replit', `After editing, run: npx ts-node src/rerender-from-edited.ts ${brief.id}`)
+      } catch (err) {
+        log('replit', `Upload skipped — ${(err as Error).message}`)
+      }
+    }
   }
 
   log('done', `Campaign "${brief.id}" complete → ${outputDir}`)

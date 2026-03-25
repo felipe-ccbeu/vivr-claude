@@ -138,15 +138,15 @@ ${FONT_LINK}
   <div class="img-section">
     <img src="${imageDataUrl}" alt="" />
     <div class="img-vignette"></div>
-    <span class="hook-tag">${brief.copy.hook}</span>
+    <span class="hook-tag" data-slot="hook">${brief.copy.hook}</span>
     <span class="badge-free">Grátis</span>
   </div>
   <div class="text-section">
     <div>
-      <div class="headline">${headlineHtml}</div>
-      <div class="body-copy">${brief.copy.body}</div>
+      <div class="headline" data-slot="headline">${headlineHtml}</div>
+      <div class="body-copy" data-slot="body">${brief.copy.body}</div>
     </div>
-    <div class="cta-btn">${brief.copy.cta}</div>
+    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
   </div>
 </div>
 </body>
