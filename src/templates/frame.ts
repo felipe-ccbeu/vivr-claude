@@ -161,7 +161,7 @@ ${FONT_LINK}
 <body>
 <div class="post-wrapper">
   <div class="top-row">
-    <span class="hook-text">${brief.copy.hook}</span>
+    <span class="hook-text" data-slot="hook">${brief.copy.hook}</span>
     <span class="badge-free">Grátis</span>
   </div>
   <div class="frame-outer">
@@ -170,9 +170,9 @@ ${FONT_LINK}
     </div>
   </div>
   <div class="text-block">
-    <div class="headline">${headlineHtml}</div>
-    <div class="body-copy">${brief.copy.body}</div>
-    <div class="cta-btn">${brief.copy.cta}</div>
+    <div class="headline" data-slot="headline">${headlineHtml}</div>
+    <div class="body-copy" data-slot="body">${brief.copy.body}</div>
+    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
   </div>
 </div>
 </body>

@@ -75,11 +75,11 @@ h1{font-size:32px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.0
 
   <div class="copy-block">
     <div class="tag"><span class="tag-dot"></span><span class="tag-text">VivaVr</span></div>
-    <h1>${headlineHtml}</h1>
+    <h1 data-slot="headline">${headlineHtml}</h1>
     <div class="hook-box">
-      <div class="hook-text">${brief.copy.hook}</div>
+      <div class="hook-text" data-slot="hook">${brief.copy.hook}</div>
     </div>
-    <div class="cta-btn">${brief.copy.cta}</div>
+    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
     <div class="cta-free">É grátis · Sem cartão</div>
   </div>
 

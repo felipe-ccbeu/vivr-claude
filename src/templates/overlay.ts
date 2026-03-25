@@ -170,12 +170,12 @@ ${FONT_LINK}
   <div class="overlay"></div>
   <div class="content">
     <div class="spacer"></div>
-    <div class="speech-bubble">${hookShort}</div>
+    <div class="speech-bubble" data-slot="hook">${hookShort}</div>
     <div class="bottom">
-      <div class="headline">${headlineHtml}</div>
-      <div class="body-copy">${brief.copy.body}</div>
+      <div class="headline" data-slot="headline">${headlineHtml}</div>
+      <div class="body-copy" data-slot="body">${brief.copy.body}</div>
       <div class="cta-row">
-        <div class="cta-btn">${brief.copy.cta}</div>
+        <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
         <div class="sub-badge">
           <span class="dot"></span>
           É grátis pra começar

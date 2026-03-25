@@ -75,7 +75,7 @@ h1{font-size:34px;font-weight:900;color:#fff;line-height:1.04;letter-spacing:-.0
 
     <div class="card-bubble">
       <div class="card-bubble-tag">Você disse</div>
-      <div class="card-bubble-text">${brief.copy.hook}</div>
+      <div class="card-bubble-text" data-slot="hook">${brief.copy.hook}</div>
     </div>
 
     <div class="card-xp">
@@ -97,9 +97,9 @@ h1{font-size:34px;font-weight:900;color:#fff;line-height:1.04;letter-spacing:-.0
   </div>
 
   <div class="copy">
-    <h1>${headlineHtml}</h1>
+    <h1 data-slot="headline">${headlineHtml}</h1>
     <div class="cta-row">
-      <div class="cta-btn">${brief.copy.cta}</div>
+      <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
       <div class="cta-free">É grátis</div>
     </div>
   </div>
