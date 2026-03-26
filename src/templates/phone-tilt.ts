@@ -1,13 +1,15 @@
-import { CampaignBrief } from '../types'
+import { CopyVariant } from '../content-schema'
+import { StyleConfig } from '../styles'
 import { FONT_LINK, highlightAccentWord } from './shared'
 
 /**
  * PHONE-TILT — celular inclinado à direita com copy em destaque à esquerda.
  * Layout assimétrico: texto bold no lado esquerdo, phone rotacionado no direito.
  * Cards menores de reforço (XP, streak) flutuam próximos ao celular.
+ * Supports all design variations via StyleConfig parameter.
  */
-export function buildPhoneTilt(brief: CampaignBrief, imageDataUrl: string): string {
-  const headlineHtml = highlightAccentWord(brief.copy.headline, brief.copy.accentWord)
+export function buildPhoneTilt(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
 
   return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 ${FONT_LINK}
@@ -41,7 +43,7 @@ h1{font-size:32px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.0
 .phone::before{content:'';position:absolute;right:-4px;top:80px;width:4px;height:32px;border-radius:0 3px 3px 0;background:linear-gradient(to bottom,#333,#222);}
 .phone::after{content:'';position:absolute;left:-4px;top:65px;width:4px;height:24px;border-radius:3px 0 0 3px;background:linear-gradient(to bottom,#333,#222);box-shadow:0 32px 0 #222;}
 .screen{position:absolute;top:10px;left:7px;right:7px;bottom:10px;border-radius:26px;overflow:hidden;background:#050508;}
-.screen-img{position:absolute;inset:0;background-image:url('${imageDataUrl}');background-size:cover;background-position:center top;opacity:0.9;}
+.screen-img{position:absolute;inset:0;background-image:url('${imageSrc}');background-size:cover;background-position:center top;opacity:0.9;}
 .screen-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05),rgba(0,0,0,0) 35%,rgba(0,0,0,0.55) 100%);}
 .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:64px;height:20px;background:#000;border-radius:10px;z-index:10;}
 
@@ -77,9 +79,9 @@ h1{font-size:32px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.0
     <div class="tag"><span class="tag-dot"></span><span class="tag-text">VivaVr</span></div>
     <h1 data-slot="headline">${headlineHtml}</h1>
     <div class="hook-box">
-      <div class="hook-text" data-slot="hook">${brief.copy.hook}</div>
+      <div class="hook-text" data-slot="hook">${variant.hook}</div>
     </div>
-    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
+    <div class="cta-btn" data-slot="cta">${variant.cta}</div>
     <div class="cta-free">É grátis · Sem cartão</div>
   </div>
 
