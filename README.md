@@ -1,129 +1,184 @@
-# vivr-claude
+# vivavr-claude
 
-Sistema de geração automática de posts de Instagram para o [Vivr](https://vivr.app) — app de inglês com cenas 3D imersivas.
+Sistema de geração automática de criativos de Instagram para o [Vivr](https://vivr.app) — app de inglês com cenas 3D imersivas.
 
-Combina geração de imagens com IA (Google Whisk), renderização HTML e captura de tela para produzir criativos prontos para publicação em ~5 minutos.
-
----
-
-## Pipeline
-
-```
-/vivavr-static-campaign   →   Brief completo (copy + direção visual)
-        ↓
-/vivavr-whisk-hero        →   Prompts para geração de imagem no Whisk
-        ↓
-   [Whisk — manual]       →   Imagem 3D cartoon gerada
-        ↓
-src/generate.ts           →   Post finalizado (540×675px PNG)
-```
+Combina geração de imagens com IA (Google Whisk), renderização HTML com múltiplos templates, re-render do Replit e pesquisa de mercado para produzir criativos prontos em ~5 minutos.
 
 ---
 
-## Estrutura
+## Pipeline completo
 
 ```
-src/
-├── types.ts          # Interface CampaignBrief
-├── whisk-client.ts   # Wrapper da API do Whisk (geração de imagem)
-├── renderer.ts       # Monta o HTML do post com template aprovado
-├── screenshot.ts     # Exporta PNG via Playwright/Chromium headless
-├── generate.ts       # Orquestrador — roda o pipeline completo
-├── batch.ts          # Processa múltiplas campanhas sequencialmente
-├── index.ts          # Exemplo funcional pronto para rodar
-└── batch-runner.ts   # Entry point para rodar em batch
-
-.claude/skills/
-├── vivavr-static-campaign/   # Gera brief completo de campanha
-├── vivavr-whisk-hero/        # Gera prompts para o Whisk
-└── vivavr-canva-assembly/    # Monta o design no Canva via MCP
+/vivavr-static-campaign
+  ↓ gera brief + monta JSON
+  ↓ chama Whisk API → scene.png
+  ↓ renderiza 3 copies HTML (template split/overlay/frame/phone)
+  ↓ exporta post-copy-1/2/3.png via Playwright
+  ↓ faz upload do copy-1 pro Replit (editor visual)
+        ↓
+   [edição opcional no Replit ou VS Code]
+        ↓
+npx ts-node src/rerender-from-edited.ts [id]            ← re-render do Replit
+npm run shot -- outputs/campaigns/007/post-copy-1.html  ← re-render local
 ```
 
 ---
 
-## Output por campanha
+## Comandos do dia a dia
 
-Cada campanha gera 4 arquivos em `outputs/campaigns/{id}/`:
+```bash
+# Gerar campanha completa (Whisk + HTML + PNG)
+npm run generate:run
 
-| Arquivo | Conteúdo |
+# Re-renderizar a partir do HTML editado no Replit
+npx ts-node src/rerender-from-edited.ts 007-metodo-vs-situacao
+
+# Screenshot de um HTML local editado no VS Code
+npm run shot -- outputs/campaigns/007-metodo-vs-situacao/post-copy-1.html
+
+# Watch: re-screenshot automático sempre que salvar um .html
+npm run watch:shots
+```
+
+---
+
+## Scripts npm
+
+| Comando | O que faz |
 |---|---|
-| `brief.json` | Brief completo da campanha |
-| `scene.webp` | Imagem de cena gerada pelo Whisk |
-| `post.html` | Template HTML renderizado |
-| `post.png` | Post final 540×675px pronto para publicar |
+| `npm run generate:run` | Roda o pipeline completo a partir do `brief-input.json` |
+| `npm run generate:batch` | Processa múltiplas campanhas em sequência |
+| `npm run shot -- <arquivo.html>` | Tira screenshot de um HTML local → salva `.png` no mesmo lugar |
+| `npm run watch:shots` | Monitora `outputs/**/*.html` e re-renderiza automaticamente ao salvar |
+
+---
+
+## Estrutura de arquivos
+
+```
+outputs/
+├── campaigns/               ← uma pasta por campanha
+│   └── 007-metodo-vs-situacao/
+│       ├── brief.json           ← brief estruturado da campanha
+│       ├── scene.png            ← imagem gerada pelo Whisk
+│       ├── post-copy-1.html/png ← variante P1 (headline principal)
+│       ├── post-copy-2.html/png ← variante P2 (emocional)
+│       ├── post-copy-3.html/png ← variante P3 (provocativa)
+│       └── post-edited-copy-*.html/png ← versões após edição no Replit
+├── context/
+│   ├── vivr-campaign-context.md          ← contexto consolidado para briefs
+│   └── vivr-campaign-context-TEMPLATE.md ← template para atualização
+└── research/
+    ├── analise-voz-concorrentes.md  ← brand voice: Duolingo, Open English, Preply
+    ├── icp-persona-vivr.md          ← ICPs: Lucas (profissional) e Camila (viajante)
+    ├── reviews-concorrentes.md      ← reviews negativos Trustpilot (dores reais)
+    └── duolingo-br-ads.json         ← ads scrapeados do Meta Ad Library
+
+src/
+├── types.ts                  # Interface CampaignBrief
+├── generate.ts               # Orquestrador principal do pipeline
+├── run.ts                    # Entry point (lê brief-input.json)
+├── whisk-client.ts           # Wrapper da API do Whisk
+├── renderer.ts               # Monta HTML usando template do brief
+├── screenshot.ts             # Exporta PNG via Playwright headless
+├── replit-sync.ts            # Upload/download do editor visual Replit
+├── rerender-from-edited.ts   # Re-render a partir do HTML editado no Replit
+├── batch-runner.ts           # Processa múltiplos briefs em sequência
+└── templates/
+    ├── shared.ts             # BRAND_GRADIENT, FONT_LINK, highlightAccentWord
+    ├── split.ts              # Imagem topo (370px) + painel texto (305px) ← padrão atual
+    ├── overlay.ts            # Imagem full-bleed com overlay escuro
+    ├── frame.ts              # Fundo escuro + imagem em moldura centralizada
+    ├── phone-float.ts        # Celular centralizado com cards flutuando
+    └── phone-tilt.ts         # Layout assimétrico: copy esquerda, celular inclinado
+
+scripts/
+├── screenshot-local-html.js  # Usado pelo npm run shot
+├── meta-ad-scraper.mjs       # Scraper Meta Ad Library
+└── google-ad-scraper.mjs     # Scraper Google Ads Transparency
+```
+
+---
+
+## HTML do post — onde editar
+
+Cada `post-copy-N.html` tem a seguinte anatomia:
+
+```
+540×675px
+├── .img-section (370px)
+│   ├── <img>  ← imagem base64 embutida
+│   │          → object-position: center 65%  (ajusta o enquadramento do personagem)
+│   ├── .img-vignette  ← gradiente de transição imagem→painel
+│   ├── .hook-tag      ← data-slot="hook"  (tag no topo esquerdo)
+│   └── .badge-free    ← badge "Grátis" no topo direito
+└── .text-section (305px)
+    ├── .headline  ← data-slot="headline"  (texto principal)
+    │   └── .accent  ← palavra em gradiente de marca
+    ├── .body-copy ← data-slot="body"
+    └── .cta-btn   ← data-slot="cta"
+```
+
+**Para ajustar posição do personagem** — mude `object-position` em `.img-section img`:
+- `center top` → ancora no topo, corta o rodapé
+- `center 65%` → mostra mais do centro/baixo ← padrão atual
+- `center bottom` → ancora no rodapé, corta o topo
 
 ---
 
 ## Setup
 
-**1. Instale as dependências:**
 ```bash
 npm install
 npx playwright install chromium
+cp .env.example .env   # cole o cookie do Whisk
 ```
 
-**2. Configure o `.env`:**
-```bash
-cp .env.example .env
-# Edite o .env e cole seu cookie do Google/Whisk
-```
-
-**Como obter o cookie do Whisk:**
-1. Acesse [labs.google/fx/tools/whisk](https://labs.google/fx/tools/whisk) logado na sua conta Google
-2. Instale a extensão [Cookie Editor](https://github.com/Moustachauve/cookie-editor)
-3. Clique em Export → Header String
-4. Cole o valor no `.env` como `COOKIE=...`
+**Cookie do Whisk** (expira periodicamente):
+1. Acesse [labs.google/fx/tools/whisk](https://labs.google/fx/tools/whisk) logado com Google
+2. DevTools → Application → Cookies → `labs.google`
+3. Copie os três cookies (`csrf-token`, `callback-url`, `session-token`) e cole no `.env`
 
 ---
 
-## Como usar
+## Skills de intel de mercado
 
-**Gerar uma campanha:**
-```bash
-npm run generate
-```
+Rode antes de criar uma nova campanha para manter o contexto atualizado:
 
-**Rodar em batch (múltiplas campanhas):**
-```bash
-npm run generate:batch
-```
+| Skill | Função | Output |
+|---|---|---|
+| `/brand-voice-extractor` | Analisa voz dos concorrentes | `outputs/research/analise-voz-concorrentes.md` |
+| `/icp-persona-builder` | Constrói ICPs detalhados | `outputs/research/icp-persona-vivr.md` |
+| `/review-scraper` | Raspa reviews negativos (Trustpilot) | `outputs/research/reviews-concorrentes.md` |
+| `/meta-ad-scraper` | Scrapa ads do Meta Ad Library | `outputs/research/duolingo-br-ads.json` |
 
----
-
-## Exemplo de brief
-
-```typescript
-const brief: CampaignBrief = {
-  id: '001-restaurant',
-  audience: 'Adultos 22-35 que travam ao falar inglês',
-  pain: 'Fiz mil lições mas trava na hora H',
-  angle: 'O problema não é você, é que nunca praticou em situação real',
-  copy: {
-    hook: 'Você já fez tanta lição e ainda trava na hora H?',
-    headline: 'Inglês que funciona fora do app.',
-    accentWord: 'funciona',
-    body: 'No Vivr, você pratica dentro de cenas reais — café, viagem, trabalho.',
-    cta: 'Entra no Vivr',
-  },
-  visual: {
-    whiskPrompt: 'A confident adult 3D cartoon character...',
-    scene: 'modern café interior, warm lighting',
-    mood: 'confident, light, immersive',
-  },
-}
-```
+Após rodar as três primeiras, consolide com:
+> *"Com base nos três arquivos de research, atualize `outputs/context/vivr-campaign-context.md` seguindo o template"*
 
 ---
 
-## Skills Claude Code
-
-Este projeto inclui skills para o [Claude Code](https://claude.ai/code) que automatizam a criação de campanhas dentro do VS Code:
+## Skills de criação
 
 | Skill | Função |
 |---|---|
-| `/vivavr-static-campaign` | Gera brief completo com copy, direção visual e prompts |
-| `/vivavr-whisk-hero` | Transforma o brief em prompts prontos para o Whisk |
-| `/vivavr-canva-assembly` | Monta o design no Canva via MCP com 3 variações |
+| `/vivavr-static-campaign` | Gera brief completo + executa pipeline (Whisk → HTML → PNG) |
+| `/vivavr-whisk-hero` | Gera prompts estruturados para o Whisk |
+| `/vivavr-canva-assembly` | Monta design no Canva via MCP com 3 variações |
+| `/ui-ux-pro-max` | Design system, paletas, tipografia — melhora templates HTML |
+
+---
+
+## Paleta e identidade visual
+
+| Elemento | Valor |
+|---|---|
+| Logo gradient | `#FF6B35 → #E8334A → #7B4FBF → #4CAF50` |
+| Brand gradient (CSS) | `linear-gradient(135deg, #f7c948, #f97040, #e94899, #9b5de5, #26c6da, #80e27e)` |
+| App UI gradient | `#9C6FE4 → #E87BB0` |
+| Fundo OLED | `#0d0d0d` |
+| Fonte | Nunito 400/600/700/800/900 |
+
+**Personagem canônico:** homem adulto, barba escura, camiseta roxa, shorts jeans cinza, tênis brancos — estilo 3D cartoon adulto de proporções alongadas (NOT Pixar rounded).
 
 ---
 
@@ -131,6 +186,6 @@ Este projeto inclui skills para o [Claude Code](https://claude.ai/code) que auto
 
 - **TypeScript + Node.js** — pipeline principal
 - **@rohitaryal/whisk-api** — geração de imagem via Google Whisk
-- **Playwright** — captura de tela headless
-- **Claude Code + MCP Canva** — automação de design
-- **Google Fonts (Nunito)** — tipografia do template
+- **Playwright** — captura de tela headless (540×675px)
+- **chokidar** — watch de arquivos HTML para re-render automático
+- **Claude Code skills** — automação de brief, intel e design
