@@ -9,17 +9,23 @@ Combina geração de imagens com IA (Google Whisk), renderização HTML com múl
 ## Pipeline completo
 
 ```
-/vivavr-static-campaign
-  ↓ gera brief + monta JSON
-  ↓ chama Whisk API → scene.png
-  ↓ renderiza 3 copies HTML (template split/overlay/frame/phone)
+/vivavr-static-campaign (skill)
+  ↓ gera brief estratégico + monta brief-input.json + content-feed.json
+  ↓
+[Manual 1] Gerar imagem Whisk
+  $ npx ts-node src/run.ts
+  ↓ chama Whisk API → scene.webp em outputs/campaigns/{id}/
+  ↓
+[Manual 2] Renderizar e exportar
+  $ npx ts-node src/run-render.ts content-feed.json
+  ↓ renderiza 3 copies HTML (split/overlay/frame/phone)
   ↓ exporta post-copy-1/2/3.png via Playwright
-  ↓ faz upload do copy-1 pro Replit (editor visual)
-        ↓
-   [edição opcional no Replit ou VS Code]
-        ↓
-npx ts-node src/rerender-from-edited.ts [id]            ← re-render do Replit
-npm run shot -- outputs/campaigns/007/post-copy-1.html  ← re-render local
+  ↓
+[Opcional] Editar HTML no VS Code
+  ↓ salva post-copy-1.html
+  ↓
+[Manual 3] Re-render após edição
+  $ npm run shot -- outputs/campaigns/{id}/post-copy-1.html
 ```
 
 ---
@@ -27,14 +33,14 @@ npm run shot -- outputs/campaigns/007/post-copy-1.html  ← re-render local
 ## Comandos do dia a dia
 
 ```bash
-# Gerar campanha completa (Whisk + HTML + PNG)
-npm run generate:run
+# 1. Gerar imagem via Whisk (precisa de .env com API key)
+PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node src/run.ts
 
-# Re-renderizar a partir do HTML editado no Replit
-npx ts-node src/rerender-from-edited.ts 007-metodo-vs-situacao
+# 2. Re-renderizar HTMLs e screenshots (usa scene.webp existente)
+PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node src/run-render.ts content-feed.json
 
 # Screenshot de um HTML local editado no VS Code
-npm run shot -- outputs/campaigns/007-metodo-vs-situacao/post-copy-1.html
+npm run shot -- outputs/campaigns/009-cafe-pedir-info/post-copy-1.html
 
 # Watch: re-screenshot automático sempre que salvar um .html
 npm run watch:shots

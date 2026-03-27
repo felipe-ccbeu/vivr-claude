@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run.ts)",
+      "Bash(grep -n \"BRAND_GRADIENT\" src/templates/*.ts)",
+      "Bash(grep -A2 \"import.*shared\" src/templates/*.ts)",
+      "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run-render.ts content-feed.json)"
+    ]
+  }
+}

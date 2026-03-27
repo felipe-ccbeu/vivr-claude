@@ -1,7 +1,7 @@
 {
   "campaignId": "009-cafe-pedir-info",
   "template": "split",
-  "imagePath": "scene.webp",
+  "imagePath": "scene.png",
   "variants": [
     {
       "hook": "Aquele momento congelante no balcão...",

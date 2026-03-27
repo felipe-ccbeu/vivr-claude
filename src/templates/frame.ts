@@ -73,7 +73,7 @@ ${FONT_LINK}
     font-size: 12px;
     font-weight: 800;
     color: white;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.primary};
     letter-spacing: 0.3px;
     white-space: nowrap;
   }
@@ -84,7 +84,7 @@ ${FONT_LINK}
     height: 348px;
     border-radius: 26px;
     padding: 3px;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.primary};
     flex-shrink: 0;
     box-shadow:
       0 8px 40px rgba(0,0,0,0.6),
@@ -130,7 +130,7 @@ ${FONT_LINK}
   }
 
   .accent {
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.primary};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -152,7 +152,7 @@ ${FONT_LINK}
     font-size: 15px;
     font-weight: 800;
     color: white;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.primary};
     letter-spacing: 0.2px;
     white-space: nowrap;
     align-self: flex-start;

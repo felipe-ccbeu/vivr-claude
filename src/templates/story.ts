@@ -1,6 +1,6 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, highlightAccentWord, BRAND_GRADIENT } from './shared'
 
 /**
  * STORY — formato 9:16 (540×960px)
