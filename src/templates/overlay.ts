@@ -1,15 +1,17 @@
-import { CampaignBrief } from '../types'
-import { BRAND_GRADIENT, FONT_LINK, highlightAccentWord } from './shared'
+import { CopyVariant } from '../content-schema'
+import { StyleConfig } from '../styles'
+import { FONT_LINK, highlightAccentWord } from './shared'
 
 /**
  * OVERLAY — imagem full-bleed com overlay escuro degradê na base.
  * Texto (headline, body, CTA) flutua sobre a imagem no rodapé.
  * Speech bubble com hook curto posicionado no centro-direito, com cauda.
+ * Supports all design variations via StyleConfig parameter.
  */
-export function buildOverlay(brief: CampaignBrief, imageDataUrl: string): string {
-  const headlineHtml = highlightAccentWord(brief.copy.headline, brief.copy.accentWord)
+export function buildOverlay(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
   // First sentence only — keeps the bubble tight
-  const hookShort = brief.copy.hook.split(/[.!?]/)[0].trim()
+  const hookShort = variant.hook.split(/[.!?]/)[0].trim()
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -30,7 +32,7 @@ ${FONT_LINK}
   .bg {
     position: absolute;
     inset: 0;
-    background-image: url('${imageDataUrl}');
+    background-image: url('${imageSrc}');
     background-size: cover;
     background-position: center top;
   }
@@ -107,7 +109,7 @@ ${FONT_LINK}
   /* Accent word: gradient + slight size bump + glow so it pops on dark overlay */
   .accent {
     font-size: 1.08em;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.accentWord};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -140,8 +142,8 @@ ${FONT_LINK}
     border-radius: 50px;
     font-size: 14px;
     font-weight: 800;
-    color: white;
-    background: ${BRAND_GRADIENT};
+    color: ${styleConfig.colors.ctaText};
+    background: ${styleConfig.colors.ctaBg};
     letter-spacing: 0.2px;
     white-space: nowrap;
   }
@@ -173,9 +175,9 @@ ${FONT_LINK}
     <div class="speech-bubble" data-slot="hook">${hookShort}</div>
     <div class="bottom">
       <div class="headline" data-slot="headline">${headlineHtml}</div>
-      <div class="body-copy" data-slot="body">${brief.copy.body}</div>
+      <div class="body-copy" data-slot="body">${variant.body}</div>
       <div class="cta-row">
-        <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
+        <div class="cta-btn" data-slot="cta">${variant.cta}</div>
         <div class="sub-badge">
           <span class="dot"></span>
           É grátis pra começar

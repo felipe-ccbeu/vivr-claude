@@ -41,7 +41,7 @@ async function renderVersion(
   brief.visual.template = template
   console.log(`[rerender] v${version} → template: ${template}`)
 
-  const htmlPath = await renderPost(brief, imagePath, filename)
+  const htmlPath = await renderPost(brief, imagePath, filename, campaignDir)
   const pngPath  = htmlPath.replace('.html', '.png')
   await exportPNG(htmlPath, pngPath)
 

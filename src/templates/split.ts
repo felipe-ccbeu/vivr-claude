@@ -1,16 +1,64 @@
-import { CampaignBrief } from '../types'
-import { BRAND_GRADIENT, FONT_LINK, highlightAccentWord } from './shared'
+import { CopyVariant } from '../content-schema'
+import { StyleConfig } from '../styles'
+import { FONT_LINK, highlightAccentWord } from './shared'
 
 /**
  * SPLIT — imagem ocupa o topo (370px), painel de texto escuro ocupa o rodapé (305px).
  * Hook aparece como tag translúcida sobre a imagem.
  * Layout limpo, tipografia grande, CTA alinhado à esquerda.
  *
- * UI/UX: OLED dark mode (contrast 7:1+), hierarquia tipográfica clara,
- * vignette suave em 3 stops, CTA com glow sutil, hook com borda gradiente.
+ * Supports all design variations via StyleConfig parameter.
  */
-export function buildSplit(brief: CampaignBrief, imageDataUrl: string): string {
-  const headlineHtml = highlightAccentWord(brief.copy.headline, brief.copy.accentWord)
+export function buildSplit(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+
+  // Build vignette gradient from config
+  const vignetteStops = styleConfig.visual.vignette?.stops
+    .map(stop => `${stop.color} ${stop.position}`)
+    .join(', ') || 'rgba(0,0,0,0) 42%, rgba(0,0,0,0.55) 72%, rgba(13,13,13,1) 100%'
+
+  const vignetteDirection = styleConfig.visual.vignette?.direction || 'to bottom'
+
+  // Build accent word styles
+  let accentStyles = ''
+  if (styleConfig.visual.accentWordStyle === 'gradient') {
+    accentStyles = `
+      background: ${styleConfig.colors.accentWord};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    `
+  } else if (styleConfig.visual.accentWordStyle === 'glow') {
+    accentStyles = `
+      color: ${styleConfig.colors.accentWord};
+      filter: drop-shadow(0 0 8px ${styleConfig.colors.accentWord});
+    `
+  } else if (styleConfig.visual.accentWordStyle === 'underline') {
+    accentStyles = `
+      color: ${styleConfig.colors.accentWord};
+      text-decoration: underline;
+    `
+  } else {
+    accentStyles = `color: ${styleConfig.colors.accentWord};`
+  }
+
+  // Build glow effects for CTA if applicable
+  let ctaGlowShadow = ''
+  if (styleConfig.cta.boxShadow) {
+    ctaGlowShadow = `box-shadow: ${styleConfig.cta.boxShadow};`
+  } else {
+    ctaGlowShadow = `box-shadow: 0 2px 8px rgba(0,0,0,0.1);`
+  }
+
+  // Build separator line gradient (for dark-bold style)
+  let separatorGradient = 'linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%)'
+  if (styleConfig.slug === 'minimal-clean') {
+    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.primary} 0%, ${styleConfig.colors.primary} 100%)`
+  } else if (styleConfig.slug === 'high-contrast') {
+    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.borders} 0%, ${styleConfig.colors.borders} 100%)`
+  } else if (styleConfig.slug === 'futuristic') {
+    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.primary} 0%, ${styleConfig.colors.secondary} 100%)`
+  }
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -19,7 +67,7 @@ export function buildSplit(brief: CampaignBrief, imageDataUrl: string): string {
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: ${styleConfig.colors.background}; }
 
   .post-wrapper {
     width: 540px;
@@ -46,37 +94,30 @@ ${FONT_LINK}
     display: block;
   }
 
-  /* 3-stop vignette: transparente → semi → opaco. Transição suave sem corte brusco. */
+  /* Vignette overlay */
   .img-vignette {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 42%,
-      rgba(0,0,0,0.55) 72%,
-      rgba(13,13,13,1) 100%
-    );
+    background: linear-gradient(${vignetteDirection}, ${vignetteStops});
   }
 
-  /* Hook tag com borda gradiente via box-shadow multicamada */
+  /* Hook tag */
   .hook-tag {
     position: absolute;
     top: 18px;
     left: 20px;
-    background: rgba(0,0,0,0.62);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: ${styleConfig.visual.hookTag?.background || 'rgba(0,0,0,0.62)'};
+    ${styleConfig.visual.hookTag?.backdropFilter ? `backdrop-filter: ${styleConfig.visual.hookTag.backdropFilter};` : ''}
+    ${styleConfig.visual.hookTag?.backdropFilter ? `-webkit-backdrop-filter: ${styleConfig.visual.hookTag.backdropFilter};` : ''}
+    border: ${styleConfig.visual.hookTag?.border || '1px solid rgba(255,255,255,0.18)'};
     border-radius: 20px;
     padding: 7px 15px;
-    font-size: 11.5px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 0.15px;
+    font-size: ${styleConfig.typography.hook?.size || '11.5px'};
+    font-weight: ${styleConfig.typography.hook?.weight || 700};
+    color: ${styleConfig.colors.textPrimary};
+    letter-spacing: ${styleConfig.typography.hook?.spacing || '0.15px'};
     max-width: 310px;
-    line-height: 1.35;
-    /* glow sutil de marca no bottom da borda */
-    box-shadow: 0 0 0 1px rgba(249,112,64,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+    line-height: ${styleConfig.typography.hook?.lineHeight || 1.35};
   }
 
   .badge-free {
@@ -90,22 +131,19 @@ ${FONT_LINK}
     font-size: 11.5px;
     font-weight: 900;
     color: white;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.primary};
     letter-spacing: 0.4px;
-    /* glow de profundidade */
-    box-shadow: 0 2px 12px rgba(233,72,153,0.4);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }
 
   /* ── TEXT SECTION ── */
-  /* Linha gradiente no topo como conexão visual com a imagem */
   .text-section {
     flex: 1;
-    background: #0d0d0d;
-    padding: 20px 36px 26px;
+    background: ${styleConfig.colors.background};
+    padding: ${styleConfig.safeZone.topBuffer} ${styleConfig.safeZone.sidePadding} ${styleConfig.safeZone.bottomBuffer};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Fio gradiente no topo: conecta visualmente imagem e painel */
     border-top: 1.5px solid transparent;
     background-clip: padding-box;
     position: relative;
@@ -116,75 +154,68 @@ ${FONT_LINK}
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1.5px;
-    background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+    background: ${separatorGradient};
   }
 
-  /* Headline: 36px 900 — escala maior para impacto visual */
+  /* Headline */
   .headline {
-    font-size: 36px;
-    font-weight: 900;
-    color: #ffffff;
-    line-height: 1.08;
-    letter-spacing: -0.8px;
-    /* sombra sutil para separar do fundo OLED */
-    text-shadow: 0 1px 20px rgba(0,0,0,0.8);
+    font-size: ${styleConfig.typography.headline.size};
+    font-weight: ${styleConfig.typography.headline.weight};
+    color: ${styleConfig.colors.textPrimary};
+    line-height: ${styleConfig.typography.headline.lineHeight};
+    letter-spacing: ${styleConfig.typography.headline.spacing};
+    ${styleConfig.typography.headline.textShadow ? `text-shadow: ${styleConfig.typography.headline.textShadow};` : ''}
   }
 
-  /* Accent com glow sutil alinhado ao gradiente da marca */
+  /* Accent word */
   .accent {
-    background: ${BRAND_GRADIENT};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 8px rgba(249,112,64,0.35));
+    ${accentStyles}
   }
 
-  /* Body: 14px, contraste 0.72 (WCAG AA no fundo #0d0d0d) */
+  /* Body copy */
   .body-copy {
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.70);
-    line-height: 1.6;
+    font-size: ${styleConfig.typography.body.size};
+    font-weight: ${styleConfig.typography.body.weight};
+    color: ${styleConfig.colors.textSecondary};
+    line-height: ${styleConfig.typography.body.lineHeight};
     margin-top: 11px;
-    max-width: 430px;
-    letter-spacing: 0.1px;
+    max-width: ${styleConfig.safeZone.maxContentWidth};
+    letter-spacing: ${styleConfig.typography.body.spacing};
   }
 
-  /* CTA com glow de marca, padding generoso, peso máximo */
+  /* CTA button */
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 13px 30px;
-    border-radius: 50px;
-    font-size: 14.5px;
-    font-weight: 900;
-    color: white;
-    background: ${BRAND_GRADIENT};
-    letter-spacing: 0.3px;
+    padding: ${styleConfig.cta.padding};
+    border-radius: ${styleConfig.cta.borderRadius};
+    font-size: ${styleConfig.typography.cta.size};
+    font-weight: ${styleConfig.typography.cta.weight};
+    color: ${styleConfig.colors.ctaText};
+    background: ${styleConfig.colors.ctaBg};
+    letter-spacing: ${styleConfig.typography.cta.spacing};
     white-space: nowrap;
     align-self: flex-start;
-    /* glow multicamada: proximidade + distância */
-    box-shadow:
-      0 0 0 1px rgba(249,112,64,0.3),
-      0 4px 16px rgba(233,72,153,0.35),
-      0 8px 32px rgba(155,93,229,0.2);
+    min-height: ${styleConfig.cta.minHeight || '48px'};
+    ${styleConfig.cta.border ? `border: ${styleConfig.cta.border};` : ''}
+    ${ctaGlowShadow}
   }
 </style>
 </head>
 <body>
 <div class="post-wrapper">
   <div class="img-section">
-    <img src="${imageDataUrl}" alt="" />
+    <img src="${imageSrc}" alt="" />
     <div class="img-vignette"></div>
-    <span class="hook-tag" data-slot="hook">${brief.copy.hook}</span>
+    <span class="hook-tag" data-slot="hook">${variant.hook}</span>
     <span class="badge-free">Grátis</span>
   </div>
   <div class="text-section">
     <div>
       <div class="headline" data-slot="headline">${headlineHtml}</div>
-      <div class="body-copy" data-slot="body">${brief.copy.body}</div>
+      <div class="body-copy" data-slot="body">${variant.body}</div>
     </div>
-    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
+    <div class="cta-btn" data-slot="cta">${variant.cta}</div>
   </div>
 </div>
 </body>

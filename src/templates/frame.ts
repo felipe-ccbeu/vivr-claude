@@ -1,13 +1,15 @@
-import { CampaignBrief } from '../types'
-import { BRAND_GRADIENT, FONT_LINK, highlightAccentWord } from './shared'
+import { CopyVariant } from '../content-schema'
+import { StyleConfig } from '../styles'
+import { FONT_LINK, highlightAccentWord } from './shared'
 
 /**
- * FRAME — fundo escuro (#1A1030), imagem centralizada em um frame com borda gradiente.
+ * FRAME — fundo escuro, imagem centralizada em um frame com borda gradiente.
  * Cria o efeito "portal" — a cena do app como janela para outro mundo.
  * Headline e CTA ficam abaixo do frame.
+ * Supports all design variations via StyleConfig parameter.
  */
-export function buildFrame(brief: CampaignBrief, imageDataUrl: string): string {
-  const headlineHtml = highlightAccentWord(brief.copy.headline, brief.copy.accentWord)
+export function buildFrame(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -161,18 +163,18 @@ ${FONT_LINK}
 <body>
 <div class="post-wrapper">
   <div class="top-row">
-    <span class="hook-text" data-slot="hook">${brief.copy.hook}</span>
+    <span class="hook-text" data-slot="hook">${variant.hook}</span>
     <span class="badge-free">Grátis</span>
   </div>
   <div class="frame-outer">
     <div class="frame-inner">
-      <img src="${imageDataUrl}" alt="" />
+      <img src="${imageSrc}" alt="" />
     </div>
   </div>
   <div class="text-block">
     <div class="headline" data-slot="headline">${headlineHtml}</div>
-    <div class="body-copy" data-slot="body">${brief.copy.body}</div>
-    <div class="cta-btn" data-slot="cta">${brief.copy.cta}</div>
+    <div class="body-copy" data-slot="body">${variant.body}</div>
+    <div class="cta-btn" data-slot="cta">${variant.cta}</div>
   </div>
 </div>
 </body>

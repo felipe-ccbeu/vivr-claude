@@ -1,0 +1,74 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Screenshot current HTML",
+      "type": "shell",
+      "command": "& { $env:Path='C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64;' + $env:Path; & 'C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64\\npm.cmd' run shot -- \"${file}\" }",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe",
+          "args": [
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command"
+          ]
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "Screenshot HTML by path",
+      "type": "shell",
+      "command": "& { $env:Path='C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64;' + $env:Path; & 'C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64\\npm.cmd' run shot -- \"${input:htmlPath}\" }",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe",
+          "args": [
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command"
+          ]
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false
+      }
+    },
+    {
+      "label": "Watch all HTML screenshots",
+      "type": "shell",
+      "command": "& { $env:Path='C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64;' + $env:Path; & 'C:\\Users\\felipe.fadel\\tools\\node\\node-v24.14.0-win-x64\\npm.cmd' run watch:shots }",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe",
+          "args": [
+            "-NoProfile",
+            "-ExecutionPolicy",
+            "Bypass",
+            "-Command"
+          ]
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "htmlPath",
+      "type": "promptString",
+      "description": "Path do arquivo HTML"
+    }
+  ]
+}

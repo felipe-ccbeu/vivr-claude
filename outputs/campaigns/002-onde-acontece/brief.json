@@ -1,0 +1,35 @@
+{
+  "id": "002-onde-acontece",
+  "audience": "Adultos 24-36 que estudaram inglês mas travam em situações reais",
+  "pain": "Passei anos estudando, mas quando a situação aparece, trava tudo. Nunca pratiquei dentro de uma situação real.",
+  "angle": "O inglês é aprendido no momento em que você precisa dele. Vivr cria esses momentos antes de você estar lá.",
+  "copy": {
+    "hook": "Você já estudou. O problema é que nunca praticou no lugar certo.",
+    "headline": "Pratique onde o inglês acontece.",
+    "accentWord": "onde",
+    "body": "Café, aeroporto, hotel, trabalho. No Vivr você treina dentro dessas cenas — não sobre elas. Quando a situação real aparecer, você já vai ter estado lá.",
+    "cta": "Começa de graça"
+  },
+  "copyVariants": [
+    {
+      "hook": "Treino sem contexto não prepara pra conversa real.",
+      "headline": "Quando a situação aparecer, você já vai ter estado lá.",
+      "accentWord": "estado",
+      "body": "Café, aeroporto, hotel, trabalho. No Vivr você treina dentro dessas cenas — não sobre elas.",
+      "cta": "Começa de graça"
+    },
+    {
+      "hook": "Você nunca praticou no lugar onde o inglês acontece de verdade.",
+      "headline": "Você treina aqui antes de chegar lá.",
+      "accentWord": "antes",
+      "body": "O Vivr cria os momentos antes de você precisar deles. Quando a situação real aparecer, você já vai ter passado por ela.",
+      "cta": "Começa de graça"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Adult woman with warm brown skin, dark hair, wearing a light casual blouse and slim jeans. Standing naturally at a cozy modern café counter, relaxed mid-gesture as if ordering or speaking. Cozy café environment: wooden counter, barista equipment in background, warm amber pendant lighting, soft blurred depth, brick accent wall. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Café urbano moderno, balcão de madeira, iluminação âmbar quente, parede de tijolos",
+    "mood": "Confiante, natural, imersivo — adulto em situação real",
+    "template": "split"
+  }
+}

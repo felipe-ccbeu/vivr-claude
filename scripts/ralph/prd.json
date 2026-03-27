@@ -1,0 +1,203 @@
+{
+  "title": "Design Variation System for Vivr Social Posts",
+  "description": "Enable automated generation of multiple design styles from single content JSON",
+  "branchName": "feat/design-variations",
+  "createdAt": "2026-03-26",
+  "phaseNumber": 1,
+  "targetCompletion": "2026-04-09",
+  "stories": [
+    {
+      "id": "DV-001",
+      "title": "Create StyleConfig TypeScript interface",
+      "description": "Define centralized style configuration interface with colors, typography, visual effects",
+      "priority": 1,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/types.ts created with StyleConfig interface",
+        "Interface includes colors, typography, visual, cta, safeZone properties",
+        "All 6 style names ('dark-bold', 'minimal-clean', 'editorial', 'futuristic', 'high-contrast', 'dark-white') defined as type union",
+        "TypeScript compilation succeeds (npx tsc --noEmit returns 0)",
+        "Interface exported and importable from other modules"
+      ],
+      "acceptance_pass_criteria": "TypeScript compiles, interface has all required properties, type union includes all 6 styles"
+    },
+    {
+      "id": "DV-002",
+      "title": "Implement dark-bold style config",
+      "description": "Create dark-bold style definition (Vivr gradient + OLED black, default style)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/dark-bold.ts created with styleConfig export",
+        "Colors defined: #0d0d0d background, #ffffff text primary, Vivr gradient accent",
+        "Typography: 36px/900 headline, 14px/500 body, 14.5px/900 CTA",
+        "Visual treatment includes vignette, glow effects, gradient separator line",
+        "Safe zone padding matches spec (20-36px sides, 20px top, 26px bottom for feed)",
+        "JSON output matches StyleConfig interface perfectly"
+      ],
+      "acceptance_pass_criteria": "dark-bold.ts exports valid StyleConfig, all colors/typography match spec, compiles without errors"
+    },
+    {
+      "id": "DV-003",
+      "title": "Implement minimal-clean style config",
+      "description": "Create minimal-clean style definition (white background, cyan accent, no glow)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/minimal-clean.ts created",
+        "Colors: #ffffff background, #1a1a1a text, #26c6da cyan accent",
+        "Typography: 32px/800 headline, 13px/400 body, no text-shadow",
+        "Visual treatment: thin borders only (no gradients, no glows)",
+        "CTA button: solid cyan with subtle 1px border",
+        "Safe zone: generous padding (28-40px sides)"
+      ],
+      "acceptance_pass_criteria": "minimal-clean.ts exports valid StyleConfig, white background, no gradients/glows, cyan accent"
+    },
+    {
+      "id": "DV-004",
+      "title": "Implement editorial style config",
+      "description": "Create editorial style (charcoal + magenta, serif typography, magazine aesthetic)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/editorial.ts created",
+        "Colors: #f5f3f0 warm off-white background, #2c2c2c charcoal, #e94899 magenta",
+        "Typography direction includes serif font reference (Georgia fallback)",
+        "Headline: 34px/700 weight serif, body: 14px/400 serif",
+        "Visual accents: 3px solid magenta top border, thin divider lines",
+        "CTA: solid charcoal background, simple rectangular style"
+      ],
+      "acceptance_pass_criteria": "editorial.ts exports valid StyleConfig, warm off-white background, serif typography, magenta accent"
+    },
+    {
+      "id": "DV-005",
+      "title": "Implement futuristic style config",
+      "description": "Create futuristic style (neon cyan/magenta, deep navy, glow effects, tech aesthetic)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/futuristic.ts created",
+        "Colors: #0a0e27 navy background, #00d9ff neon cyan, #a000ff neon magenta, #e0e0ff cool white text",
+        "Typography: 38px/900 headline with 0.5px spacing, 13px/400 body",
+        "Visual treatment: headline glow effect (drop-shadow: 0 0 12px cyan, 0 0 24px magenta)",
+        "CTA: neon cyan background with dual-layer glow, navy text",
+        "All-caps or title-case headline direction"
+      ],
+      "acceptance_pass_criteria": "futuristic.ts exports valid StyleConfig, neon colors, dual glow effects on headline and CTA"
+    },
+    {
+      "id": "DV-006",
+      "title": "Implement high-contrast style config",
+      "description": "Create high-contrast style (WCAG AAA, black/white + golden yellow, maximum readability)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/high-contrast.ts created",
+        "Colors: #ffffff white background, #000000 black text, #ffcc00 golden yellow accent",
+        "Contrast ratios: 21:1 primary text, 19:1 secondary text (verified)",
+        "Typography: 40px/900 headline, 15px/600 body, zero letter-spacing",
+        "CTA: golden yellow background, black text, bold 2px border, rectangular (0px radius)",
+        "Visual accents: bold geometric borders, strong divider lines, flat design (no shadows)"
+      ],
+      "acceptance_pass_criteria": "high-contrast.ts exports valid StyleConfig, 21:1 contrast ratio on text, golden yellow accent, no shadows"
+    },
+    {
+      "id": "DV-007",
+      "title": "Implement dark-white style config",
+      "description": "Create dark-white style (monochromatic, black + white, elegant simplicity, premium positioning)",
+      "priority": 2,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/dark-white.ts created",
+        "Colors: #ffffff white background, #000000 black text primary, #4a4a4a dark gray secondary",
+        "Typography: 35px/700 headline, 14px/400 body, -0.5px letter-spacing",
+        "Visual accents: thin 1px borders, geometric dividers, minimal shadows (0 1px 4px rgba(0,0,0,0.1))",
+        "CTA: solid black background, white text, minimal 1px border, 6px border-radius",
+        "Safe zone: balanced padding (24-32px sides)"
+      ],
+      "acceptance_pass_criteria": "dark-white.ts exports valid StyleConfig, pure black/white colors, monochromatic design"
+    },
+    {
+      "id": "DV-008",
+      "title": "Create style index and export system",
+      "description": "Create src/styles/index.ts to export all style configs and provide getStyleConfig() function",
+      "priority": 3,
+      "passes": true,
+      "acceptanceCriteria": [
+        "File src/styles/index.ts created",
+        "Exports all 6 style modules",
+        "Function getStyleConfig(name?: string): StyleConfig implemented",
+        "Default parameter returns 'dark-bold' when undefined",
+        "Type safety: returns error on invalid style name (TypeScript catches at compile time)",
+        "Example usage: getStyleConfig('minimal-clean') returns correct config"
+      ],
+      "acceptance_pass_criteria": "index.ts exports all styles, getStyleConfig() defaults to dark-bold, type-safe lookup works"
+    },
+    {
+      "id": "DV-009",
+      "title": "Extend ContentJSON schema with designVariation field",
+      "description": "Update src/content-schema.ts to include optional designVariation field",
+      "priority": 3,
+      "passes": true,
+      "acceptanceCriteria": [
+        "ContentJSON interface includes designVariation?: string field",
+        "designVariation field type: 'dark-bold' | 'minimal-clean' | 'editorial' | 'futuristic' | 'high-contrast' | 'dark-white'",
+        "Field is optional (backward compatible, defaults to 'dark-bold')",
+        "TypeScript compilation succeeds",
+        "Existing content-feed.json files remain valid without designVariation"
+      ],
+      "acceptance_pass_criteria": "ContentJSON interface extended, designVariation field optional, backward compatible"
+    },
+    {
+      "id": "DV-010",
+      "title": "Update renderer.ts to apply style configs to templates",
+      "description": "Modify src/renderer.ts to wire designVariation param through render pipeline and pass StyleConfig to templates",
+      "priority": 3,
+      "passes": true,
+      "acceptanceCriteria": [
+        "applyTemplate() function signature updated to accept styleConfig parameter",
+        "renderFromContent() extracts designVariation from content and retrieves StyleConfig",
+        "StyleConfig passed to all 6 template builders (split, overlay, frame, phone-float, phone-tilt, story)",
+        "Default to dark-bold style when designVariation is undefined",
+        "TypeScript compilation succeeds",
+        "No changes to template file paths or build logic"
+      ],
+      "acceptance_pass_criteria": "renderer.ts wires StyleConfig through pipeline, defaults to dark-bold, passes style to all templates"
+    },
+    {
+      "id": "DV-011",
+      "title": "Update split template to use StyleConfig",
+      "description": "Modify src/templates/split.ts to accept and apply StyleConfig instead of hardcoded styles",
+      "priority": 4,
+      "passes": true,
+      "acceptanceCriteria": [
+        "buildSplit() function signature updated: (variant, imageSrc, styleConfig: StyleConfig)",
+        "All hardcoded colors replaced with styleConfig values (#0d0d0d \u00e2\u2020\u2019 styleConfig.colors.background, etc)",
+        "Typography sizes/weights injected from styleConfig (headline: ${styleConfig.typography.headline.size})",
+        "Visual effects (vignette, glow, borders) applied from styleConfig.visual",
+        "CTA styling uses styleConfig.cta properties",
+        "HTML output identical to original when using dark-bold config",
+        "Different output verified for minimal-clean config (white background vs black)"
+      ],
+      "acceptance_pass_criteria": "split.ts uses StyleConfig, outputs dark OLED for dark-bold, outputs white for minimal-clean"
+    },
+    {
+      "id": "DV-012",
+      "title": "Verify all templates render with each style (visual QA)",
+      "description": "Generate sample HTML + PNG for all 6 templates \u00c3\u2014 6 styles combination and verify visual correctness",
+      "priority": 5,
+      "passes": false,
+      "acceptanceCriteria": [
+        "Test content created: outputs/test-variations/content-feed.json with designVariation field for each style",
+        "Run: npx ts-node src/run-render.ts outputs/test-variations/content-feed.json (6 times, one per style)",
+        "Verify: 36 HTML files generated (6 templates \u00c3\u2014 6 styles) without errors",
+        "Verify: dark-bold renders with Vivr gradient and OLED black",
+        "Verify: minimal-clean renders with white background and cyan accent",
+        "Verify: futuristic renders with neon colors and glow effects",
+        "Verify: high-contrast renders with 21:1 contrast ratio (visual check)",
+        "No console errors or warnings in render output"
+      ],
+      "acceptance_pass_criteria": "All 6 styles render across split template, colors/typography match spec visually"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "008-reuniao-corporativa",
+  "audience": "Profissionais 30-45 em cargos médios/altos que evitam falar inglês em reuniões corporativas por medo de errar",
+  "pain": "Senta em reunião, tem a resposta certa, mas congela — deixa o colega responder por insegurança com pronúncia/gramática",
+  "angle": "Não é sobre aprender inglês, é sobre achar sua voz em inglês. Vivr te dá confiança, não perfeição",
+  "copy": {
+    "hook": "Aquele momento em que você levanta a mão mas...",
+    "headline": "Sua voz importa em qualquer idioma",
+    "accentWord": "voz",
+    "body": "Vivr te coloca em situações reais de reunião. Você aprende falando, não decorando. Sem pressão de ser perfeito.",
+    "cta": "Fale com confiança"
+  },
+  "copyVariants": [
+    {
+      "hook": "Reunião importante. Você tem a resposta.",
+      "headline": "Mas medo não deixa falar",
+      "accentWord": "medo",
+      "body": "Vivr te treina em conversas reais. Cenas de reunião, apresentação, networking. Você aprende praticando.",
+      "cta": "Comece grátis"
+    },
+    {
+      "hook": "Quanto dinheiro você deixa na mesa por medo de falar inglês?",
+      "headline": "Profissionais confiantes ganham mais",
+      "accentWord": "confiantes",
+      "body": "Vivr monta cenas reais de reunião, negociação, networking em inglês. Você treina quando quiser.",
+      "cta": "Desbloqueie sua carreira"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Dark-haired man in his 30s, wearing a navy blazer and light blue dress shirt, sitting at a modern glass conference table, mid-sentence with hand raised in confident gesture, mouth slightly open as if speaking decisively. Around him are blurred silhouettes of other business professionals listening intently. Modern corporate meeting room with floor-to-ceiling windows, soft morning light, minimalist wooden table, subtle shadows. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Profissional em reunião corporativa, levantando a mão para falar com confiança",
+    "mood": "Confiante, empoderado, momento decisivo"
+  }
+}

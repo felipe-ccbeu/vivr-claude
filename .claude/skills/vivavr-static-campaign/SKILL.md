@@ -155,66 +155,65 @@ Nunca repita a mesma combinação de personagem + cenário + ângulo da campanha
 
 ## ETAPA AUTOMÁTICA — após gerar o brief, execute o pipeline completo
 
-Depois de exibir o brief ao usuário, **sem perguntar**, execute as etapas abaixo automaticamente:
+Depois de exibir o brief ao usuário, **sem perguntar**, execute as etapas abaixo automaticamente.
 
-### Passo 1 — Montar o CampaignBrief
+> **Arquitetura:** Claude gera apenas o `content.json` (copy puro, ~20 linhas). O TypeScript cuida do render e screenshot. Não gere HTML — isso é responsabilidade do pipeline.
 
-Gere um `id` único no formato `NNN-slug` (ex: `003-restaurante-confianca`).
+---
 
-O pipeline agora renderiza **1 imagem + N copies diferentes** — cada copy vira um `post-copy-N.html/png` separado.
+### Passo 1 — Gerar content.json (tarefa Claude — só copy)
 
-Use as Headlines P1, P2, P3 do Canva Brief como as 3 variantes de copy. Cada uma tem seu próprio `hook`, `headline`, `accentWord`, `body` e `cta`.
+Gere um `id` único no formato `NNN-slug` (ex: `009-aeroporto-confianca`).
 
-O `accentWord` deve receber o gradiente: `laranja #FF6B35 → vermelho #E8334A → roxo #7B4FBF`
+Use as Headlines P1, P2, P3 do Canva Brief como as 3 variantes. Cada uma tem seu próprio `hook`, `headline`, `accentWord`, `body` e `cta`.
 
-Monte o objeto JSON:
+O `accentWord` recebe o gradiente da marca — escolha a palavra mais forte do headline.
 
+Monte **dois arquivos** separados:
+
+**`brief-input.json`** — contexto estratégico completo (para Whisk + auditoria):
 ```json
 {
   "id": "NNN-slug",
   "audience": "...",
   "pain": "...",
   "angle": "...",
-  "copy": {
-    "hook": "...",
-    "headline": "P1 headline",
-    "accentWord": "...",
-    "body": "...",
-    "cta": "..."
-  },
+  "copy": { "hook": "...", "headline": "P1", "accentWord": "...", "body": "...", "cta": "..." },
   "copyVariants": [
-    {
-      "hook": "...",
-      "headline": "P2 headline",
-      "accentWord": "...",
-      "body": "...",
-      "cta": "..."
-    },
-    {
-      "hook": "...",
-      "headline": "P3 headline",
-      "accentWord": "...",
-      "body": "...",
-      "cta": "..."
-    }
+    { "hook": "...", "headline": "P2", "accentWord": "...", "body": "...", "cta": "..." },
+    { "hook": "...", "headline": "P3", "accentWord": "...", "body": "...", "cta": "..." }
   ],
-  "visual": {
-    "whiskPrompt": "...",
-    "scene": "...",
-    "mood": "..."
-  }
+  "visual": { "whiskPrompt": "...", "scene": "...", "mood": "..." }
 }
 ```
 
-O pipeline vai gerar: `post-copy-1` (P1) + `post-copy-2` (P2) + `post-copy-3` (P3) — todos com a mesma imagem Whisk.
+**`content-feed.json`** — input leve do render (só copy, sem contexto estratégico):
+```json
+{
+  "campaignId": "NNN-slug",
+  "template": "split",
+  "imagePath": "scene.webp",
+  "variants": [
+    { "hook": "...", "headline": "P1", "accentWord": "...", "body": "...", "cta": "..." },
+    { "hook": "...", "headline": "P2", "accentWord": "...", "body": "...", "cta": "..." },
+    { "hook": "...", "headline": "P3", "accentWord": "...", "body": "...", "cta": "..." }
+  ]
+}
+```
 
-O `whiskPrompt` deve usar o template preenchido da seção 4, com todas as substituições feitas.
+Templates disponíveis para o campo `template`: `split` (padrão feed), `story`, `overlay`, `frame`, `phone-float`, `phone-tilt`.
 
-### Passo 2 — Salvar brief-input.json
+---
 
-Use a ferramenta Write para salvar o JSON em `brief-input.json` na raiz do projeto.
+### Passo 2 — Salvar os dois arquivos (código)
 
-### Passo 3 — Rodar o pipeline
+Use Write para salvar:
+- `brief-input.json` na raiz do projeto
+- `content-feed.json` na raiz do projeto (o pipeline moverá para a pasta da campanha)
+
+---
+
+### Passo 3 — Rodar o pipeline (código puro — sem Claude)
 
 Execute via Bash:
 
@@ -223,16 +222,22 @@ PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node 
 ```
 
 O pipeline vai:
-1. Criar a pasta `outputs/campaigns/{id}/`
-2. Salvar `brief.json`
-3. Chamar a API do Whisk → salvar `scene.webp`
+1. Criar `outputs/campaigns/{id}/`
+2. Salvar `brief.json` + `content-feed.json`
+3. Chamar Whisk → salvar `scene.webp`
 4. Renderizar `post-copy-1.html` (P1), `post-copy-2.html` (P2), `post-copy-3.html` (P3)
-5. Capturar screenshots → `post-copy-1.png`, `post-copy-2.png`, `post-copy-3.png`
+5. Screenshots → `post-copy-1.png`, `post-copy-2.png`, `post-copy-3.png`
+
+**Rerender sem Whisk** (quando a imagem já existe e só o copy mudou):
+```bash
+PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node src/run-render.ts outputs/campaigns/NNN-slug/content-feed.json
+```
+
+---
 
 ### Passo 4 — Reportar resultado
 
 Ao final, informe:
 - Campanha gerada com sucesso
-- Path do `post.png` final
-- Path do `post.html` para preview no browser
+- Paths dos PNGs finais
 - Qual combinação de personagem + cenário + ângulo foi usada (para controle de variação)
