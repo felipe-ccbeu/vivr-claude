@@ -1,0 +1,15 @@
+{
+  "campaignId": "design-variations-editorial",
+  "template": "split",
+  "imagePath": "scene.webp",
+  "variants": [
+    {
+      "hook": "Sistema de Design",
+      "headline": "Um único conteúdo, infinitas possibilidades visuais",
+      "accentWord": "infinitas",
+      "body": "Mesma copy, 6 estilos diferentes. Editorial traz sofisticação com tipografia serif, fundo warm off-white e accent magenta — ideal para thought leadership.",
+      "cta": "Explorar Variações"
+    }
+  ],
+  "designVariation": "editorial"
+}

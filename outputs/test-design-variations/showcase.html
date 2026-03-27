@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Variations Showcase — Vivr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f0f0f0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-label {
+      padding: 16px 24px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #e0e0e0;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-preview {
+      width: 100%;
+      height: 675px;
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .info-section {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-section h2 {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+    }
+
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .style-card {
+      padding: 24px;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .style-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .style-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .style-card .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .style-card ul {
+      list-style: none;
+      padding: 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .style-card ul li {
+      padding: 4px 0;
+    }
+
+    .style-card ul li:before {
+      content: "→ ";
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    /* Style-specific colors */
+    .dark-bold {
+      background: #0d0d0d;
+      color: white;
+      border-color: #f7c948;
+    }
+
+    .dark-bold h3 {
+      background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .minimal-clean {
+      background: #ffffff;
+      color: #1a1a1a;
+      border-color: #26c6da;
+    }
+
+    .minimal-clean h3 {
+      color: #26c6da;
+    }
+
+    .editorial {
+      background: #f5f3f0;
+      color: #2c2c2c;
+      border-color: #e94899;
+    }
+
+    .editorial h3 {
+      color: #e94899;
+    }
+
+    .futuristic {
+      background: #0a0e27;
+      color: #e0e0ff;
+      border-color: #00d9ff;
+    }
+
+    .futuristic h3 {
+      color: #00d9ff;
+      text-shadow: 0 0 8px #00d9ff;
+    }
+
+    .high-contrast {
+      background: #ffffff;
+      color: #000000;
+      border-color: #000000;
+    }
+
+    .high-contrast h3 {
+      color: #ffcc00;
+    }
+
+    .dark-white {
+      background: #ffffff;
+      color: #000000;
+      border-color: #000000;
+    }
+
+    .dark-white h3 {
+      color: #000000;
+    }
+
+    .copy-section {
+      margin-top: 40px;
+      padding: 24px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 4px solid #f7c948;
+    }
+
+    .copy-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .copy-text {
+      font-size: 14px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .copy-text .highlight {
+      font-weight: 700;
+      color: #f7c948;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 24px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Design Variations Showcase</h1>
+    <p>Mesmo conteúdo. 6 estilos visuais diferentes. A mesma copy renderizada em dark-bold, minimal-clean, editorial, futuristic, high-contrast e dark-white.</p>
+  </div>
+
+  <div class="copy-section">
+    <h3>📝 Copy — Utilizada em Todos os 6 Estilos</h3>
+    <div class="copy-text">
+      <strong>Hook:</strong> Sistema de Design<br>
+      <strong>Headline:</strong> Um único conteúdo, <span class="highlight">infinitas</span> possibilidades visuais<br>
+      <strong>Body:</strong> Mesma copy, 6 estilos diferentes. [Descrição do estilo] — [Público-alvo].<br>
+      <strong>CTA:</strong> Explorar Variações
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>6 Estilos de Design</h2>
+
+    <div class="styles-grid">
+      <div class="style-card dark-bold">
+        <div class="badge" style="background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%); color: white;">DARK BOLD ⭐</div>
+        <h3>Dark Bold</h3>
+        <p><strong>Palette:</strong> Vivr Gradient + #0d0d0d OLED Black</p>
+        <p><strong>Typography:</strong> 36px/900 headline, 14px/500 body</p>
+        <p><strong>Vibe:</strong> Energetic, premium, high-conversion</p>
+        <ul>
+          <li>Default para todas as campanhas</li>
+          <li>Gradiente Vivr de 6 cores</li>
+          <li>Multi-layer glow effects</li>
+          <li>Proven performance baseline</li>
+        </ul>
+      </div>
+
+      <div class="style-card minimal-clean">
+        <div class="badge" style="background: #26c6da; color: white;">MINIMAL CLEAN</div>
+        <h3>Minimal Clean</h3>
+        <p><strong>Palette:</strong> #ffffff White + #26c6da Cyan</p>
+        <p><strong>Typography:</strong> 32px/800 headline, 13px/400 body</p>
+        <p><strong>Vibe:</strong> Clarity, minimalist, design-focused</p>
+        <ul>
+          <li>Zero gradients, zero glows</li>
+          <li>Thin borders only</li>
+          <li>Maximum whitespace</li>
+          <li>Para públicos design-conscious</li>
+        </ul>
+      </div>
+
+      <div class="style-card editorial">
+        <div class="badge" style="background: #e94899; color: white;">EDITORIAL</div>
+        <h3>Editorial</h3>
+        <p><strong>Palette:</strong> #f5f3f0 Warm Off-White + Magenta</p>
+        <p><strong>Typography:</strong> 34px/700 Serif, 14px/400 Serif</p>
+        <p><strong>Vibe:</strong> Sophisticated, authoritative, magazine</p>
+        <ul>
+          <li>Serif typography (Georgia)</li>
+          <li>Warm off-white background</li>
+          <li>3px magenta top border</li>
+          <li>Thought leadership vibes</li>
+        </ul>
+      </div>
+
+      <div class="style-card futuristic">
+        <div class="badge" style="background: #00d9ff; color: #0a0e27;">FUTURISTIC</div>
+        <h3>Futuristic</h3>
+        <p><strong>Palette:</strong> #0a0e27 Navy + Neon Cyan/Magenta</p>
+        <p><strong>Typography:</strong> 38px/900 UPPERCASE + glow</p>
+        <p><strong>Vibe:</strong> Innovation, tech-forward, high-energy</p>
+        <ul>
+          <li>Neon cyan (#00d9ff) + magenta (#a000ff)</li>
+          <li>Dual-layer glow effects</li>
+          <li>Deep navy background</li>
+          <li>Para early adopters & developers</li>
+        </ul>
+      </div>
+
+      <div class="style-card high-contrast">
+        <div class="badge" style="background: #ffcc00; color: #000;">HIGH CONTRAST ♿</div>
+        <h3>High Contrast</h3>
+        <p><strong>Palette:</strong> #ffffff White + #000000 Black + Yellow</p>
+        <p><strong>Typography:</strong> 40px/900 headline, 15px/600 body</p>
+        <p><strong>Vibe:</strong> Accessible, readable, bold geometry</p>
+        <ul>
+          <li>WCAG AAA compliant (21:1)</li>
+          <li>Golden yellow accent (#ffcc00)</li>
+          <li>Bold geometric borders</li>
+          <li>Maximum readability for all</li>
+        </ul>
+      </div>
+
+      <div class="style-card dark-white">
+        <div class="badge" style="background: #000; color: white;">DARK & WHITE</div>
+        <h3>Dark & White</h3>
+        <p><strong>Palette:</strong> #ffffff White + #000000 Black</p>
+        <p><strong>Typography:</strong> 35px/700 headline, 14px/400 body</p>
+        <p><strong>Vibe:</strong> Timeless, elegant, premium</p>
+        <ul>
+          <li>Pure monochromatic design</li>
+          <li>Thin 1px borders</li>
+          <li>Geometric dividers</li>
+          <li>Understated luxury</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px; background: #f0f4f8; border-radius: 8px; border-left: 4px solid #26c6da;">
+      <h3 style="color: #0a5f7f; margin-bottom: 12px;">💡 Por Que Isso Importa</h3>
+      <p style="color: #333; font-size: 14px;">
+        Cada design é otimizado para <strong>públicos diferentes</strong> e <strong>objetivos diferentes</strong>.
+        Dark Bold é o default (proven conversion), mas Minimal Clean pode performar melhor com designers,
+        Editorial com executivos, Futuristic com tech users, High Contrast com accessibility focus,
+        e Dark White com premium positioning.
+      </p>
+      <p style="color: #333; font-size: 14px; margin-top: 12px;">
+        <strong>Benefício:</strong> Uma única copy reutilizável em 6 variações visuais diferentes =
+        A/B testing mais rápido, públicos mais específicos, melhor conversão.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Design Variation System v1.0 — Vivr Marketing Platform</p>
+    <p>6 estilos × infinitas possibilidades = melhor conversão para cada segmento</p>
+  </footer>
+</div>
+</body>
+</html>

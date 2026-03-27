@@ -1,0 +1,15 @@
+{
+  "campaignId": "design-variations-high-contrast",
+  "template": "split",
+  "imagePath": "scene.webp",
+  "variants": [
+    {
+      "hook": "Sistema de Design",
+      "headline": "Um único conteúdo, infinitas possibilidades visuais",
+      "accentWord": "infinitas",
+      "body": "Mesma copy, 6 estilos diferentes. High Contrast atinge WCAG AAA com preto + branco + amarelo dourado — máxima acessibilidade para todos.",
+      "cta": "Explorar Variações"
+    }
+  ],
+  "designVariation": "high-contrast"
+}
