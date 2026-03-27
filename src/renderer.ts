@@ -26,6 +26,7 @@ export interface RenderMeta {
 
 export interface RenderOptions {
   meta?: RenderMeta
+  imageBaseDir?: string  // Optional: base directory where imagePath is relative to. If provided, recalculates imageSrc relative to outDir
 }
 
 const ALL_TEMPLATES = ['overlay', 'split', 'frame', 'phone-float', 'phone-tilt', 'light-arc', 'cinematic'] as const
@@ -97,7 +98,15 @@ export async function renderFromContent(
 
   for (let i = 0; i < content.variants.length; i++) {
     const variant = content.variants[i]
-    let html = applyTemplate(content.template, variant, content.imagePath, styleConfig)
+
+    // Resolve image path relative to outDir (where HTML will be saved)
+    let imageSrc = content.imagePath
+    if (options?.imageBaseDir) {
+      const absImage = path.resolve(options.imageBaseDir, content.imagePath)
+      imageSrc = path.relative(outDir, absImage).replace(/\\/g, '/')
+    }
+
+    let html = applyTemplate(content.template, variant, imageSrc, styleConfig)
 
     // Inject metadata if options provided
     if (options?.meta) {

@@ -79,7 +79,10 @@ async function runBatch(opts: BatchRenderOptions): Promise<string[]> {
         generatedAt: new Date().toISOString(),
       }
 
-      const htmlPaths = await renderFromContent(content, templateOutDir, { meta })
+      const htmlPaths = await renderFromContent(content, templateOutDir, {
+        meta,
+        imageBaseDir: opts.outDir,  // outDir is where scene.png exists (campaign root)
+      })
       console.log(`[batch-render]   HTML: ${htmlPaths.length} files`)
 
       // Screenshot → PNG
