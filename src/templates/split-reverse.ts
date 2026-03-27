@@ -1,0 +1,164 @@
+import { CopyVariant } from '../content-schema'
+import { StyleConfig } from '../styles'
+import { FONT_LINK, highlightAccentWord } from './shared'
+
+/**
+ * SPLIT-REVERSE — Layout Horizontal (540×675px)
+ * Imagem à esquerda (240px), texto à direita (300px) em layout horizontal.
+ * Diferente do split vertical. Editorial/magazine style.
+ * Ideal para: Product showcase, feature highlight, editorial tone.
+ */
+export function buildSplitReverse(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+${FONT_LINK}
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+
+  .post-wrapper {
+    width: 540px;
+    height: 675px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  /* Left: Image (240px) */
+  .image-section {
+    width: 240px;
+    height: 675px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  /* Vignette on image bottom */
+  .image-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 50%,
+      rgba(0,0,0,0.4) 85%,
+      rgba(13,13,13,0.8) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Right: Text panel (300px) */
+  .text-section {
+    flex: 1;
+    background: #0d0d0d;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  /* Separator line (vertical) */
+  .text-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(137,199,254,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+  }
+
+  /* Hook */
+  .hook-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  /* Headline */
+  .headline {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #89c7fe, #ae90fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 6px rgba(137,199,254,0.3));
+  }
+
+  /* Body */
+  .body-copy {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    letter-spacing: 0.1px;
+  }
+
+  /* CTA */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #89c7fe, #ae90fb);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(137,199,254,0.25);
+    transition: all 200ms ease-out;
+    align-self: flex-start;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(137,199,254,0.35);
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+  <div class="image-section">
+    <img src="${imageSrc}" alt="" />
+    <div class="image-vignette"></div>
+  </div>
+
+  <div class="text-section">
+    <div>
+      <div class="hook-tag" data-slot="hook">${variant.hook}</div>
+      <div class="headline" data-slot="headline">${headlineHtml}</div>
+      <div class="body-copy" data-slot="body">${variant.body}</div>
+    </div>
+    <div class="cta-btn" data-slot="cta">${variant.cta}</div>
+  </div>
+</div>
+</body>
+</html>`
+}

@@ -11,6 +11,10 @@ import { buildStory } from './templates/story'
 import { getStyleConfig, StyleConfig } from './styles'
 import { buildLightArc } from './templates/light-arc'
 import { buildCinematic } from './templates/cinematic'
+import { buildQuote } from './templates/quote'
+import { buildBoldText } from './templates/bold-text'
+import { buildSplitReverse } from './templates/split-reverse'
+import { buildImmersive } from './templates/immersive'
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RENDER METADATA — para auditoria e versionamento
@@ -41,6 +45,10 @@ export const TEMPLATE_SIZE: Record<string, { width: number; height: number }> = 
   story:         { width: 540, height: 960 },
   'light-arc': { width: 540, height: 675 },
   'cinematic': { width: 540, height: 675 },
+  'quote': { width: 540, height: 675 },
+  'bold-text': { width: 540, height: 675 },
+  'split-reverse': { width: 540, height: 675 },
+  'immersive': { width: 540, height: 675 },
 }
 
 /** Default template per format */
@@ -75,6 +83,10 @@ function applyTemplate(templateName: TemplateName, variant: CopyVariant, imageSr
     case 'story':       return buildStory(variant, imageSrc, styleConfig)
     case 'light-arc':   return buildLightArc(variant, imageSrc, styleConfig)
     case 'cinematic':   return buildCinematic(variant, imageSrc, styleConfig)
+    case 'quote':       return buildQuote(variant, imageSrc, styleConfig)
+    case 'bold-text':   return buildBoldText(variant, imageSrc, styleConfig)
+    case 'split-reverse': return buildSplitReverse(variant, imageSrc, styleConfig)
+    case 'immersive':   return buildImmersive(variant, imageSrc, styleConfig)
     default:            return buildOverlay(variant, imageSrc, styleConfig)
   }
 }

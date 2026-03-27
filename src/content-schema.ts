@@ -1,4 +1,4 @@
-export type TemplateName = 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt' | 'story' | 'light-arc' | 'cinematic'
+export type TemplateName = 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt' | 'story' | 'light-arc' | 'cinematic' | 'quote' | 'bold-text' | 'split-reverse' | 'immersive'
 export interface CopyVariant {
   hook: string
   headline: string
