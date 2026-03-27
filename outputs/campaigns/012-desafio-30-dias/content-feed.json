@@ -1,0 +1,28 @@
+{
+  "campaignId": "012-desafio-30-dias",
+  "template": "story",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Treina consistente",
+      "headline": "30 dias = fluência",
+      "accentWord": "fluência",
+      "body": "Treina 15 min/dia em cenários reais. Acompanha seu progresso. Sinta a diferença.",
+      "cta": "Aceita o desafio"
+    },
+    {
+      "hook": "Seja consistente por um mês",
+      "headline": "30 dias para falar com segurança",
+      "accentWord": "segurança",
+      "body": "Cada dia é um progresso. Flame seu streak. Vê o seu inglês evoluindo semana a semana.",
+      "cta": "Começa hoje"
+    },
+    {
+      "hook": "Desafio: consegue chegar até o final?",
+      "headline": "1 mês. 30 conversas reais. Fluência",
+      "accentWord": "Fluência",
+      "body": "Milhares já conseguiram. Qual é a desculpa? O desafio está lançado.",
+      "cta": "Vou tentar"
+    }
+  ]
+}

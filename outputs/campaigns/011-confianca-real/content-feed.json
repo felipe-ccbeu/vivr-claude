@@ -1,0 +1,28 @@
+{
+  "campaignId": "011-confianca-real",
+  "template": "story",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Treina em cenários reais",
+      "headline": "Fale com confiança",
+      "accentWord": "confiança",
+      "body": "Treine em cenários reais, não em exercícios chatos. Vivr é o único app que te coloca dentro da conversa.",
+      "cta": "Comece grátis"
+    },
+    {
+      "hook": "O único app que simula vida real",
+      "headline": "Confiança vem da prática real",
+      "accentWord": "prática real",
+      "body": "Cenários que importam, conversas que acontecem de verdade. Sinta a diferença quando você se depara com uma situação real.",
+      "cta": "Treina agora"
+    },
+    {
+      "hook": "Inglês que funciona de verdade",
+      "headline": "Fale sem medo",
+      "accentWord": "sem medo",
+      "body": "Quando você já conversou mil vezes no app, a reunião real vira tranquila. Vivr prepara você para cada momento.",
+      "cta": "Começa hoje"
+    }
+  ]
+}

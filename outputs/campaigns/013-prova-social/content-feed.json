@@ -1,0 +1,28 @@
+{
+  "campaignId": "013-prova-social",
+  "template": "story",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Pessoas reais, resultados reais",
+      "headline": "100k usuários confiam",
+      "accentWord": "confiam",
+      "body": "Avaliação 4.8⭐ na App Store. Pessoas que travam agora falam com confiança.",
+      "cta": "Junta-se a eles"
+    },
+    {
+      "hook": "Confira as avaliações de quem já usa",
+      "headline": "Funciona. De verdade.",
+      "accentWord": "verdade",
+      "body": "100 mil pessoas não se enganam. Leia as histórias de transformação de gente como você.",
+      "cta": "Veja os depoimentos"
+    },
+    {
+      "hook": "Qual é a próxima história de sucesso?",
+      "headline": "Pode ser a sua. 4.8⭐ de média",
+      "accentWord": "Pode ser a sua",
+      "body": "Se quer ter certeza de que funciona, confira o que 100 mil pessoas já experimentaram.",
+      "cta": "Tenta agora"
+    }
+  ]
+}
