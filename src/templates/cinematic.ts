@@ -68,11 +68,12 @@ ${FONT_LINK}
   .bar-top    { top: 0; }
   .bar-bottom { bottom: 0; }
 
-  /* ── OVERLAY BASE — só na metade inferior ── */
+  /* ── OVERLAY BASE — mais transparente, posicionado mais baixo (55-60%) ── */
   /*
-   * Começa transparente no centro e vai para preto na base.
+   * Começa transparente no centro (55%) e vai para preto na base.
    * Não afeta o personagem (que fica no centro da imagem).
    * Garante legibilidade do headline sem escurecer a cena.
+   * 20-30% mais transparente do que antes.
    */
   .overlay {
     position: absolute;
@@ -80,11 +81,10 @@ ${FONT_LINK}
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      transparent 40%,
-      rgba(0,0,0,0.20) 58%,
-      rgba(0,0,0,0.72) 78%,
-      rgba(0,0,0,0.90) 92%,
-      rgba(0,0,0,0.90) 100%
+      transparent 55%,
+      rgba(0,0,0,0.10) 62%,
+      rgba(0,0,0,0.50) 80%,
+      rgba(0,0,0,0.65) 100%
     );
     z-index: 2;
   }
@@ -145,9 +145,9 @@ ${FONT_LINK}
   ${buildAccentCSS(styleConfig.colors.accentWord, 'filter: drop-shadow(0 0 12px rgba(249,112,64,0.45));')}
 
   /* CTA row: botão + sub-label */
-  ${buildCTARowCSS('14px', '4px')}
+  ${buildCTARowCSS('14px', '8px')}
 
-  ${buildCTABtnCSS(styleConfig, '11px 24px', true)}
+  ${buildCTABtnCSS(styleConfig, '13px 28px', false)}
 
   /* Sub-label discreto ao lado do CTA */
   .sub-label {

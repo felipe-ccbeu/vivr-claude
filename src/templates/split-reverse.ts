@@ -18,7 +18,7 @@ export function buildSplitReverse(variant: CopyVariant, imageSrc: string, styleC
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
 
   .post-wrapper {
     width: 540px;
@@ -61,7 +61,7 @@ ${FONT_LINK}
   /* Right: Text panel (300px) */
   .text-section {
     flex: 1;
-    background: #0d0d0d;
+    background: #1A1030;
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
@@ -102,11 +102,11 @@ ${FONT_LINK}
   }
 
   .accent {
-    background: linear-gradient(135deg, #89c7fe, #ae90fb);
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 6px rgba(137,199,254,0.3));
+    filter: drop-shadow(0 0 8px rgba(137,199,254,0.35));
   }
 
   /* Body */
@@ -123,12 +123,12 @@ ${FONT_LINK}
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 24px;
-    border-radius: 50px;
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe, #ae90fb);
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: 0.3px;
     white-space: nowrap;
     cursor: pointer;

@@ -18,7 +18,7 @@ export function buildStory(variant: CopyVariant, imageSrc: string, styleConfig: 
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 960px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+  body { width: 540px; height: 960px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
 
   .post-wrapper {
     width: 540px;
@@ -57,11 +57,11 @@ ${FONT_LINK}
     );
   }
 
-  /* Hook: safe zone top 28px para não conflitar com UI do Instagram */
+  /* Hook: safe zone top 120px para não conflitar com UI do Instagram */
   .hook-tag {
     position: absolute;
-    top: 28px;
-    left: 24px;
+    top: 120px;
+    left: 28px;
     background: rgba(0,0,0,0.62);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -79,8 +79,8 @@ ${FONT_LINK}
 
   .badge-free {
     position: absolute;
-    top: 28px;
-    right: 24px;
+    top: 120px;
+    right: 28px;
     display: inline-flex;
     align-items: center;
     padding: 6px 14px;
@@ -93,14 +93,15 @@ ${FONT_LINK}
     box-shadow: 0 2px 12px rgba(233,72,153,0.4);
   }
 
-  /* ── TEXT SECTION (340px) ── */
+  /* ── TEXT SECTION (340px) — bottom safe zone 180px ── */
   .text-section {
     flex: 1;
-    background: #0d0d0d;
-    padding: 26px 40px 36px;
+    background: #1A1030;
+    padding: 32px 40px 180px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 20px;
     position: relative;
   }
 
@@ -141,24 +142,21 @@ ${FONT_LINK}
     letter-spacing: 0.1px;
   }
 
-  /* CTA: mais altura — dedo precisa de área maior no story */
+  /* CTA: mandatory pill style with complete brand gradient */
   .cta-btn {
     display: inline-flex;
     align-items: center;
     padding: 15px 34px;
-    border-radius: 50px;
+    border-radius: 100px;
     font-size: 16px;
-    font-weight: 900;
+    font-weight: 800;
     color: white;
-    background: ${BRAND_GRADIENT};
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: 0.3px;
     white-space: nowrap;
     align-self: flex-start;
     cursor: pointer;
-    box-shadow:
-      0 0 0 1px rgba(249,112,64,0.3),
-      0 4px 16px rgba(233,72,153,0.35),
-      0 8px 32px rgba(155,93,229,0.2);
+    box-shadow: 0 4px 16px rgba(137,199,254,0.3);
   }
 </style>
 </head>

@@ -24,13 +24,23 @@ ${FONT_LINK}
     width: 540px;
     height: 675px;
     overflow: hidden;
-    background: linear-gradient(135deg, #1a0033 0%, #0d0d0d 100%);
+    background: #1A1030;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 40px 32px;
     position: relative;
+  }
+
+  /* Radial glow in dark background */
+  .post-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(155,93,229,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* Decorative quotes */
@@ -60,7 +70,8 @@ ${FONT_LINK}
     align-items: center;
     gap: 12px;
     margin-bottom: 16px;
-    z-index: 2;
+    z-index: 3;
+    position: relative;
   }
 
   .stars {
@@ -82,14 +93,15 @@ ${FONT_LINK}
   .badge-users {
     display: inline-flex;
     align-items: center;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 6px 14px;
+    border-radius: 100px;
     font-size: 11px;
     font-weight: 800;
     color: white;
-    background: ${styleConfig.colors.primary || '#89c7fe'};
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: 0.3px;
     margin-left: auto;
+    box-shadow: 0 2px 8px rgba(137,199,254,0.2);
   }
 
   /* Testimonial content */
@@ -101,8 +113,9 @@ ${FONT_LINK}
     align-items: center;
     text-align: center;
     gap: 24px;
-    z-index: 2;
+    z-index: 3;
     max-width: 400px;
+    position: relative;
   }
 
   .testimonial {
@@ -120,7 +133,8 @@ ${FONT_LINK}
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    z-index: 2;
+    z-index: 3;
+    position: relative;
   }
 
   .image-circle {
@@ -159,28 +173,29 @@ ${FONT_LINK}
     align-items: center;
     gap: 8px;
     margin-top: 16px;
-    z-index: 2;
+    z-index: 3;
+    position: relative;
   }
 
   .cta-btn {
     display: inline-flex;
     align-items: center;
     padding: 14px 32px;
-    border-radius: 50px;
+    border-radius: 100px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 800;
     color: white;
-    background: ${styleConfig.colors.primary || '#89c7fe'};
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: 0.3px;
     white-space: nowrap;
     cursor: pointer;
-    box-shadow: 0 0 0 1px rgba(137,199,254,0.3), 0 4px 16px rgba(137,199,254,0.25);
+    box-shadow: 0 4px 16px rgba(137,199,254,0.3);
     transition: all 200ms ease-out;
   }
 
   .cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 0 1px rgba(137,199,254,0.5), 0 8px 24px rgba(137,199,254,0.35);
+    box-shadow: 0 8px 24px rgba(137,199,254,0.4);
   }
 
   .cta-sublabel {

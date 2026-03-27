@@ -82,11 +82,11 @@ ${FONT_LINK}
   }
 
   .accent {
-    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
   }
 
   /* Body: minimal */
@@ -104,12 +104,12 @@ ${FONT_LINK}
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 14px 28px;
-    border-radius: 50px;
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 800;
     color: #1a1030;
-    background: rgba(255,255,255,0.95);
+    background: white;
     letter-spacing: 0.3px;
     white-space: nowrap;
     cursor: pointer;
@@ -119,8 +119,7 @@ ${FONT_LINK}
 
   .cta-btn:hover {
     transform: translateY(-2px);
-    background: white;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
   }
 
   /* Decorative elements */

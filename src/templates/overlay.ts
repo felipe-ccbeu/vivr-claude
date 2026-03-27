@@ -37,17 +37,17 @@ ${FONT_LINK}
     background-position: center top;
   }
 
-  /* Fade starts earlier so the cut-off feels intentional, not abrupt */
+  /* Overlay: 20-30% more transparent, positioned lower (55-60% of frame) */
   .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(8,8,8,0.05) 0%,
-      rgba(8,8,8,0.00) 18%,
-      rgba(8,8,8,0.30) 38%,
-      rgba(8,8,8,0.82) 60%,
-      rgba(8,8,8,0.96) 100%
+      rgba(8,8,8,0.00) 0%,
+      rgba(8,8,8,0.00) 45%,
+      rgba(8,8,8,0.15) 55%,
+      rgba(8,8,8,0.55) 75%,
+      rgba(8,8,8,0.70) 100%
     );
   }
 
@@ -138,14 +138,15 @@ ${FONT_LINK}
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 26px;
-    border-radius: 50px;
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: 14px;
     font-weight: 800;
     color: ${styleConfig.colors.ctaText};
     background: ${styleConfig.colors.ctaBg};
     letter-spacing: 0.2px;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .sub-badge {

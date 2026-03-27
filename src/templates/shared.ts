@@ -1,4 +1,4 @@
-export const BRAND_GRADIENT = 'linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%)'
+export const BRAND_GRADIENT = 'linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%)'
 
 export const FONT_LINK = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">`
@@ -104,19 +104,19 @@ export function buildCTABtnCSS(
   paddingOverride?: string,
   suppressShadow?: boolean
 ): string {
-  const padding = paddingOverride || styleConfig.cta.padding || '14px 30px'
-  const shadow = suppressShadow ? '' : (styleConfig.cta.boxShadow || '')
+  const padding = paddingOverride || styleConfig.cta.padding || '13px 28px'
+  const shadow = suppressShadow ? '' : (styleConfig.cta.boxShadow || '0 4px 12px rgba(137,199,254,0.25)')
 
   return `.cta-btn {
     display: inline-flex;
     align-items: center;
     padding: ${padding};
-    border-radius: ${styleConfig.cta.borderRadius || '100px'};
+    border-radius: 100px;
     font-size: 14px;
     font-weight: 800;
-    color: ${styleConfig.colors.ctaText || 'white'};
-    background: ${styleConfig.colors.ctaBg};
-    letter-spacing: 0.02em;
+    color: white;
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    letter-spacing: 0.2px;
     white-space: nowrap;
     ${shadow ? `box-shadow: ${shadow};` : ''}
   }`

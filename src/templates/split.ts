@@ -67,7 +67,7 @@ export function buildSplit(variant: CopyVariant, imageSrc: string, styleConfig: 
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: ${styleConfig.colors.background}; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
 
   .post-wrapper {
     width: 540px;
@@ -139,7 +139,7 @@ ${FONT_LINK}
   /* ── TEXT SECTION ── */
   .text-section {
     flex: 1;
-    background: ${styleConfig.colors.background};
+    background: #1A1030;
     padding: ${styleConfig.safeZone.topBuffer} ${styleConfig.safeZone.sidePadding} ${styleConfig.safeZone.bottomBuffer};
     display: flex;
     flex-direction: column;
@@ -183,22 +183,21 @@ ${FONT_LINK}
     letter-spacing: ${styleConfig.typography.body.spacing};
   }
 
-  /* CTA button */
+  /* CTA button — mandatory pill style with complete brand gradient */
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: ${styleConfig.cta.padding};
-    border-radius: ${styleConfig.cta.borderRadius};
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: ${styleConfig.typography.cta.size};
-    font-weight: ${styleConfig.typography.cta.weight};
-    color: ${styleConfig.colors.ctaText};
-    background: ${styleConfig.colors.ctaBg};
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: ${styleConfig.typography.cta.spacing};
     white-space: nowrap;
     align-self: flex-start;
-    min-height: ${styleConfig.cta.minHeight || '48px'};
-    ${styleConfig.cta.border ? `border: ${styleConfig.cta.border};` : ''}
-    ${ctaGlowShadow}
+    min-height: 48px;
+    box-shadow: 0 4px 12px rgba(137,199,254,0.25);
   }
 </style>
 </head>

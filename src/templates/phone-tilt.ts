@@ -18,7 +18,7 @@ ${FONT_LINK}
 body{width:540px;height:675px;overflow:hidden;font-family:'Nunito',sans-serif;}
 .post{width:540px;height:675px;position:relative;overflow:hidden;}
 
-.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,#3a0f72 0%,#110830 40%,#050212 70%,#021318 100%);}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,#4a2a8a 0%,#1a0a3a 40%,#060414 70%,#031820 100%);}
 .bg-accent{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 85%,rgba(38,182,205,0.28) 0%,transparent 50%);}
 .bg-accent2{position:absolute;inset:0;background:radial-gradient(ellipse at 10% 75%,rgba(233,72,153,0.18) 0%,transparent 45%);}
 .noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -34,7 +34,7 @@ h1{font-size:32px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.0
 .accent{background:linear-gradient(90deg,#f97040,#e94899,#9b5de5,#26c6da,#80e27e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hook-box{background:rgba(255,255,255,0.05);border-left:3px solid #e94899;border-radius:0 8px 8px 0;padding:10px 12px;margin-bottom:20px;}
 .hook-text{font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);line-height:1.4;font-style:italic;}
-.cta-btn{display:inline-block;background:linear-gradient(135deg,#f97040,#e94899 45%,#9b5de5 75%,#26c6da);border-radius:100px;padding:12px 22px;font-size:13px;font-weight:800;color:#fff;margin-bottom:10px;}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,#89c7fe 0%,#8bfbd1 20%,#ae90fb 45%,#f599b5 70%,#fdd38a 100%);border-radius:100px;padding:13px 28px;font-size:14px;font-weight:800;color:#fff;margin-bottom:10px;box-shadow:0 4px 12px rgba(137,199,254,0.25);}
 .cta-free{font-size:11px;font-weight:600;color:rgba(255,255,255,.3);}
 
 /* PHONE */

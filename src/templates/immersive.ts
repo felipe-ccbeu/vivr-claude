@@ -45,16 +45,16 @@ ${FONT_LINK}
     display: block;
   }
 
-  /* Radial vignette: edges dark, center light */
+  /* Radial vignette: edges dark, center light (20-30% more transparent) */
   .vignette-layer {
     position: absolute;
     inset: 0;
     background: radial-gradient(
       circle at center,
       rgba(0,0,0,0.0) 0%,
-      rgba(0,0,0,0.3) 40%,
-      rgba(0,0,0,0.6) 75%,
-      rgba(0,0,0,0.75) 100%
+      rgba(0,0,0,0.15) 40%,
+      rgba(0,0,0,0.40) 75%,
+      rgba(0,0,0,0.55) 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -117,7 +117,7 @@ ${FONT_LINK}
   }
 
   .accent {
-    background: linear-gradient(135deg, #89c7fe, #8bfbd1, #ae90fb);
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -145,28 +145,22 @@ ${FONT_LINK}
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 14px 30px;
-    border-radius: 50px;
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe, #ae90fb);
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
     letter-spacing: 0.3px;
     white-space: nowrap;
     cursor: pointer;
-    box-shadow:
-      0 0 0 1px rgba(137,199,254,0.3),
-      0 4px 16px rgba(137,199,254,0.3),
-      0 8px 32px rgba(155,93,229,0.2);
+    box-shadow: 0 4px 16px rgba(137,199,254,0.3);
     transition: all 200ms ease-out;
   }
 
   .cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow:
-      0 0 0 1px rgba(137,199,254,0.5),
-      0 8px 24px rgba(137,199,254,0.35),
-      0 12px 40px rgba(155,93,229,0.25);
+    box-shadow: 0 8px 24px rgba(137,199,254,0.4);
   }
 </style>
 </head>
