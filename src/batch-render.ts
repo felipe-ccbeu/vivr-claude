@@ -43,6 +43,7 @@ interface BatchRenderOptions {
   templates: TemplateName[]
   variation?: string
   outDir: string
+  placeholderImage?: string  // Optional: absolute path to placeholder image to use instead of content-feed imagePath
 }
 
 async function runBatch(opts: BatchRenderOptions): Promise<string[]> {
@@ -65,6 +66,11 @@ async function runBatch(opts: BatchRenderOptions): Promise<string[]> {
       designVariation: (opts.variation || base.designVariation || 'dark-bold') as DesignVariation,
     }
 
+    // Sobrescrever imagePath com placeholder se fornecido
+    if (opts.placeholderImage) {
+      content.imagePath = path.basename(opts.placeholderImage)
+    }
+
     // Output subdir por template
     const templateOutDir = path.join(opts.outDir, templateName)
     await fs.ensureDir(templateOutDir)
@@ -81,7 +87,9 @@ async function runBatch(opts: BatchRenderOptions): Promise<string[]> {
 
       const htmlPaths = await renderFromContent(content, templateOutDir, {
         meta,
-        imageBaseDir: opts.outDir,  // outDir is where scene.png exists (campaign root)
+        imageBaseDir: opts.placeholderImage
+          ? path.dirname(opts.placeholderImage)  // placeholder dir if provided
+          : opts.outDir,                         // or campaign root
       })
       console.log(`[batch-render]   HTML: ${htmlPaths.length} files`)
 
@@ -209,15 +217,22 @@ Usage:
   npx ts-node src/batch-render.ts \\
     --campaign <path-to-content-feed.json> \\
     --templates <name1,name2,...> \\
+    [--placeholder <path-to-image>] \\
     [--variation <design-variation>] \\
     [--out <output-dir>]
 
-Example:
+Example (test templates with placeholder):
   npx ts-node src/batch-render.ts \\
-    --campaign outputs/campaigns/010/content-feed-light-arc.json \\
-    --templates light-arc,cinematic \\
-    --variation dark-bold \\
-    --out outputs/campaigns/010
+    --campaign outputs/campaigns/014/content-feed.json \\
+    --templates story,split,cinematic \\
+    --placeholder outputs/campaigns/009-cafe-pedir-info/scene.png \\
+    --out outputs/campaigns/014
+
+Example (production with real image):
+  npx ts-node src/batch-render.ts \\
+    --campaign outputs/campaigns/015/content-feed.json \\
+    --templates story \\
+    --out outputs/campaigns/015
     `)
     process.exit(1)
   }
@@ -235,8 +250,11 @@ Example:
   }
 
   try {
+    // Resolve placeholder if provided
+    const placeholderImage = args.placeholder ? path.resolve(args.placeholder) : undefined
+
     // 1. Run batch
-    const allPaths = await runBatch({ campaignPath, templates: templateNames, variation: args.variation, outDir })
+    const allPaths = await runBatch({ campaignPath, templates: templateNames, variation: args.variation, outDir, placeholderImage })
 
     // 2. Load content again for index generation
     const content: ContentJSON = await fs.readJson(campaignPath)
