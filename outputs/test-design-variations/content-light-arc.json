@@ -1,0 +1,15 @@
+{
+  "campaignId": "test-light-arc",
+  "template": "light-arc",
+  "imagePath": "outputs/campaigns/001-restaurant/scene.png",
+  "designVariation": "dark-bold",
+  "variants": [
+    {
+      "hook": "Conversa real no restaurante",
+      "headline": "Peça em inglês",
+      "accentWord": "Peça",
+      "body": "Treine diálogos verdadeiros em cenários imersivos.",
+      "cta": "Comece agora"
+    }
+  ]
+}

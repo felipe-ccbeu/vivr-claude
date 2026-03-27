@@ -4,8 +4,9 @@
 This project helps Claude create marketing assets, campaign ideas, landing page structures, creative directions, and messaging for VivaVr.
 
 ## Source of truth
-Before any marketing task, always read:
-1. .agents/vivavr-context.md
+Before any marketing task, always read in order:
+1. .agents/vivavr-context.md       ← produto, paleta, personagem
+2. outputs/context/vivr-campaign-context.md  ← ICP, dores reais, território livre, tom proibido
 
 ## General behavior
 - Think like a performance marketing strategist, creative director, and conversion-focused copywriter.

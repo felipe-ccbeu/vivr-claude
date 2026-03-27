@@ -9,6 +9,26 @@ import { buildPhoneFloat } from './templates/phone-float'
 import { buildPhoneTilt } from './templates/phone-tilt'
 import { buildStory } from './templates/story'
 import { getStyleConfig, StyleConfig } from './styles'
+import { buildLightArc } from './templates/light-arc'
+import { buildCinematic } from './templates/cinematic'
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RENDER METADATA — para auditoria e versionamento
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+export interface RenderMeta {
+  campaignId: string
+  template: TemplateName
+  designVariation: string
+  variantIndex: number
+  generatedAt: string // ISO 8601
+}
+
+export interface RenderOptions {
+  meta?: RenderMeta
+}
+
+const ALL_TEMPLATES = ['overlay', 'split', 'frame', 'phone-float', 'phone-tilt', 'light-arc', 'cinematic'] as const
 
 /** Canvas size per template */
 export const TEMPLATE_SIZE: Record<string, { width: number; height: number }> = {
@@ -18,12 +38,30 @@ export const TEMPLATE_SIZE: Record<string, { width: number; height: number }> = 
   'phone-float': { width: 540, height: 675 },
   'phone-tilt':  { width: 540, height: 675 },
   story:         { width: 540, height: 960 },
+  'light-arc': { width: 540, height: 675 },
+  'cinematic': { width: 540, height: 675 },
 }
 
 /** Default template per format */
 const FORMAT_TEMPLATE: Record<string, string> = {
   feed:  'split',
   story: 'story',
+}
+
+/**
+ * Injeta metadata de render no HTML para auditoria/versionamento.
+ * Adiciona: HTML comment + <meta> tag.
+ */
+function injectMeta(html: string, meta: RenderMeta): string {
+  const json = JSON.stringify(meta)
+  const comment = `<!-- VIVR_META: ${json} -->\n`
+  const metaTag = `<meta name="vivr-campaign" content='${json}'>`
+
+  // Insert comment before <!DOCTYPE
+  const withComment = html.replace('<!DOCTYPE html>', `${comment}<!DOCTYPE html>`)
+
+  // Insert meta tag after <head>
+  return withComment.replace('<head>', `<head>\n  ${metaTag}`)
 }
 
 /** Pure synchronous: apply a template to a single variant, return HTML string */
@@ -34,6 +72,8 @@ function applyTemplate(templateName: TemplateName, variant: CopyVariant, imageSr
     case 'phone-float': return buildPhoneFloat(variant, imageSrc, styleConfig)
     case 'phone-tilt':  return buildPhoneTilt(variant, imageSrc, styleConfig)
     case 'story':       return buildStory(variant, imageSrc, styleConfig)
+    case 'light-arc':   return buildLightArc(variant, imageSrc, styleConfig)
+    case 'cinematic':   return buildCinematic(variant, imageSrc, styleConfig)
     default:            return buildOverlay(variant, imageSrc, styleConfig)
   }
 }
@@ -41,8 +81,13 @@ function applyTemplate(templateName: TemplateName, variant: CopyVariant, imageSr
 /**
  * Primary render entry point — reads ContentJSON, writes post-copy-N.html for each variant.
  * Returns list of written HTML file paths.
+ * @param options Optional RenderOptions to inject metadata (campaignId, template, variation, etc.)
  */
-export async function renderFromContent(content: ContentJSON, outDir: string): Promise<string[]> {
+export async function renderFromContent(
+  content: ContentJSON,
+  outDir: string,
+  options?: RenderOptions
+): Promise<string[]> {
   await fs.ensureDir(outDir)
   const size = TEMPLATE_SIZE[content.template] ?? { width: 540, height: 675 }
   const styleConfig = getStyleConfig(content.designVariation)
@@ -52,7 +97,16 @@ export async function renderFromContent(content: ContentJSON, outDir: string): P
 
   for (let i = 0; i < content.variants.length; i++) {
     const variant = content.variants[i]
-    const html = applyTemplate(content.template, variant, content.imagePath, styleConfig)
+    let html = applyTemplate(content.template, variant, content.imagePath, styleConfig)
+
+    // Inject metadata if options provided
+    if (options?.meta) {
+      html = injectMeta(html, {
+        ...options.meta,
+        variantIndex: i + 1, // Override com o índice real da variante
+      })
+    }
+
     const htmlPath = path.join(outDir, `post-copy-${i + 1}.html`)
     await fs.writeFile(htmlPath, html, 'utf8')
     console.log(`[renderer] HTML saved at ${htmlPath}`)

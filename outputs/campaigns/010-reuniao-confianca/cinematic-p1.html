@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 540px;
+    height: 675px;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    background: #000;
+  }
+
+  .post-wrapper {
+    position: relative;
+    width: 540px;
+    height: 675px;
+    overflow: hidden;
+  }
+
+  /* ── IMAGEM FULL-BLEED ── */
+  .bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+
+  /* ── LETTERBOX BARS (efeito cinema) ── */
+  /*
+   * Faixas pretas no topo e base — 28px cada.
+   * Não são overlay: são elementos sólidos que cobrem
+   * as bordas da imagem, criando o crop cinematográfico.
+   */
+  .bar-top,
+  .bar-bottom {
+    position: absolute;
+    left: 0; right: 0;
+    height: 28px;
+    background: #000;
+    z-index: 10;
+  }
+  .bar-top    { top: 0; }
+  .bar-bottom { bottom: 0; }
+
+  /* ── OVERLAY BASE — só na metade inferior ── */
+  /*
+   * Começa transparente no centro e vai para preto na base.
+   * Não afeta o personagem (que fica no centro da imagem).
+   * Garante legibilidade do headline sem escurecer a cena.
+   */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 40%,
+      rgba(0,0,0,0.20) 58%,
+      rgba(0,0,0,0.72) 78%,
+      rgba(0,0,0,0.90) 92%,
+      rgba(0,0,0,0.90) 100%
+    );
+    z-index: 2;
+  }
+
+  /* Overlay topo leve — para o hook ser legível */
+  .overlay-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 160px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.52) 0%,
+      transparent 100%
+    );
+    z-index: 2;
+  }
+
+  /* ── HOOK — topo, dentro da letterbox superior ── */
+  .hook-line {
+    position: absolute;
+    top: 44px;        /* abaixo da bar-top (28px) + 16px de respiro */
+    left: 28px;
+    right: 28px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    z-index: 20;
+    /* linha divisória à esquerda — estilo legenda de filme */
+    padding-left: 10px;
+    border-left: 2px solid linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+  }
+
+  /* ── CONTEÚDO BASE ── */
+  .base-content {
+    position: absolute;
+    bottom: 36px;     /* acima da bar-bottom (28px) + 8px */
+    left: 28px;
+    right: 28px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Headline — grande, impactante, máx 2 linhas */
+  .headline {
+    font-size: 46px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    /* text-shadow sutil para separar da imagem sem parecer glow */
+    text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+  }
+
+  /* Accent word: gradiente de marca */
+  .accent {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(249,112,64,0.45));
+  }
+
+  /* CTA row: botão + sub-label */
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    /* sem box-shadow — cinematic é flat e direto */
+  }
+
+  /* Sub-label discreto ao lado do CTA */
+  .sub-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.42);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+
+  <!-- IMAGEM -->
+  <img class="bg-img" src="outputs/campaigns/010-reuniao-confianca/scene.png" alt="" />
+
+  <!-- OVERLAYS -->
+  <div class="overlay-top"></div>
+  <div class="overlay"></div>
+
+  <!-- LETTERBOX -->
+  <div class="bar-top"></div>
+  <div class="bar-bottom"></div>
+
+  <!-- HOOK (topo) -->
+  <div class="hook-line" data-slot="hook">MOMENTO DE VERDADE</div>
+
+  <!-- HEADLINE + CTA (base) -->
+  <div class="base-content">
+    <div class="headline" data-slot="headline">Treina <span class="accent">real</span></div>
+    <div class="cta-row">
+      <div class="cta-btn" data-slot="cta">Começa agora</div>
+      <span class="sub-label">É grátis</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

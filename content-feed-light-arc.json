@@ -1,0 +1,28 @@
+{
+  "campaignId": "010-reuniao-confianca",
+  "template": "light-arc",
+  "imagePath": "outputs/campaigns/010-reuniao-confianca/scene.png",
+  "variants": [
+    {
+      "hook": "Estudou? Sim. Consegue falar? Depende.",
+      "headline": "Treina para o momento real",
+      "accentWord": "real",
+      "body": "Cenários onde você PRECISA responder. Sem pausar. Sem roteiro.",
+      "cta": "Começa a treinar"
+    },
+    {
+      "hook": "Aquele momento onde tudo some.",
+      "headline": "Fale quando importa",
+      "accentWord": "importa",
+      "body": "Cenários reais. Sem roteiro. Sem pausa. É inglês que funciona.",
+      "cta": "Começa grátis"
+    },
+    {
+      "hook": "Estudou anos. Congelou na reunião.",
+      "headline": "Ou treina, ou trava",
+      "accentWord": "trava",
+      "body": "Stop estudando sozinho. Start praticando em tempo real.",
+      "cta": "Entra no Vivr"
+    }
+  ]
+}

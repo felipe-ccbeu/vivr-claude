@@ -1,0 +1,28 @@
+{
+  "campaignId": "010-reuniao-confianca",
+  "template": "cinematic",
+  "imagePath": "outputs/campaigns/010-reuniao-confianca/scene.png",
+  "variants": [
+    {
+      "hook": "MOMENTO DE VERDADE",
+      "headline": "Treina real",
+      "accentWord": "real",
+      "body": "",
+      "cta": "Começa agora"
+    },
+    {
+      "hook": "QUANDO TUDO IMPORTA",
+      "headline": "Fale com confiança",
+      "accentWord": "confiança",
+      "body": "",
+      "cta": "Pratica hoje"
+    },
+    {
+      "hook": "ESTUDOU OU CONGELOU?",
+      "headline": "Treina ou trava",
+      "accentWord": "treina",
+      "body": "",
+      "cta": "Entra no Vivr"
+    }
+  ]
+}
