@@ -25,11 +25,11 @@ ${FONT_LINK}
     width: 540px;
     height: 675px;
     overflow: hidden;
-    background: #1A1030;
+    background: ${styleConfig.colors.background || '#1A1030'};
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 22px 28px 26px;
+    padding: 28px;
   }
 
   /* subtle radial glow on the bg */

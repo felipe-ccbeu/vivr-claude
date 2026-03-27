@@ -243,9 +243,25 @@ Se algum passo falhar, o template não está pronto.
 
 ---
 
+## Design System Binding (Critical — all templates must implement)
+
+See `.agents/vivavr-context.md` section "HTML Template Design Rules" for binding rules on:
+- **Backgrounds:** Always `#1A1030` (dark) or `#ffffff` (light), NEVER pure black
+- **Gradient:** Always use complete brand gradient `#89c7fe → #fdd38a`, never partial
+- **Text:** White in dark mode, dark in light mode, accent word gets brand gradient
+- **CTA Button:** Pill shape (`border-radius: 100px`), gradient bg (dark) or white bg (light)
+- **Overlays:** 20-30% MORE transparent, positioned lower (55-60% of frame)
+- **Shapes:** NO straight edges — all elements have `border-radius`
+- **Margins:** `padding: 28px` minimum feed, special safe zones for story format
+- **Alignment:** Left-aligned or flex-start (never center vertical, except immersive)
+- **Image:** `object-position: center 25%`, image prioritized over text
+
+---
+
 ## Notas Arquiteturais
 
 - **Design Variations:** Todos os templates respeitam `styleConfig` — suportam light, dark, colorful, etc.
 - **Escalabilidade:** Adicionar novo template = 1 arquivo + 4 registros, sem modificar lógica central
 - **Reusabilidade:** highlightAccentWord + FONT_LINK centralizados em shared.ts
 - **Maintainability:** Comentários descritivos em cada template ajudam futuros updates
+- **Design System Alignment:** Todos os templates devem seguir as regras em `.agents/vivavr-context.md` HTML Template Design Rules

@@ -74,7 +74,42 @@ export const TEMPLATE_COPY_CONSTRAINTS = {
     body:     { maxWords: 16, maxLines: 2 },
     hook:     { maxWords: 8 },
     cta:      { maxWords: 4 },
-    notes:    'Formato vertical 540×960. Mais espaço vertical disponível.'
+    notes:    'Formato vertical 540×960. Mais espaço vertical disponível. Safe zones: top 120px, bottom 180px.'
+  },
+
+  'quote': {
+    headline: { maxWords: 8, maxLines: 2, note: 'Testemunial — tom de aprovação, emoção positiva' },
+    body:     { omit: true, note: 'Body não renderizado — layout focado em quote' },
+    hook:     { maxWords: 6, note: 'Nome/descrição de quem testificou' },
+    cta:      { maxWords: 4, examples: ['Junta-se', 'Começa agora', 'Experimenta'] },
+    accentWord: { preference: 'adjetivo ou resultado', examples: ['confiança', 'fluência', 'mudança'] },
+    notes:    'Prova social. Imagem circular pequena no rodapé. Estrelas e badge "100k".'
+  },
+
+  'bold-text': {
+    headline: { maxWords: 6, maxLines: 2, note: 'Headline gigante (72px) — curta e impactante' },
+    body:     { maxWords: 12, maxLines: 2, note: 'Suporte mínimo — foco é headlines' },
+    hook:     { maxWords: 4, note: 'Uppercase, context tag no topo' },
+    cta:      { maxWords: 3, examples: ['Comece', 'Pratica', 'Entra'] },
+    accentWord: { preference: 'verbo de ação', examples: ['fale', 'pratique', 'viva'] },
+    notes:    'Type-first design (zero imagem). Fundo gradiente de marca. Máxima ousadia.'
+  },
+
+  'split-reverse': {
+    headline: { maxWords: 7, maxLines: 2 },
+    body:     { maxWords: 14, maxLines: 2 },
+    hook:     { maxWords: 6 },
+    cta:      { maxWords: 4 },
+    notes:    'Layout horizontal: imagem esquerda (240px), texto direita (300px). Editorial style.'
+  },
+
+  'immersive': {
+    headline: { maxWords: 6, maxLines: 2, note: 'Centralizado verticalmente, grande impacto' },
+    body:     { maxWords: 12, maxLines: 2 },
+    hook:     { maxWords: 6, note: 'Pill frosted glass no topo esquerdo' },
+    cta:      { maxWords: 4, examples: ['Entra agora', 'Comece aqui', 'Vem praticar'] },
+    accentWord: { preference: 'substantivo emocional', examples: ['real', 'imersão', 'cena'] },
+    notes:    'Full-bleed com vinheta radial. Texto flutua sobre imagem. Foco em profundidade.'
   }
 } as const
 

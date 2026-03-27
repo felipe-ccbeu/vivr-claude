@@ -48,9 +48,10 @@ Os personagens do Vivr têm estilo **3D cartoon adulto de proporções alongadas
 
 ### Paleta de cores da marca
 - **Logo gradient:** laranja `#FF6B35` → vermelho `#E8334A` → roxo `#7B4FBF` → verde `#4CAF50`
-- **UI gradient (app):** roxo `#9C6FE4` → rosa `#E87BB0` (fundo das telas)
+- **App UI gradient (para HTML/Canva):** `#89c7fe → #8bfbd1 → #ae90fb → #f599b5 → #fdd38a` (135deg diagonal)
 - **Destaque:** amarelo dourado `#F5C842`, menta `#7FDDBB`
-- **NÃO usar** como brand gradient: `blue #89c7fe to mint #8bfbd1` — essa paleta é errada para o Vivr
+- **Background dark:** `#1A1030` (roxo escuro profundo, NUNCA preto puro)
+- **Nota:** A paleta UI (`#89c7fe...`) é a CORRETA para templates HTML e Canva. Jamais usar gradiente de uma só cor.
 
 ---
 

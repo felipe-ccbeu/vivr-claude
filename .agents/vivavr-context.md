@@ -266,6 +266,65 @@ Source: Meta Ad Library + Google Ads Transparency Center. Scraped March 2026.
 - Never describe characters as Pixar/Disney rounded — use the canonical elongated adult cartoon descriptors
 - No text, speech bubbles, or written words in generated images
 
+### HTML Template Design Rules (Critical — all templates must follow)
+
+**Backgrounds:**
+- Dark mode: `#1A1030` (purple-dark, never pure black `#000` or `#0d0d0d`)
+- Light mode: `#ffffff` (pure white)
+- Gradient backgrounds: radial from `#1A1030` with purple glow (reference: phone-float style)
+- NEVER use single-color gradients — always use brand gradient with multiple colors
+
+**Brand Gradient (used for accent words, CTA, highlights):**
+`linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%)`
+- Use complete multi-color gradient always
+- Never use partial versions (e.g., only `#89c7fe → #ae90fb`)
+
+**Text:**
+- Dark mode: white `#ffffff` headlines/body, `rgba(255,255,255,0.70)` supporting text
+- Light mode: dark `#0d0d0d` headlines/body, `rgba(0,0,0,0.60)` supporting text
+- Accent word (important word): always brand gradient with background-clip: text
+
+**CTA Button (mandatory style from frame.ts):**
+- Shape: `border-radius: 100px` (pill maximum — NEVER straight edges)
+- Dark: gradient background, white text, `box-shadow` with subtle color glow
+- Light: white background, `#ae90fb` (lavender) text
+- `align-self: flex-start` (never full-width)
+- Padding: `13px 28px` minimum
+- Font-weight: 800
+
+**Overlays on images:**
+- 20-30% MORE transparent than current
+- Position lower (gradient starts at 55-60% of frame, not earlier)
+- NEVER cover character face
+
+**Shapes & Borders:**
+- NO straight-edged elements — all have `border-radius`
+- Cards: `border-radius: 14px` minimum
+- Pills: `border-radius: 100px`
+- Frames/images: `border-radius: 20-28px`
+
+**Margins & Safe Zones:**
+- Feed (540×675): `padding: 28px` all sides (NEVER less)
+- Story (540×960):
+  - Top safe-zone: 120px (avoid Instagram UI)
+  - Bottom safe-zone: 180px (avoid ads button)
+  - Sides: `padding: 28px`
+- Text must never be cut off
+
+**Chat Bubbles:**
+- Use phone-float model: white, rounded card (14px), strong shadow
+- NEVER use speech bubble tails — keep rounded card style
+- Tag "Você disse" above text (lavender `#ae90fb`)
+
+**Alignment:**
+- Avoid center-vertical text (exception: immersive template)
+- Prefer left alignment for headlines/body
+- Center only isolated CTAs and badges
+
+**Image:**
+- `object-position: center 25%` (focus on face/character)
+- Image is visual priority — copy is supporting element
+
 ### Canva / HTML layouts
 - Lead with the **app UI gradient** (`#89c7fe → #fdd38a`) as the primary background signal
 - Feature 3D characters and scenarios — they are the product's biggest visual differentiator
