@@ -1,0 +1,28 @@
+{
+  "campaignId": "008-reuniao-corporativa",
+  "template": "split",
+  "imagePath": "scene.webp",
+  "variants": [
+    {
+      "hook": "Aquele momento em que você levanta a mão mas...",
+      "headline": "Sua voz importa em qualquer idioma",
+      "accentWord": "voz",
+      "body": "Vivr te coloca em situações reais de reunião. Você aprende falando, não decorando. Sem pressão de ser perfeito.",
+      "cta": "Fale com confiança"
+    },
+    {
+      "hook": "Reunião importante. Você tem a resposta.",
+      "headline": "Mas medo não deixa falar",
+      "accentWord": "medo",
+      "body": "Vivr te treina em conversas reais. Cenas de reunião, apresentação, networking. Você aprende praticando.",
+      "cta": "Comece grátis"
+    },
+    {
+      "hook": "Quanto dinheiro você deixa na mesa por medo de falar inglês?",
+      "headline": "Profissionais confiantes ganham mais",
+      "accentWord": "confiantes",
+      "body": "Vivr monta cenas reais de reunião, negociação, networking em inglês. Você treina quando quiser.",
+      "cta": "Desbloqueie sua carreira"
+    }
+  ]
+}

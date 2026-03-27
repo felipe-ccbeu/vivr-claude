@@ -1,0 +1,35 @@
+{
+  "id": "001-restaurant",
+  "audience": "Adultos 22-35 que travam ao falar inglês",
+  "pain": "Fiz mil lições mas trava na hora H",
+  "angle": "O problema não é você, é que nunca praticou em situação real",
+  "copy": {
+    "hook": "Você já fez tanta lição e ainda trava na hora H?",
+    "headline": "Inglês que funciona fora do app.",
+    "accentWord": "funciona",
+    "body": "No Vivr, você pratica dentro de cenas reais — café, viagem, trabalho. Situações que você vai viver de verdade.",
+    "cta": "Entra no Vivr"
+  },
+  "copyVariants": [
+    {
+      "hook": "Você acerta no app. Mas na hora real, a voz some.",
+      "headline": "Saber no app não é saber de verdade.",
+      "accentWord": "verdade",
+      "body": "No Vivr você pratica dentro de cenas reais — café, viagem, trabalho. Situações que você vai viver de verdade.",
+      "cta": "Entra no Vivr"
+    },
+    {
+      "hook": "Mais uma lição não vai mudar sua conversa em inglês.",
+      "headline": "Pare de acumular lições. Começa a viver o idioma.",
+      "accentWord": "viver",
+      "body": "No Vivr você não estuda sobre o inglês — você usa dentro de situações reais. É assim que o travamento some.",
+      "cta": "Experimenta de graça"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Adult woman with brown skin, dark curly hair pulled back, wearing a casual urban outfit — warm-colored blouse, slim pants. Standing confidently at a modern café counter, holding a coffee cup, mid-conversation with a slight smile. Cozy café environment: wooden counter, warm pendant lights, brick wall in background, blurred depth of field. Cinematic warm lighting with soft shadows, subtle rim light. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Café moderno, balcão de madeira, iluminação quente, parede de tijolos ao fundo",
+    "mood": "Confiante, leve, imersivo — adulto praticando inglês em situação real",
+    "template": "split"
+  }
+}

@@ -77,7 +77,9 @@ export async function renderPost(
   await fs.ensureDir(outDir)
 
   const template = (templateOverride ?? brief.visual.template ?? 'split') as TemplateName
-  const html = applyTemplate(template, brief.copy, imageSrc)
+  const styleConfig = getStyleConfig(undefined)
+
+  const html = applyTemplate(template, brief.copy, imageSrc, styleConfig)  
 
   const htmlPath = path.join(outDir, `${filename}.html`)
   await fs.writeFile(htmlPath, html, 'utf8')

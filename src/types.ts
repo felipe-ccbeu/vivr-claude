@@ -1,7 +1,7 @@
 export interface CopyBlock {
   hook: string
   headline: string
-  accentWord: string
+  accentWord?: string   // opcional — auto-detectado se omitido
   body: string
   cta: string
 }
@@ -17,11 +17,14 @@ export interface CampaignBrief {
     whiskPrompt: string
     scene: string
     mood: string
-    template?: 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt'
+    /** Formatos a gerar. Default: ['feed']. Ex: ['feed', 'story'] */
+    formats?: ('feed' | 'story')[]
+    /** Template override por formato. Se omitido, feed=split, story=story */
+    template?: 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt' | 'story'
     refs?: {
-      subject?: string  // file path or URL
-      scene?: string    // file path or URL
-      style?: string    // file path or URL
+      subject?: string
+      scene?: string
+      style?: string
     }
   }
 }

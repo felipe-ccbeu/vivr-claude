@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 540px; height: 960px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+
+  .post-wrapper {
+    width: 540px;
+    height: 960px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── IMAGE SECTION (620px = 64.6% do canvas) ── */
+  .img-section {
+    position: relative;
+    width: 540px;
+    height: 620px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+  }
+
+  /* Vignette mais profunda — canvas mais alto exige transição mais longa */
+  .img-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 45%,
+      rgba(0,0,0,0.5) 72%,
+      rgba(13,13,13,1) 100%
+    );
+  }
+
+  /* Hook: safe zone top 28px para não conflitar com UI do Instagram */
+  .hook-tag {
+    position: absolute;
+    top: 28px;
+    left: 24px;
+    background: rgba(0,0,0,0.62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0.15px;
+    max-width: 380px;
+    line-height: 1.4;
+    box-shadow: 0 0 0 1px rgba(249,112,64,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .badge-free {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 12px rgba(233,72,153,0.4);
+  }
+
+  /* ── TEXT SECTION (340px) ── */
+  .text-section {
+    flex: 1;
+    background: #0d0d0d;
+    padding: 26px 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .text-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+  }
+
+  /* Headline maior — canvas mais alto permite mais impacto */
+  .headline {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.07;
+    letter-spacing: -1px;
+    text-shadow: 0 1px 20px rgba(0,0,0,0.8);
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(249,112,64,0.35));
+  }
+
+  /* Body: fonte maior que no feed — story é lido de mais perto */
+  .body-copy {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.6;
+    margin-top: 14px;
+    max-width: 440px;
+    letter-spacing: 0.1px;
+  }
+
+  /* CTA: mais altura — dedo precisa de área maior no story */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 34px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    align-self: flex-start;
+    cursor: pointer;
+    box-shadow:
+      0 0 0 1px rgba(249,112,64,0.3),
+      0 4px 16px rgba(233,72,153,0.35),
+      0 8px 32px rgba(155,93,229,0.2);
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+  <div class="img-section">
+    <img src="../scene.png" alt="" />
+    <div class="img-vignette"></div>
+    <span class="hook-tag" data-slot="hook">Treino sem contexto não prepara pra conversa real.</span>
+    <span class="badge-free">Grátis</span>
+  </div>
+  <div class="text-section">
+    <div>
+      <div class="headline" data-slot="headline">Quando a situação aparecer, você já vai ter <span class="accent">estado</span> lá.</div>
+      <div class="body-copy" data-slot="body">Café, aeroporto, hotel, trabalho. No Vivr você treina dentro dessas cenas — não sobre elas.</div>
+    </div>
+    <div class="cta-btn" data-slot="cta">Começa de graça</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "id": "007-metodo-vs-situacao",
+  "audience": "Adultos brasileiros 28-40 que estudaram inglês por anos mas ainda travam em situações orais reais — reuniões, viagens, conversas com estrangeiros",
+  "pain": "Já tentou Duolingo, Open English, aulas particulares. Sabe gramática. Entende a série. Mas quando precisa falar ao vivo, congela. O problema não é o usuário — é que nenhum método preparou para a situação real.",
+  "angle": "Todos os apps expõem ao inglês. Nenhum te coloca dentro da situação. O Vivr é a única prática que simula o momento real antes de ele acontecer.",
+  "copy": {
+    "hook": "Anos de app. Ainda trava na primeira frase ao vivo.",
+    "headline": "O problema não é você. É que nunca praticou de verdade.",
+    "accentWord": "praticou",
+    "body": "O Vivr te coloca dentro da situação antes de ela acontecer. Sem lição. Sem repetição. Só prática real.",
+    "cta": "Pratique a cena que te trava"
+  },
+  "copyVariants": [
+    {
+      "hook": "Você entende a série. Você sabe a música. Na hora de falar, some tudo.",
+      "headline": "Não é falta de vocabulário. É falta de prática real.",
+      "accentWord": "prática",
+      "body": "O Vivr simula o momento exato que você vai viver — sem professora, sem julgamento, sem vergonha. É só você e a situação.",
+      "cta": "Comece pela cena da viagem"
+    },
+    {
+      "hook": "Duolingo te ensina que o cavalo lava a cozinha.",
+      "headline": "O Vivr te prepara para a reunião de amanhã.",
+      "accentWord": "prepara",
+      "body": "Chega de frases sem contexto. Pratique inglês em situações reais, com personagens animados, dentro do cenário que importa.",
+      "cta": "É grátis. Comece agora."
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Adult man with full dark beard, short brown hair, wearing a purple t-shirt, gray denim shorts, white sneakers. Sitting at a modern office desk with a laptop open, mid-shot, expression of frustrated realization — the moment someone understands why they have been stuck. Modern open-plan office environment, desk with laptop, natural window light, neutral tones. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Escritório moderno — plano médio, protagonista barbudo sentado à mesa com laptop aberto",
+    "mood": "Frustração que se transforma em clareza — o momento de entender que o método estava errado, não a pessoa",
+    "template": "split"
+  }
+}

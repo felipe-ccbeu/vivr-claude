@@ -109,7 +109,7 @@ ${FONT_LINK}
   /* Accent word: gradient + slight size bump + glow so it pops on dark overlay */
   .accent {
     font-size: 1.08em;
-    background: ${BRAND_GRADIENT};
+    background: ${styleConfig.colors.accentWord};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -142,8 +142,8 @@ ${FONT_LINK}
     border-radius: 50px;
     font-size: 14px;
     font-weight: 800;
-    color: white;
-    background: ${BRAND_GRADIENT};
+    color: ${styleConfig.colors.ctaText};
+    background: ${styleConfig.colors.ctaBg};
     letter-spacing: 0.2px;
     white-space: nowrap;
   }

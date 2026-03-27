@@ -1,0 +1,35 @@
+{
+  "id": "003-pratica-real",
+  "audience": "Adultos brasileiros que já estudaram inglês mas travam ao usar na vida real",
+  "pain": "Saber a teoria mas congelar na hora de falar — anos de estudo e ainda não consegue se virar",
+  "angle": "O problema não é falta de estudo, é falta de prática real. O Vivr simula situações antes que aconteçam de verdade",
+  "copy": {
+    "hook": "Você sabe inglês. Só não consegue falar.",
+    "headline": "Pratica antes de precisar de verdade.",
+    "accentWord": "verdade",
+    "body": "Com o Vivr você treina conversas reais — no café, no hotel, no aeroporto — antes que elas aconteçam. Menos travamento. Mais confiança.",
+    "cta": "Começa a praticar de graça"
+  },
+  "visual": {
+    "whiskPrompt": "3D animated cartoon character, Pixar/Disney style, rounded friendly features, adult, mid-skin tone, standing at a modern café counter, gesturing naturally while speaking — open posture, slight smile of surprise and pride, confident body language. Background: warm urban café interior, coffee machines and cups visible, shallow depth of field, cozy premium atmosphere. Brand gradient tones: blue #89c7fe to mint #8bfbd1 to lavender #ae90fb to pink #f599b5 to yellow #fdd38a. Soft warm lighting, clean airy composition, premium quality render. No speech bubbles, no text, no dialog balloons.",
+    "scene": "Balcão de café moderno, bem iluminado, atmosfera urbana aconchegante",
+    "mood": "Leveza, alívio, levemente divertido — a sensação de consegui!",
+    "template": "frame"
+  },
+  "copyVariants": [
+    {
+      "hook": "Você sabe a teoria. O Vivr te dá a prática que falta.",
+      "headline": "Treinar dentro da cena é diferente de estudar sobre ela.",
+      "accentWord": "dentro",
+      "body": "Com o Vivr você treina conversas reais — no café, no hotel, no aeroporto — antes que elas aconteçam. Menos travamento. Mais confiança.",
+      "cta": "Começa a praticar de graça"
+    },
+    {
+      "hook": "Você sabe inglês. Só trava quando precisa usar.",
+      "headline": "Congelar na hora H é falta de prática real.",
+      "accentWord": "prática",
+      "body": "O problema não é vocabulário — é que você nunca praticou dentro da situação. O Vivr muda isso.",
+      "cta": "Experimenta de graça"
+    }
+  ]
+}

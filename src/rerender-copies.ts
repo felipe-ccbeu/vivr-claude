@@ -47,7 +47,7 @@ async function rerenderCampaign(id: string) {
     const variantBrief = { ...brief, copy: copies[i] }
 
     log(id, `Rendering ${version} — "${copies[i].headline}"`)
-    const htmlPath = await renderPost(variantBrief, imagePath, version)
+    const htmlPath = await renderPost(variantBrief, imagePath, version, campaignDir)
     const pngPath = htmlPath.replace('.html', '.png')
     await exportPNG(htmlPath, pngPath)
     log(id, `Saved ${version}.png`)

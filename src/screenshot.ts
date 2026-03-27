@@ -1,7 +1,11 @@
 import { chromium } from 'playwright'
 import * as path from 'path'
 
-export async function exportPNG(htmlPath: string, outputPath: string): Promise<void> {
+export async function exportPNG(
+  htmlPath: string,
+  outputPath: string,
+  size: { width: number; height: number } = { width: 540, height: 675 }
+): Promise<void> {
   const browser = await chromium.launch()
   const page = await browser.newPage()
 
@@ -13,7 +17,7 @@ export async function exportPNG(htmlPath: string, outputPath: string): Promise<v
 
   await page.screenshot({
     path: outputPath,
-    clip: { x: 0, y: 0, width: 540, height: 675 },
+    clip: { x: 0, y: 0, width: size.width, height: size.height },
   })
 
   await browser.close()
