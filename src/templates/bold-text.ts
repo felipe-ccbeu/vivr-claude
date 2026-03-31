@@ -1,15 +1,13 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, BADGE_GRADIENT } from './shared'
 
 /**
  * BOLD-TEXT — Tipografia Oversized (540×675px)
- * Zero imagem. Headline gigante (70px+). Fundo gradiente de marca.
+ * Zero imagem. Fundo gradiente badge. Hook pill. Accent gigante 116px.
  * Ideal para: Scroll-stopping power, type-first design, scroll ads.
  */
-export function buildBoldText(variant: CopyVariant, _imageSrc: string, styleConfig: StyleConfig): string {
-  const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
-
+export function buildBoldText(variant: CopyVariant, _imageSrc: string, _styleConfig: StyleConfig): string {
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,7 +20,7 @@ ${FONT_LINK}
   .post-wrapper {
     width: 540px;
     height: 675px;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 25%, #ae90fb 50%, #f599b5 75%, #fdd38a 100%);
+    background: ${BADGE_GRADIENT};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,18 +28,6 @@ ${FONT_LINK}
     padding: 40px 28px;
     position: relative;
     overflow: hidden;
-  }
-
-  /* Subtle background pattern */
-  .post-wrapper::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.05) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 1;
   }
 
   .content {
@@ -52,97 +38,87 @@ ${FONT_LINK}
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 20px;
-    max-width: 440px;
+    gap: 16px;
+    max-width: 460px;
   }
 
-  /* Hook: small text at top */
   .hook {
-    font-size: 12px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.95);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    data-slot: 'hook';
+    letter-spacing: 3px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 100px;
+    padding: 5px 16px;
   }
 
-  /* Headline: the star */
   .headline {
-    font-size: 72px;
-    font-weight: 900;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
     line-height: 1;
-    letter-spacing: -2px;
-    text-shadow:
-      0 2px 8px rgba(0,0,0,0.2),
-      0 4px 16px rgba(0,0,0,0.15);
-    word-spacing: -0.15em;
-    margin-bottom: 16px;
+  }
+
+  .headline-top {
+    font-size: 52px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    line-height: 1.1;
   }
 
   .accent {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    font-size: 116px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -5px;
+    line-height: 0.88;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.18);
   }
 
-  /* Body: minimal */
   .body-copy {
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.5;
-    letter-spacing: 0.2px;
-    max-width: 380px;
-    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.55;
+    letter-spacing: 0.1px;
+    max-width: 360px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.2);
   }
 
-  /* CTA */
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 13px 28px;
+    padding: 14px 32px;
     border-radius: 100px;
     font-size: 15px;
-    font-weight: 800;
-    color: #1a1030;
-    background: white;
-    letter-spacing: 0.3px;
+    font-weight: 900;
+    color: #1a0a2e;
+    background: #ffffff;
+    letter-spacing: 0.5px;
     white-space: nowrap;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    transition: all 200ms ease-out;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   }
 
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-  }
-
-  /* Decorative elements */
   .decor-dot {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.1;
   }
-
   .decor-1 {
-    width: 120px;
-    height: 120px;
-    background: rgba(255,255,255,0.3);
-    top: -40px;
-    right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    top: -60px; right: -60px;
   }
-
   .decor-2 {
-    width: 80px;
-    height: 80px;
-    background: rgba(0,0,0,0.2);
-    bottom: -20px;
-    left: -20px;
+    width: 140px; height: 140px;
+    background: rgba(0,0,0,0.06);
+    bottom: -40px; left: -40px;
   }
 </style>
 </head>
@@ -153,7 +129,10 @@ ${FONT_LINK}
 
   <div class="content">
     <div class="hook" data-slot="hook">${variant.hook}</div>
-    <div class="headline" data-slot="headline">${headlineHtml}</div>
+    <div class="headline">
+      <span class="headline-top" data-slot="headline">${variant.headline.replace(variant.accentWord ?? '', '').trim()}</span>
+      <span class="accent" data-slot="accent">${variant.accentWord}</span>
+    </div>
     <div class="body-copy" data-slot="body">${variant.body}</div>
     <div class="cta-btn" data-slot="cta">${variant.cta}</div>
   </div>

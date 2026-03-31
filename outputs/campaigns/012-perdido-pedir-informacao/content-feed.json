@@ -1,0 +1,28 @@
+{
+  "campaignId": "012-perdido-pedir-informacao",
+  "template": "split",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Você já ficou parado, em silêncio, sem saber como pedir uma informação simples em inglês?",
+      "headline": "Pratica pedir direções antes de precisar.",
+      "accentWord": "direções",
+      "body": "No Vivr você treina as situações que mais travam: pedir informação, entender a resposta, agir. Com personagens reais, em cenários do dia a dia. Sem julgamento, sem pressa.",
+      "cta": "Começa a praticar grátis"
+    },
+    {
+      "hook": "Aquele silêncio constrangedor quando você não sabe o que dizer.",
+      "headline": "O silêncio não precisa ser a sua resposta.",
+      "accentWord": "silêncio",
+      "body": "O Vivr coloca você dentro do café, do metrô, da loja — em inglês, com personagens que respondem de verdade. Você pratica até a resposta vir automática.",
+      "cta": "Experimenta de graça"
+    },
+    {
+      "hook": "Quantas vezes você fingiu que entendeu só pra não travar?",
+      "headline": "Quantas vezes você fingiu que entendeu?",
+      "accentWord": "fingiu",
+      "body": "Parar de fingir começa com praticar situações reais. No Vivr você treina o que trava: pedir, entender, responder. Não dá mais pra só acumular vocabulário.",
+      "cta": "Para de fingir, começa agora"
+    }
+  ]
+}

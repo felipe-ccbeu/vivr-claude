@@ -1,4 +1,5 @@
 export const BRAND_GRADIENT = 'linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%)'
+export const BADGE_GRADIENT = 'linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%)'
 
 export const FONT_LINK = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">`
@@ -160,15 +161,15 @@ export function buildBadgeFreeCSS(styleConfig: StyleConfig): string {
     position: absolute;
     top: 24px;
     right: 24px;
-    background: ${styleConfig.colors.primary};
-    border-radius: 100px;
-    padding: 8px 18px;
-    font-size: 11px;
-    font-weight: 800;
+    background: ${BADGE_GRADIENT};
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 11.5px;
+    font-weight: 900;
     color: white;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.4px;
     z-index: 10;
-    box-shadow: 0 4px 16px rgba(233, 72, 153, 0.28);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }`
 }
 

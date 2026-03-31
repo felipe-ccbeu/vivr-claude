@@ -1,8 +1,8 @@
-<!-- VIVR_META: {"campaignId":"test-all-templates","template":"overlay","designVariation":"dark-bold","variantIndex":1,"generatedAt":"2026-03-27T18:18:44.586Z"} -->
+<!-- VIVR_META: {"campaignId":"test-all-templates","template":"overlay","designVariation":"dark-bold","variantIndex":1,"generatedAt":"2026-03-27T18:43:27.879Z"} -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta name="vivr-campaign" content='{"campaignId":"test-all-templates","template":"overlay","designVariation":"dark-bold","variantIndex":1,"generatedAt":"2026-03-27T18:18:44.586Z"}'>
+  <meta name="vivr-campaign" content='{"campaignId":"test-all-templates","template":"overlay","designVariation":"dark-bold","variantIndex":1,"generatedAt":"2026-03-27T18:43:27.879Z"}'>
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,22 +20,22 @@
   .bg {
     position: absolute;
     inset: 0;
-    background-image: url('../../campaigns/009-cafe-pedir-info/scene.png');
+    background-image: url('../../campaigns/005-cafe-pedir-cardapio/scene.png');
     background-size: cover;
     background-position: center top;
   }
 
-  /* Fade starts earlier so the cut-off feels intentional, not abrupt */
+  /* Overlay: 20-30% more transparent, positioned lower (55-60% of frame) */
   .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(8,8,8,0.05) 0%,
-      rgba(8,8,8,0.00) 18%,
-      rgba(8,8,8,0.30) 38%,
-      rgba(8,8,8,0.82) 60%,
-      rgba(8,8,8,0.96) 100%
+      rgba(8,8,8,0.00) 0%,
+      rgba(8,8,8,0.00) 45%,
+      rgba(8,8,8,0.15) 55%,
+      rgba(8,8,8,0.55) 75%,
+      rgba(8,8,8,0.70) 100%
     );
   }
 
@@ -126,14 +126,15 @@
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 26px;
-    border-radius: 50px;
+    padding: 13px 28px;
+    border-radius: 100px;
     font-size: 14px;
     font-weight: 800;
     color: #ffffff;
     background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
     letter-spacing: 0.2px;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .sub-badge {

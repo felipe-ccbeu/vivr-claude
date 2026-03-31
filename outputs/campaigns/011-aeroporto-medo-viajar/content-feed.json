@@ -1,0 +1,28 @@
+{
+  "campaignId": "011-aeroporto-medo-viajar",
+  "template": "split",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Você já cancelou uma viagem por medo de não se virar em inglês?",
+      "headline": "Pratica antes de embarcar.",
+      "accentWord": "antes",
+      "body": "No Vivr você entra no aeroporto, no hotel, no restaurante — em inglês, sem pressão. Quando a situação de verdade chegar, você já viveu isso antes.",
+      "cta": "Entra e pratica grátis"
+    },
+    {
+      "hook": "Aquela sensação de travar no aeroporto estrangeiro.",
+      "headline": "O medo some quando você já viveu antes.",
+      "accentWord": "viveu",
+      "body": "O Vivr simula o aeroporto, o hotel, o restaurante — em inglês, com personagens reais. Você pratica antes de pisar no avião.",
+      "cta": "Experimenta de graça"
+    },
+    {
+      "hook": "Inglês estudado por anos. Viagem cancelada por medo.",
+      "headline": "Você ainda vai cancelar por causa do inglês?",
+      "accentWord": "cancelar",
+      "body": "Quem pratica no Vivr chega na fila do check-in sabendo o que dizer. Não é teoria — é simulação de situação real.",
+      "cta": "Baixa agora, é grátis"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
+
+  .post-wrapper {
+    width: 540px;
+    height: 675px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── IMAGE SECTION ── */
+  .img-section {
+    position: relative;
+    width: 540px;
+    height: 370px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    display: block;
+  }
+
+  /* Vignette overlay */
+  .img-vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 42%, rgba(0,0,0,0.55) 72%, rgba(13,13,13,1) 100%);
+  }
+
+  /* Hook tag */
+  .hook-tag {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    background: rgba(0,0,0,0.62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 7px 15px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.15px;
+    max-width: 310px;
+    line-height: 1.35;
+  }
+
+  .badge-free {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  /* ── TEXT SECTION ── */
+  .text-section {
+    flex: 1;
+    background: #1A1030;
+    padding: 20px 36px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1.5px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .text-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+  }
+
+  /* Headline */
+  .headline {
+    font-size: 36px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+    text-shadow: 0 1px 20px rgba(0,0,0,0.8);
+  }
+
+  /* Accent word */
+  .accent {
+    
+      background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    
+  }
+
+  /* Body copy */
+  .body-copy {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.6;
+    margin-top: 11px;
+    max-width: 430px;
+    letter-spacing: 0.1px;
+  }
+
+  /* CTA button — mandatory pill style with complete brand gradient */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    border-radius: 100px;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    align-self: flex-start;
+    min-height: 48px;
+    box-shadow: 0 4px 12px rgba(137,199,254,0.25);
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+  <div class="img-section">
+    <img src="scene.png" alt="" />
+    <div class="img-vignette"></div>
+    <span class="hook-tag" data-slot="hook">Aquele silêncio constrangedor quando você não sabe o que dizer.</span>
+    <span class="badge-free">Grátis</span>
+  </div>
+  <div class="text-section">
+    <div>
+      <div class="headline" data-slot="headline">O <span class="accent">silêncio</span> não precisa ser a sua resposta.</div>
+      <div class="body-copy" data-slot="body">O Vivr coloca você dentro do café, do metrô, da loja — em inglês, com personagens que respondem de verdade. Você pratica até a resposta vir automática.</div>
+    </div>
+    <div class="cta-btn" data-slot="cta">Experimenta de graça</div>
+  </div>
+</div>
+</body>
+</html>

@@ -131,7 +131,7 @@ ${FONT_LINK}
     font-size: 11.5px;
     font-weight: 900;
     color: white;
-    background: ${styleConfig.colors.primary};
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
     letter-spacing: 0.4px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }

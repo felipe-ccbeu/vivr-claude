@@ -1,0 +1,28 @@
+{
+  "campaignId": "013-aeroporto-ouvido",
+  "template": "split",
+  "imagePath": "scene.png",
+  "variants": [
+    {
+      "hook": "Você entende inglês de série. Mas quando alguém fala com você de verdade — sua cabeça apaga.",
+      "headline": "Treina o ouvido antes de precisar.",
+      "accentWord": "ouvido",
+      "body": "No Vivr você conversa com personagens que falam inglês de verdade — sem legenda, sem pausa, sem julgamento. O ouvido aprende quando o corpo sente que a situação é real.",
+      "cta": "Treina de graça agora"
+    },
+    {
+      "hook": "Você entende com legenda. Mas sem ela, o inglês some.",
+      "headline": "O inglês que você entende não é o que as pessoas falam.",
+      "accentWord": "falam",
+      "body": "No Vivr você treina ouvir inglês de verdade — sem legenda, sem pausa. Personagens reais, situações do dia a dia. O ouvido aprende fazendo.",
+      "cta": "Experimenta de graça"
+    },
+    {
+      "hook": "Séries com legenda não te preparam para o mundo real.",
+      "headline": "Entende com legenda. E sem?",
+      "accentWord": "legenda",
+      "body": "Sem legenda, o inglês que você estudou some. No Vivr você pratica ouvir e responder em tempo real — antes de precisar de verdade.",
+      "cta": "Testa sem legenda agora"
+    }
+  ]
+}

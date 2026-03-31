@@ -1,13 +1,16 @@
 /**
  * run-render.ts — render + screenshot only, no Whisk call.
  *
- * Use when scene.webp already exists and you only want to apply new copy:
+ * Old format (ContentJSON):
  *   npx ts-node src/run-render.ts outputs/campaigns/009-slug/content-feed.json
+ *
+ * New format (ContentFeedV2):
+ *   npx ts-node src/run-render.ts outputs/campaigns/012-slug/content-feed.json
  */
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import { ContentJSON } from './content-schema'
-import { renderFromContent, TEMPLATE_SIZE } from './renderer'
+import { ContentJSON, ContentFeedV2, isV2 } from './content-schema'
+import { renderFromContent, renderFromContentV2, TEMPLATE_SIZE } from './renderer'
 import { exportPNG } from './screenshot'
 
 async function main() {
@@ -23,21 +26,35 @@ async function main() {
     process.exit(1)
   }
 
-  const content: ContentJSON = await fs.readJson(absPath)
+  const content: ContentJSON | ContentFeedV2 = await fs.readJson(absPath)
   const outDir = path.dirname(absPath)
-  const size = TEMPLATE_SIZE[content.template] ?? { width: 540, height: 675 }
 
-  console.log(`[run-render] Campaign: ${content.campaignId} | Template: ${content.template} | Variants: ${content.variants.length}`)
+  if (isV2(content)) {
+    // New multi-template flow
+    console.log(`[run-render] Campaign: ${content.campaignId} | V2 format | Items: ${content.items.length}`)
+    const results = await renderFromContentV2(content, outDir)
 
-  const htmlPaths = await renderFromContent(content, outDir)
+    for (const { htmlPath, pngPath, size } of results) {
+      await exportPNG(htmlPath, pngPath, size)
+      console.log(`[run-render] PNG saved: ${path.basename(pngPath)}`)
+    }
 
-  for (const htmlPath of htmlPaths) {
-    const pngPath = htmlPath.replace('.html', '.png')
-    await exportPNG(htmlPath, pngPath, size)
-    console.log(`[run-render] PNG saved: ${pngPath}`)
+    console.log(`[run-render] Done — ${results.length} files rendered.`)
+  } else {
+    // Legacy format
+    const size = TEMPLATE_SIZE[content.template] ?? { width: 540, height: 675 }
+    console.log(`[run-render] Campaign: ${content.campaignId} | Template: ${content.template} | Variants: ${content.variants.length}`)
+
+    const htmlPaths = await renderFromContent(content, outDir)
+
+    for (const htmlPath of htmlPaths) {
+      const pngPath = htmlPath.replace('.html', '.png')
+      await exportPNG(htmlPath, pngPath, size)
+      console.log(`[run-render] PNG saved: ${path.basename(pngPath)}`)
+    }
+
+    console.log(`[run-render] Done — ${htmlPaths.length} files rendered.`)
   }
-
-  console.log(`[run-render] Done — ${htmlPaths.length} files rendered.`)
 }
 
 main().catch(err => {

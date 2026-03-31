@@ -98,10 +98,10 @@ ${FONT_LINK}
     font-size: 11px;
     font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
     letter-spacing: 0.3px;
     margin-left: auto;
-    box-shadow: 0 2px 8px rgba(137,199,254,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
 
   /* Testimonial content */

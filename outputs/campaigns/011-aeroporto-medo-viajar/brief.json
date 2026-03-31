@@ -1,0 +1,34 @@
+{
+  "id": "011-aeroporto-medo-viajar",
+  "audience": "Adultos 25-40 que querem viajar mas têm bloqueio emocional com o inglês — medo de não se virar em situações reais no estrangeiro: hotel, restaurante, se perder.",
+  "pain": "Já planejou a viagem várias vezes mas trava ao pensar: 'E se eu não entender o hotel? E se eu me perder e não conseguir explicar?'",
+  "angle": "O inglês não é o obstáculo — é a chave. O Vivr coloca você dentro das situações que vai enfrentar, antes de embarcar.",
+  "copy": {
+    "hook": "Você já cancelou uma viagem por medo de não se virar em inglês?",
+    "headline": "Pratica antes de embarcar.",
+    "accentWord": "antes",
+    "body": "No Vivr você entra no aeroporto, no hotel, no restaurante — em inglês, sem pressão. Quando a situação de verdade chegar, você já viveu isso antes.",
+    "cta": "Entra e pratica grátis"
+  },
+  "copyVariants": [
+    {
+      "hook": "Aquela sensação de travar no aeroporto estrangeiro.",
+      "headline": "O medo some quando você já viveu antes.",
+      "accentWord": "viveu",
+      "body": "O Vivr simula o aeroporto, o hotel, o restaurante — em inglês, com personagens reais. Você pratica antes de pisar no avião.",
+      "cta": "Experimenta de graça"
+    },
+    {
+      "hook": "Inglês estudado por anos. Viagem cancelada por medo.",
+      "headline": "Você ainda vai cancelar por causa do inglês?",
+      "accentWord": "cancelar",
+      "body": "Quem pratica no Vivr chega na fila do check-in sabendo o que dizer. Não é teoria — é simulação de situação real.",
+      "cta": "Baixa agora, é grátis"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Young adult man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers. Standing in airport departure hall with a travel backpack, one hand loosely holding a phone, looking forward with a relieved, quietly confident expression — the fear is gone, replaced by calm readiness. Airport environment: gate signage in background, departure board with flight times, soft travelers blurred behind, cool blue-white overhead lighting, warm subtle rim light from the right side. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Airport departure hall — gate signage, flight board, blurred travelers, cool blue-white overhead light, warm rim light from right",
+    "mood": "Relief and quiet confidence — fear replaced by calm readiness"
+  }
+}

@@ -8,6 +8,7 @@ export async function exportPNG(
 ): Promise<void> {
   const browser = await chromium.launch()
   const page = await browser.newPage()
+  await page.setViewportSize({ width: size.width, height: size.height })
 
   const absolutePath = path.resolve(htmlPath)
   await page.goto(`file://${absolutePath}`)

@@ -55,6 +55,167 @@ Os personagens do Vivr têm estilo **3D cartoon adulto de proporções alongadas
 
 ---
 
+## DESIGN SYSTEM MANDATÓRIO
+
+Estas regras são obrigatórias em todos os templates HTML gerados. Nenhuma exceção.
+
+---
+
+### BACKGROUNDS
+
+- **Modo escuro:** SEMPRE `#1A1030` (roxo escuro profundo). NUNCA preto puro `#000` ou `#0d0d0d`.
+- **Modo claro:** SEMPRE `#ffffff`. NUNCA off-white, cinza ou bege.
+- **Textura modo escuro:** usar radial-gradient em camadas, seguindo o modelo de phone-float.ts:
+
+```css
+/* camada base */
+background: radial-gradient(ellipse at 70% 10%, #4a1a8a 0%, #1a0a3a 35%, #060414 65%, #031820 100%);
+
+/* camada de acento 1 — aplicar como elemento .bg-accent separado */
+radial-gradient(ellipse at 20% 90%, rgba(38,182,205,0.35) 0%, transparent 55%)
+
+/* camada de acento 2 — aplicar como elemento .bg-accent2 separado */
+radial-gradient(ellipse at 85% 75%, rgba(253,140,97,0.18) 0%, transparent 45%)
+```
+
+---
+
+### GRADIENTE DA MARCA (OBRIGATÓRIO — COMPLETO, NUNCA PARCIAL)
+
+```css
+linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%)
+```
+
+- NUNCA usar gradiente de uma só cor ou de apenas 2 cores
+- NUNCA usar somente roxo ou somente um matiz
+- Usar em: CTAs (modo escuro), palavras de destaque (accent word), badges, linhas decorativas, top-line accent
+
+---
+
+### BOTÕES CTA (ESTILO OBRIGATÓRIO — baseado em frame.ts)
+
+```css
+.cta-btn {
+  border-radius: 100px;          /* pill completo, sem exceções */
+  padding: 13px 28px;            /* mínimo */
+  font-weight: 800;
+  /* modo escuro: */
+  background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+  color: #ffffff;
+  /* modo claro: */
+  /* background: #ffffff; color: #1A1030; */
+  box-shadow: 0 4px 16px rgba(137,199,254,0.25);
+}
+```
+
+- NUNCA usar botão roxo sólido ou de cor única
+- NUNCA usar botão quadrado ou com border-radius inferior a 50px
+
+---
+
+### OVERLAYS (quando imagem é usada como fundo)
+
+- Iniciar transparência a partir de 55–60% da altura do frame — não antes
+- Opacidade 20–30% mais transparente que o padrão — preservar a imagem
+- NUNCA usar overlay preto cobrindo o rosto do personagem
+- Direção do gradiente: sempre `to bottom`, de transparent para semi-opaco
+
+```css
+background: linear-gradient(to bottom, transparent 55%, rgba(10,4,30,0.82) 100%);
+```
+
+---
+
+### SHAPES E BORDER-RADIUS
+
+Nenhum elemento pode ter borda reta (border-radius: 0). Referências:
+
+| Elemento | border-radius |
+|---|---|
+| Botões CTA | `100px` |
+| Cards e painéis | `14px–20px` |
+| Pill badges | `100px` |
+| Hook tags | `20px` |
+| Molduras de imagem | `16px–28px` |
+
+---
+
+### CHAT BUBBLES
+
+Quando usar elementos de diálogo/chat, seguir o modelo de phone-float.ts:
+
+```css
+/* Fala do usuário — fundo branco */
+.card-bubble {
+  background: rgba(255,255,255,0.95);
+  border-radius: 14px 14px 4px 14px;
+  color: #1a1a2e;
+}
+
+/* Resposta do sistema / IA — vidro fosco */
+.card-reply {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px 14px 14px 14px;
+  color: #ffffff;
+}
+```
+
+- NUNCA usar speech bubbles sólidos com rabo de balão
+
+---
+
+### MARGENS E SAFE ZONES
+
+**Feed (540×675px):**
+- Padding mínimo: `28px` em todos os lados
+- Conteúdo nunca deve tocar as bordas
+
+**Story (540×960px):**
+- Safe zone superior: `120px` (UI do Instagram — header)
+- Safe zone inferior: `180px` (botão de anúncio do Instagram)
+- Zona de conteúdo: 660px centrais
+- NENHUM texto, botão ou elemento fora das safe zones
+
+---
+
+### ACCENT WORDS / GRADIENTE DE TEXTO
+
+Destacar uma palavra-chave por headline com o gradiente da marca via CSS:
+
+```css
+.accent {
+  background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+```
+
+- Modo escuro: accent word usa gradiente da marca
+- Modo claro: accent word usa gradiente da marca (visível sobre fundo branco)
+
+---
+
+### ALINHAMENTO
+
+- **Left-align:** texto em layouts split e overlay (nunca centralizar em painéis escuros)
+- **Center-align:** apenas nos templates `immersive`, `quote`, `bold-text`
+- **Imagens:** `object-position: center 25%` para focar no rosto/personagem
+
+---
+
+### COMPOSIÇÃO DE IMAGEM
+
+- Personagem deve estar no lado oposto ao bloco denso de texto
+- Focal point do personagem (rosto) NÃO deve ser coberto por overlay ou texto
+- **Split:** imagem nos primeiros 240px, texto nos 300px restantes
+- **Overlay:** imagem full-bleed, texto ancorado na base esquerda
+- **Story:** imagem na parte superior (60%), painel de texto na parte inferior (40%)
+
+---
+
 ## Output structure
 
 Always return all sections below, clearly separated.
@@ -119,15 +280,47 @@ Descreva em linguagem clara o que deve aparecer:
 
 ---
 
-## Templates disponíveis
+## Templates disponíveis e flags
 
-| Nome | Descrição |
-|------|-----------|
-| `overlay` | Imagem full-bleed com overlay escuro, headline/CTA na base. **Padrão.** |
-| `split` | Imagem no topo (55%), painel de texto escuro na base (45%). |
-| `frame` | Fundo escuro sólido, imagem em moldura com borda gradiente centralizada, texto abaixo. |
-| `phone-float` | Celular centralizado com cards flutuando ao redor (XP, cena, streak, hook como balão). |
-| `phone-tilt` | Layout assimétrico: copy em destaque à esquerda, celular inclinado à direita com cards. |
+| Flag | Templates incluídos |
+|------|---------------------|
+| `--phone-screen` | `phone-float`, `phone-tilt` |
+| `--overlay` | `overlay` |
+| `--split` | `split` |
+| `--frame` | `frame` |
+| `--story` | `story` |
+| `--light-arc` | `light-arc` |
+| `--cinematic` | `cinematic` |
+| `--quote` | `quote` |
+| `--bold-text` | `bold-text` |
+| `--split-reverse` | `split-reverse` |
+| `--immersive` | `immersive` |
+| `--all` | todos os 12 templates |
+
+**Múltiplas flags são cumulativas:**
+```
+/vivavr-static-campaign --phone-screen --split
+→ roda: phone-float, phone-tilt, split
+```
+
+**Default (sem flag):** `--split`
+
+### Descrição dos templates
+
+| Nome | Formato | Descrição |
+|------|---------|-----------|
+| `overlay` | feed | Imagem full-bleed com overlay escuro, headline/CTA na base |
+| `split` | feed | Imagem no topo (55%), painel de texto escuro na base (45%) — **padrão** |
+| `frame` | feed | Fundo escuro sólido, imagem em moldura com borda gradiente |
+| `phone-float` | feed | Celular centralizado com cards flutuando ao redor |
+| `phone-tilt` | feed | Copy à esquerda, celular inclinado à direita |
+| `story` | story (9:16) | Imagem topo (60%), texto base (40%), safe zones 120px/180px |
+| `light-arc` | feed | Fundo branco, arco SVG na transição, estética clean/premium |
+| `cinematic` | feed | Imagem full-bleed, letterbox, overlay ultra-suave |
+| `quote` | feed | Fundo escuro, testimonial em destaque, imagem circular |
+| `bold-text` | feed | Zero imagem, headline gigante 72px, fundo gradiente |
+| `split-reverse` | feed | Layout horizontal: imagem esquerda (240px), texto direita |
+| `immersive` | feed | Full-bleed com vinheta radial, texto centralizado |
 
 ---
 
@@ -188,21 +381,34 @@ Monte **dois arquivos** separados:
 }
 ```
 
-**`content-feed.json`** — input leve do render (só copy, sem contexto estratégico):
+**`content-feed.json`** — formato V2 multi-template (gerado com base nas flags da chamada):
 ```json
 {
   "campaignId": "NNN-slug",
-  "template": "split",
-  "imagePath": "scene.webp",
-  "variants": [
-    { "hook": "...", "headline": "P1", "accentWord": "...", "body": "...", "cta": "..." },
-    { "hook": "...", "headline": "P2", "accentWord": "...", "body": "...", "cta": "..." },
-    { "hook": "...", "headline": "P3", "accentWord": "...", "body": "...", "cta": "..." }
+  "sceneImage": "scene.png",
+  "items": [
+    {
+      "outputName": "post-p1-split",
+      "templateId": "split",
+      "copy": { "hook": "...", "headline": "P1", "accentWord": "...", "body": "...", "cta": "..." }
+    },
+    {
+      "outputName": "post-p2-split",
+      "templateId": "split",
+      "copy": { "hook": "...", "headline": "P2", "accentWord": "...", "body": "...", "cta": "..." }
+    },
+    {
+      "outputName": "post-p3-split",
+      "templateId": "split",
+      "copy": { "hook": "...", "headline": "P3", "accentWord": "...", "body": "...", "cta": "..." }
+    }
   ]
 }
 ```
 
-Templates disponíveis para o campo `template`: `split` (padrão feed), `story`, `overlay`, `frame`, `phone-float`, `phone-tilt`.
+**Convenção de `outputName`:** `post-{p1|p2|p3}-{templateId}`
+
+**Expansão:** para cada uma das 3 copies × cada template das flags = N itens. Ex: `--phone-screen` com 3 copies → 6 itens.
 
 ---
 
@@ -229,7 +435,7 @@ O pipeline vai:
 4. Renderizar `post-copy-1.html` (P1), `post-copy-2.html` (P2), `post-copy-3.html` (P3)
 5. Screenshots → `post-copy-1.png`, `post-copy-2.png`, `post-copy-3.png`
 
-**Rerender sem Whisk** (quando a imagem já existe e só o copy mudou):
+**Rerender sem Whisk** (quando a imagem já existe e só o copy mudou — detecta automaticamente V1 e V2):
 ```bash
 PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node src/run-render.ts outputs/campaigns/NNN-slug/content-feed.json
 ```

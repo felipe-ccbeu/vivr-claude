@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import { CampaignBrief } from './types'
-import { ContentJSON, CopyVariant, TemplateName } from './content-schema'
+import { ContentJSON, CopyVariant, TemplateName, ContentFeedV2 } from './content-schema'
 import { buildOverlay } from './templates/overlay'
 import { buildSplit } from './templates/split'
 import { buildFrame } from './templates/frame'
@@ -160,6 +160,36 @@ export async function renderPost(
   await fs.writeFile(htmlPath, html, 'utf8')
   console.log(`[renderer] HTML saved at ${htmlPath}`)
   return htmlPath
+}
+
+/**
+ * V2 render — reads ContentFeedV2 with N items, each specifying templateId + outputName.
+ * Returns list of written HTML file paths.
+ */
+export async function renderFromContentV2(
+  feed: ContentFeedV2,
+  outDir: string
+): Promise<{ htmlPath: string; pngPath: string; size: { width: number; height: number } }[]> {
+  await fs.ensureDir(outDir)
+  const results: { htmlPath: string; pngPath: string; size: { width: number; height: number } }[] = []
+  const styleConfig = getStyleConfig(undefined)
+
+  for (const item of feed.items) {
+    const size = TEMPLATE_SIZE[item.templateId] ?? { width: 540, height: 675 }
+
+    // Resolve image path relative to outDir (scene.png is in the same campaign dir)
+    const absImage = path.resolve(outDir, feed.sceneImage)
+    const imageSrc = path.relative(outDir, absImage).replace(/\\/g, '/')
+
+    const html = applyTemplate(item.templateId as TemplateName, item.copy, imageSrc, styleConfig)
+    const htmlPath = path.join(outDir, `${item.outputName}.html`)
+    await fs.writeFile(htmlPath, html, 'utf8')
+    console.log(`[renderer] HTML saved: ${item.outputName}.html`)
+
+    results.push({ htmlPath, pngPath: htmlPath.replace('.html', '.png'), size })
+  }
+
+  return results
 }
 
 export { FORMAT_TEMPLATE }

@@ -1,0 +1,34 @@
+{
+  "id": "012-perdido-pedir-informacao",
+  "audience": "Adultos 25-45 que já passaram pela situação de estar parados em silêncio sem conseguir formular uma pergunta simples em inglês — travados na hora de pedir direções, informações, ajuda.",
+  "pain": "Sabe inglês básico mas na hora de formular uma pergunta real — 'Where is the...' — o cérebro apaga. O silêncio constrangedor que se segue é pior do que não saber.",
+  "angle": "Não é falta de vocabulário. É falta de prática em situação real. O Vivr simula exatamente esses momentos antes de você precisar deles.",
+  "copy": {
+    "hook": "Você já ficou parado, em silêncio, sem saber como pedir uma informação simples em inglês?",
+    "headline": "Pratica pedir direções antes de precisar.",
+    "accentWord": "direções",
+    "body": "No Vivr você treina as situações que mais travam: pedir informação, entender a resposta, agir. Com personagens reais, em cenários do dia a dia. Sem julgamento, sem pressa.",
+    "cta": "Começa a praticar grátis"
+  },
+  "copyVariants": [
+    {
+      "hook": "Aquele silêncio constrangedor quando você não sabe o que dizer.",
+      "headline": "O silêncio não precisa ser a sua resposta.",
+      "accentWord": "silêncio",
+      "body": "O Vivr coloca você dentro do café, do metrô, da loja — em inglês, com personagens que respondem de verdade. Você pratica até a resposta vir automática.",
+      "cta": "Experimenta de graça"
+    },
+    {
+      "hook": "Quantas vezes você fingiu que entendeu só pra não travar?",
+      "headline": "Quantas vezes você fingiu que entendeu?",
+      "accentWord": "fingiu",
+      "body": "Parar de fingir começa com praticar situações reais. No Vivr você treina o que trava: pedir, entender, responder. Não dá mais pra só acumular vocabulário.",
+      "cta": "Para de fingir, começa agora"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Professional woman, short auburn red bob hair, black blazer, red bow tie, red shoes. Standing in a café, one hand slightly raised as if about to speak, looking slightly sideways with intense concentration and a subtle smile — mentally rehearsing what to say in English. Café/restaurant with exposed brick wall, round wooden tables, warm pendant lights overhead, blurred patrons in background, evening warm atmosphere. Cinematic warm lighting with soft shadows, subtle rim light from the left, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Café/restaurant interior — exposed brick wall, round wooden tables, warm pendant lights, blurred patrons, evening atmosphere",
+    "mood": "Focused concentration with slight nervous energy — the moment just before speaking, mentally rehearsing the sentence"
+  }
+}

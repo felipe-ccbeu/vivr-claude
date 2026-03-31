@@ -19,3 +19,20 @@ export interface ContentJSON {
   designVariation?: 'dark-bold' | 'minimal-clean' | 'editorial' | 'futuristic' | 'high-contrast' | 'dark-white'
   // Optional design variation. Defaults to 'dark-bold' if omitted. Backward compatible with existing files.
 }
+
+export interface ContentFeedItem {
+  outputName: string       // e.g. "post-p1-phone-float"
+  templateId: TemplateName
+  copy: CopyVariant
+}
+
+export interface ContentFeedV2 {
+  campaignId: string
+  sceneImage: string       // absolute or relative path to scene image
+  items: ContentFeedItem[]
+}
+
+/** Detect which format a content file uses */
+export function isV2(content: ContentJSON | ContentFeedV2): content is ContentFeedV2 {
+  return 'items' in content
+}
