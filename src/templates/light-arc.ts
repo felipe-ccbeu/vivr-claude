@@ -1,32 +1,30 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
 import {
+  BADGE_GRADIENT,
   FONT_LINK,
   highlightAccentWord,
   buildBaseCSS,
-  buildAccentCSS,
-  buildCTABtnCSS,
-  buildHookPillCSS,
   buildBadgeFreeCSS,
-  buildCTARowCSS,
+  STORY_HEIGHT,
 } from './shared'
 
 /**
- * LIGHT-ARC — imagem full-bleed, painel de copy branco com recorte em arco SVG
- * na transição imagem→texto. Estética clean/premium, sem overlay escuro.
+ * LIGHT-ARC — fundo branco, arco em gradiente emoldurando a imagem,
+ * headline + hook na parte superior, CTA flutuando sobre a imagem.
  *
  * Anatomia (540×675px):
- *   - Imagem: 100% largura, ~420px de altura (cobre 62% do frame)
- *   - Arco SVG: sobrepõe a base da imagem, cria transição orgânica para o painel
- *   - Painel branco: restante inferior, copy sobre fundo claro
- *
- * Copy constraints (ideal para esse template):
- *   - headline: máx 5 palavras / 2 linhas
- *   - body: máx 1 frase / 12 palavras
- *   - hook: máx 6 palavras (aparece como pill sobre a imagem)
+ *   - Fundo: #ffffff
+ *   - Topo: headline (30px/900) à esquerda + badge "Grátis" à direita
+ *   - Hook: texto simples cinza abaixo do topo
+ *   - Arch-frame: imagem em moldura arredondada com borda gradiente
+ *   - CTA: absoluto na base da arch-frame
  */
-export function buildLightArc(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildLightArc(variant: CopyVariant, imageSrc: string, _styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const H = isStory ? STORY_HEIGHT : 675
+  const archWidth = isStory ? 440 : 340
+  const headlineSz = isStory ? 36 : 30
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -34,147 +32,138 @@ export function buildLightArc(variant: CopyVariant, imageSrc: string, styleConfi
 <meta charset="UTF-8">
 ${FONT_LINK}
 <style>
-  ${buildBaseCSS(540, 675, '#f5f4f0')}
+  ${buildBaseCSS(540, H, '#ffffff')}
 
-  /* ── IMAGEM FULL-BLEED ── */
-  .img-layer {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 430px;
-    overflow: hidden;
-  }
-
-  .img-layer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    display: block;
-  }
-
-  ${buildHookPillCSS(styleConfig, 'rgba(255,255,255,0.88)')}
-
-  ${buildBadgeFreeCSS(styleConfig)}
-
-  /* ── ARCO SVG — transição imagem → painel ── */
-  /*
-   * O SVG fica posicionado sobre a base da imagem.
-   * Path: começa na esquerda na altura H, sobe em curva para o centro (~40px),
-   * desce de volta à direita. Fill branco cobre a base da imagem
-   * criando a transição orgânica.
-   *
-   * viewBox: 540 × 80 (altura do arco)
-   * O SVG se sobrepõe 30px à imagem (top: 370px) e ao painel (fica acima)
-   */
-  .arc-svg {
-    position: absolute;
-    top: 362px;       /* base da imagem - altura do arco */
-    left: 0;
-    width: 540px;
-    height: 80px;
-    z-index: 5;
-    display: block;
-  }
-
-  /* ── PAINEL DE COPY — fundo claro ── */
-  .text-panel {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    top: 410px;       /* começa abaixo do pico do arco */
-    background: #f5f4f0;
-    padding: 0 28px 28px;
+  .post-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    z-index: 4;
+    align-items: center;
+    padding: 32px 36px 0;
+    background: #ffffff;
+    gap: 10px;
   }
 
-  /* Linha de separação sutil (abaixo do arco, acima do headline) */
-  .rule {
-    width: 36px;
-    height: 3px;
-    border-radius: 2px;
-    background: ${styleConfig.colors.primary};
-    margin-bottom: 10px;
-    /* a rule substitui o separator gradient do split */
-    /* vem de uma string CSS, não do styleConfig — intencional para light */
-    background: linear-gradient(90deg, #FF6B35, #9b5de5);
+  /* ── TOPO: headline + badge ── */
+  .top-bar {
+    width: 100%;
+    max-width: ${archWidth}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
   .headline {
-    font-size: 34px;
+    font-size: ${headlineSz}px;
     font-weight: 900;
     color: #0d0d0d;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    text-align: center;
+    width: 100%;
   }
 
-  ${buildAccentCSS(styleConfig.colors.accentWord)}
+  .accent {
+    background: ${BADGE_GRADIENT};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-  .body-copy {
-    font-size: 13.5px;
-    font-weight: 500;
-    color: #555550;
-    line-height: 1.5;
-    margin-top: 10px;
-    max-width: 340px;
-    /* clamp a 2 linhas — copy curto é obrigatório nesse template */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  ${buildBadgeFreeCSS(_styleConfig)}
+
+  /* ── HOOK: texto simples cinza ── */
+  .hook-text {
+    width: 100%;
+    max-width: ${archWidth}px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999994;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  /* ── ARCH FRAME ── */
+  .arch-frame {
+    position: relative;
+    width: ${archWidth}px;
+    flex: 1;
+    align-self: center;
+    min-height: 0;
+  }
+
+  /* Borda gradiente da arch */
+  .arch-border {
+    position: absolute;
+    inset: -3px;
+    border-radius: 183px 183px 0 0;
+    background: ${BADGE_GRADIENT};
+    z-index: 0;
+  }
+
+  /* Container da imagem dentro da borda */
+  .arch-img-wrap {
+    position: absolute;
+    inset: 0;
+    border-radius: 180px 180px 0 0;
     overflow: hidden;
+    z-index: 1;
   }
 
-  ${buildCTARowCSS('14px', '6px')}
+  .arch-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
 
-  ${buildCTABtnCSS(styleConfig, '13px 26px', false)}
+  /* ── CTA flutuante sobre a imagem ── */
+  .cta-wrap {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
 
-  /* Logo Vivr discreto */
-  .vivr-mark {
-    font-size: 11px;
-    font-weight: 700;
-    color: #aaa9a2;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  .cta-btn {
+    background: ${BADGE_GRADIENT};
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 100px;
+    padding: 13px 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    white-space: nowrap;
   }
 </style>
 </head>
 <body>
 <div class="post-wrapper">
 
-  <!-- IMAGEM -->
-  <div class="img-layer">
-    <img src="${imageSrc}" alt="" />
-    <span class="hook-pill" data-slot="hook">${variant.hook}</span>
-    <span class="badge-free">Grátis</span>
+  <!-- TOPO -->
+  <div class="top-bar">
+    <div class="headline" data-slot="headline">${headlineHtml}</div>
   </div>
 
-  <!--
-    ARCO SVG
-    Path explicado:
-      M0,68        → começa no canto esquerdo baixo do arco
-      C80,68       → control point 1: mantém esquerda horizontal
-       200,8        → control point 2: puxa pico para esquerda-centro
-       270,8        → pico do arco (centro-esquerdo)
-      C340,8        → control point 3: mantém pico
-       460,68       → control point 4: desce para direita
-       540,68       → chega no canto direito
-      L540,80 L0,80 Z → fecha o shape no rodapé
-  -->
-  <svg class="arc-svg" viewBox="0 0 540 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,68 C80,68 200,8 270,8 C340,8 460,68 540,68 L540,80 L0,80 Z" fill="#f5f4f0"/>
-  </svg>
+  <!-- HOOK -->
+  <div class="hook-text" data-slot="hook">${variant.hook}</div>
 
-  <!-- PAINEL DE COPY -->
-  <div class="text-panel">
-    <div>
-      <div class="rule"></div>
-      <div class="headline" data-slot="headline">${headlineHtml}</div>
-      <div class="body-copy" data-slot="body">${variant.body}</div>
+  <!-- ARCH FRAME -->
+  <div class="arch-frame">
+    <div class="arch-border"></div>
+    <div class="arch-img-wrap">
+      <img src="${imageSrc}" alt="" />
     </div>
-    <div class="cta-row">
+    <div class="cta-wrap">
       <div class="cta-btn" data-slot="cta">${variant.cta}</div>
-      <span class="vivr-mark">Vivr</span>
     </div>
   </div>
 

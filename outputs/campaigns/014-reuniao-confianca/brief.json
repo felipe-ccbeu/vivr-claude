@@ -1,0 +1,35 @@
+{
+  "id": "014-reuniao-confianca",
+  "audience": "Profissionais 28-40 que trabalham em empresas com inglês no dia a dia — entendem reuniões, leem documentos, mas congelam quando precisam falar ao vivo para um colega ou cliente americano",
+  "pain": "Sabe inglês suficiente para o trabalho escrito, mas na hora de responder uma pergunta ao vivo na reunião, a cabeça apaga. O silêncio de 3 segundos parece uma eternidade.",
+  "angle": "O problema não é vocabulário — é que você nunca praticou falar sob pressão. O Vivr simula esse momento antes de acontecer de verdade.",
+  "copy": {
+    "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.",
+    "headline": "Pratica a reunião antes de entrar nela.",
+    "accentWord": "reunião",
+    "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.",
+    "cta": "Pratica a reunião agora"
+  },
+  "copyVariants": [
+    {
+      "hook": "Você sabe a resposta. Só precisa aprender a falar.",
+      "headline": "Você sabe a resposta. Só precisa aprender a falar.",
+      "accentWord": "falar",
+      "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.",
+      "cta": "Pratica de graça agora"
+    },
+    {
+      "hook": "3 segundos de silêncio. Quanto tempo ainda?",
+      "headline": "3 segundos de silêncio. Quanto tempo ainda?",
+      "accentWord": "silêncio",
+      "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.",
+      "cta": "Pratica de graça agora"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Professional adult woman, short auburn red bob hair, black blazer, red bow tie, confident posture, slightly turned toward camera. Seated at modern office desk, laptop open in foreground slightly out of focus, natural window light from the side, clean open-plan office background, warm-neutral tones. Mid-conversation expression — confident, composed, fully engaged. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "Escritório moderno — mesa com laptop desfocado em primeiro plano, luz natural lateral, plano aberto neutro",
+    "mood": "Confiante, no controle, totalmente presente — o oposto de congelar",
+    "generateStoryImage": true
+  }
+}

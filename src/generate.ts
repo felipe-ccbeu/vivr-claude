@@ -2,11 +2,10 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import { CampaignBrief } from './types'
 import { ContentJSON } from './content-schema'
-import { generateSceneImage } from './whisk-client'
+import { generateSceneImage, WhiskAspectRatio } from './whisk-client'
 import { renderFromContent, TEMPLATE_SIZE, FORMAT_TEMPLATE } from './renderer'
 import { exportPNG } from './screenshot'
 import { DEFAULT_REFS } from './config'
-import { pushToReplit } from './replit-sync'
 
 function log(step: string, message: string) {
   const ts = new Date().toISOString().replace('T', ' ').slice(0, 19)
@@ -31,15 +30,50 @@ export async function generateCampaign(brief: CampaignBrief): Promise<void> {
   log('brief', `Saving brief for "${brief.id}"`)
   await fs.writeJson(path.join(campaignDir, 'brief.json'), brief, { spaces: 2 })
 
-  // 2. Generate scene image via Whisk (once, shared across all formats/copies)
-  log('whisk', `Generating scene image...`)
+  // 2. Generate scene image(s) via Whisk
   const refs = { ...DEFAULT_REFS, ...brief.visual.refs }
-  await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs)
-  log('whisk', `scene saved — referenced relatively by HTML`)
-
-  // 3. Determine formats to generate (default: feed only)
   const formats = brief.visual.formats ?? ['feed']
+  const isStoryOnly = formats.length === 1 && formats[0] === 'story'
+  const feedAspect: WhiskAspectRatio = brief.visual.aspectRatio ?? (isStoryOnly ? 'PORTRAIT' : 'SQUARE')
 
+  log('whisk', `Generating scene.png (${feedAspect})...`)
+  await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs, feedAspect, 'scene')
+  log('whisk', `scene.png saved`)
+
+  if (brief.visual.generateStoryImage && !isStoryOnly) {
+    log('whisk', `Generating scene-story.png (PORTRAIT)...`)
+    await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs, 'PORTRAIT', 'scene-story')
+    log('whisk', `scene-story.png saved`)
+  }
+
+  if (brief.visual.generateLandscapeImage) {
+    log('whisk', `Generating scene-landscape.png (LANDSCAPE)...`)
+    await generateSceneImage(brief.visual.whiskPrompt, brief.id, refs, 'LANDSCAPE', 'scene-landscape')
+    log('whisk', `scene-landscape.png saved`)
+  }
+
+  // 3. Render via V2 content-feed.json if present, otherwise legacy
+  const contentFeedPath = path.resolve('content-feed.json')
+  if (await fs.pathExists(contentFeedPath)) {
+    const { isV2 } = await import('./content-schema')
+    const { renderFromContentV2 } = await import('./renderer')
+    const feed = await fs.readJson(contentFeedPath)
+    if (isV2(feed)) {
+      // Move content-feed.json to campaign dir
+      const destFeed = path.join(campaignDir, 'content-feed.json')
+      await fs.copy(contentFeedPath, destFeed)
+      log('render', `V2 content-feed.json found — rendering ${feed.items.length} items...`)
+      const results = await renderFromContentV2(feed, campaignDir)
+      for (const { htmlPath, pngPath, size } of results) {
+        await exportPNG(htmlPath, pngPath, size)
+        log('screenshot', `PNG saved: ${path.relative(campaignDir, pngPath)}`)
+      }
+      log('done', `Campaign "${brief.id}" complete → ${campaignDir}`)
+      return
+    }
+  }
+
+  // Legacy fallback (no content-feed.json)
   for (const format of formats) {
     const template = (brief.visual.template ?? FORMAT_TEMPLATE[format] ?? 'split')
     const size = TEMPLATE_SIZE[template] ?? { width: 540, height: 675 }
@@ -49,38 +83,22 @@ export async function generateCampaign(brief: CampaignBrief): Promise<void> {
       : path.join(campaignDir, format)
     await fs.ensureDir(outDir)
 
-    // imagePath: relative from outDir to scene file
     const relDepth = formats.length === 1 ? '' : '../'
     const imagePath = `${relDepth}scene.png`
 
-    // 4. Build and save content.json (thin — only copy data)
     const content = briefToContent(brief, template, imagePath)
     const contentFile = path.join(outDir, `content-${format}.json`)
     await fs.writeJson(contentFile, content, { spaces: 2 })
     log(format, `content-${format}.json saved`)
 
-    // 5. Render HTML from content
     log(format, `Rendering ${content.variants.length} copies (${size.width}×${size.height})...`)
     const htmlPaths = await renderFromContent(content, outDir)
 
-    // 6. Screenshot each HTML → PNG
     for (let i = 0; i < htmlPaths.length; i++) {
       const htmlPath = htmlPaths[i]
       const pngPath = htmlPath.replace('.html', '.png')
       log('screenshot', `Exporting ${format}/post-copy-${i + 1}.png...`)
       await exportPNG(htmlPath, pngPath, size)
-
-      // Push first copy of feed to Replit editor
-      if (i === 0 && format === 'feed') {
-        try {
-          const html = await fs.readFile(htmlPath, 'utf8')
-          log('replit', 'Uploading post-copy-1 to visual editor...')
-          const { editorUrl } = await pushToReplit(html)
-          log('replit', `Open editor: ${editorUrl}`)
-        } catch (err) {
-          log('replit', `Upload skipped — ${(err as Error).message}`)
-        }
-      }
     }
   }
 

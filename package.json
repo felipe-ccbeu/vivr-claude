@@ -8,7 +8,7 @@
     "generate:batch": "tsx src/index.ts batch",
     "shot": "node scripts/screenshot-local-html.js",
     "shot:file": "node scripts/screenshot-local-html.js",
-    "watch:shots": "chokidar \"outputs/**/*.html\" -c \"node scripts/screenshot-local-html.js \\\"{path}\\\"\""
+    "watch:shots": "chokidar \"outputs/**/*.html\" -c \"node scripts/screenshot-local-html.js {path}\""
   },
   "dependencies": {
     "@rohitaryal/whisk-api": "^4.0.1",

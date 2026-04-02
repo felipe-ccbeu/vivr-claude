@@ -1,0 +1,35 @@
+{
+  "id": "015-taxi-pais-desconhecido",
+  "audience": "Brasileiros 25-40 que viajam ao exterior sozinhos ou a trabalho e travam em situações práticas básicas fora do hotel",
+  "pain": "Sabem inglês no papel mas travam quando precisam falar de verdade com um estranho em situação real",
+  "angle": "O Vivr simula situações reais antes de você vivê-las — quando chegar lá, você já esteve lá",
+  "copy": {
+    "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.",
+    "headline": "Pratique a situação antes de vivê-la",
+    "accentWord": "situação",
+    "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.",
+    "cta": "Pratique agora, é grátis"
+  },
+  "copyVariants": [
+    {
+      "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.",
+      "headline": "Você sabia. Mas na hora, travou",
+      "accentWord": "travou",
+      "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.",
+      "cta": "Entre e pratique de graça"
+    },
+    {
+      "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.",
+      "headline": "Saber não é o mesmo que conseguir falar",
+      "accentWord": "falar",
+      "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.",
+      "cta": "Teste agora, é grátis"
+    }
+  ],
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character, elongated proportions, slightly exaggerated expressive features, high-fidelity 3D render. Adult man with full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers. Standing on a cobblestone city sidewalk in a foreign European-style city, arm raised trying to hail a taxi, face showing nervous confusion and vulnerability. Yellow taxi visible in background, warm golden late-afternoon light, brick buildings with foreign architecture, soft-focus tourists in background. Cinematic warm lighting with soft shadows, subtle rim light, depth of field. Style reference: adult animated series, NOT Pixar, NOT Disney princess, NOT rounded blob characters. No text, no speech bubbles, no written words anywhere in the image.",
+    "scene": "European-style city street, cobblestone sidewalk, yellow taxi in background, late afternoon golden light, brick buildings",
+    "mood": "Nervous vulnerability — the universal 'I know the words but they won't come out' moment",
+    "generateStoryImage": true
+  }
+}

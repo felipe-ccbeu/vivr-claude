@@ -17,6 +17,12 @@ export interface CampaignBrief {
     whiskPrompt: string
     scene: string
     mood: string
+    /** Aspect ratio para geração de imagem no Whisk. Default: 'SQUARE' */
+    aspectRatio?: 'SQUARE' | 'PORTRAIT' | 'LANDSCAPE'
+    /** Se true, gera também scene-story.png em PORTRAIT além de scene.png em SQUARE */
+    generateStoryImage?: boolean
+    /** Se true, gera também scene-landscape.png em LANDSCAPE além de scene.png em SQUARE */
+    generateLandscapeImage?: boolean
     /** Formatos a gerar. Default: ['feed']. Ex: ['feed', 'story'] */
     formats?: ('feed' | 'story')[]
     /** Template override por formato. Se omitido, feed=split, story=story */

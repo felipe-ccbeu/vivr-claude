@@ -343,9 +343,9 @@ Source: Meta Ad Library + Google Ads Transparency Center. Scraped March 2026.
 
 ## Common call to action styles
 - Comece a praticar de verdade
-- Entra no Vivr
-- Aprende jogando
-- Baixa agora, é grátis
-- Experimenta de graça
-- Vive o idioma, não só estuda
+- Entre no Vivr
+- Aprenda jogando
+- Baixe agora, é grátis
+- Experimente de graça
+- Viva o idioma, não só estude
 - Start for free

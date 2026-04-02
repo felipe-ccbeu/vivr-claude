@@ -1,4 +1,4 @@
-export type TemplateName = 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-tilt' | 'story' | 'light-arc' | 'cinematic' | 'quote' | 'bold-text' | 'split-reverse' | 'immersive'
+export type TemplateName = 'overlay' | 'split' | 'frame' | 'phone-float' | 'phone-float-gradient' | 'phone-float-light' | 'phone-tilt' | 'phone-tilt-light' | 'story' | 'light-arc' | 'cinematic' | 'quote' | 'bold-text' | 'split-reverse-gradient' | 'immersive' | 'overlay-story' | 'split-story' | 'frame-story' | 'phone-float-story' | 'phone-float-gradient-story' | 'phone-float-light-story' | 'phone-tilt-story' | 'phone-tilt-light-story' | 'story-story' | 'light-arc-story' | 'cinematic-story' | 'quote-story' | 'bold-text-story' | 'split-reverse-gradient-story' | 'immersive-story'
 export interface CopyVariant {
   hook: string
   headline: string
@@ -24,6 +24,7 @@ export interface ContentFeedItem {
   outputName: string       // e.g. "post-p1-phone-float"
   templateId: TemplateName
   copy: CopyVariant
+  sceneImage?: string      // override da imagem para este item (ex: "scene-story.png" para story)
 }
 
 export interface ContentFeedV2 {

@@ -1,15 +1,28 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, BADGE_GRADIENT, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_BOTTOM } from './shared'
 
 /**
  * SPLIT-REVERSE — Layout Horizontal (540×675px)
- * Imagem à esquerda (240px), texto à direita (300px) em layout horizontal.
- * Diferente do split vertical. Editorial/magazine style.
- * Ideal para: Product showcase, feature highlight, editorial tone.
+ * Imagem à esquerda (240px), texto à direita em layout horizontal.
+ * Dark/light via isLight flag. Para fundo gradiente use split-reverse-gradient.
  */
-export function buildSplitReverse(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildSplitReverse(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const isLight = styleConfig.colors.background === '#ffffff'
+  const H = isStory ? STORY_HEIGHT : 675
+  const imgW = isStory ? 280 : 240
+  const headlineSz = isStory ? 34 : 28
+  const textPadBottom = isStory ? STORY_SAFE_BOTTOM : 28
+
+  const bodyBg       = isLight ? '#ffffff' : '#1A1030'
+  const vignetteColor = isLight
+    ? 'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,0.3) 85%, rgba(255,255,255,0.6) 100%)'
+    : 'linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 85%, rgba(13,13,13,0.8) 100%)'
+  const hookColor    = isLight ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.6)'
+  const headlineColor = isLight ? '#1a1030' : '#ffffff'
+  const bodyColor    = isLight ? 'rgba(26,16,48,0.55)' : 'rgba(255,255,255,0.65)'
+  const ctaShadow    = isLight ? '0 4px 16px rgba(233,72,153,0.25)' : '0 4px 16px rgba(233,72,153,0.3)'
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,129 +31,18 @@ export function buildSplitReverse(variant: CopyVariant, imageSrc: string, styleC
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
-
-  .post-wrapper {
-    width: 540px;
-    height: 675px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-  }
-
-  /* Left: Image (240px) */
-  .image-section {
-    width: 240px;
-    height: 675px;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .image-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    display: block;
-  }
-
-  /* Vignette on image bottom */
-  .image-vignette {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 50%,
-      rgba(0,0,0,0.4) 85%,
-      rgba(13,13,13,0.8) 100%
-    );
-    pointer-events: none;
-  }
-
-  /* Right: Text panel (300px) */
-  .text-section {
-    flex: 1;
-    background: #1A1030;
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-  }
-
-  /* Separator line (vertical) */
-  .text-section::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, rgba(137,199,254,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
-  }
-
-  /* Hook */
-  .hook-tag {
-    font-size: 11px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 8px;
-  }
-
-  /* Headline */
-  .headline {
-    font-size: 28px;
-    font-weight: 900;
-    color: #ffffff;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-    margin-bottom: 10px;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
-  }
-
-  .accent {
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 8px rgba(137,199,254,0.35));
-  }
-
-  /* Body */
-  .body-copy {
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.5;
-    margin-bottom: 16px;
-    letter-spacing: 0.1px;
-  }
-
-  /* CTA */
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 13px 28px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 800;
-    color: white;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(137,199,254,0.25);
-    transition: all 200ms ease-out;
-    align-self: flex-start;
-  }
-
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(137,199,254,0.35);
-  }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; background: ${bodyBg}; }
+  .post-wrapper { width: 540px; height: ${H}px; display: flex; flex-direction: row; overflow: hidden; }
+  .image-section { width: ${imgW}px; height: ${H}px; flex-shrink: 0; position: relative; overflow: hidden; }
+  .image-section img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .image-vignette { position: absolute; inset: 0; background: ${vignetteColor}; pointer-events: none; }
+  .text-section { flex: 1; background: ${bodyBg}; padding: 28px 24px ${textPadBottom}px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+  .text-section::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: ${BADGE_GRADIENT}; }
+  .hook-tag { font-size: 11px; font-weight: 700; color: ${hookColor}; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .headline { font-size: ${headlineSz}px; font-weight: 900; color: ${headlineColor}; line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 10px; }
+  .accent { background: ${BADGE_GRADIENT}; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .body-copy { font-size: 13px; font-weight: 500; color: ${bodyColor}; line-height: 1.5; margin-bottom: 16px; letter-spacing: 0.1px; }
+  .cta-btn { display: inline-flex; align-items: center; padding: 13px 28px; border-radius: 100px; font-size: 14px; font-weight: 800; color: white; background: ${BADGE_GRADIENT}; letter-spacing: 0.3px; white-space: nowrap; align-self: flex-start; box-shadow: ${ctaShadow}; }
 </style>
 </head>
 <body>
@@ -149,7 +51,6 @@ ${FONT_LINK}
     <img src="${imageSrc}" alt="" />
     <div class="image-vignette"></div>
   </div>
-
   <div class="text-section">
     <div>
       <div class="hook-tag" data-slot="hook">${variant.hook}</div>

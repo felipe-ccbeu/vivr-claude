@@ -1,0 +1,234 @@
+{
+  "campaignId": "014-reuniao-confianca",
+  "sceneImage": "scene.png",
+  "items": [
+    {
+      "outputName": "post-p1-split",
+      "templateId": "split",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-split",
+      "templateId": "split",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-split",
+      "templateId": "split",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-frame",
+      "templateId": "frame",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-frame",
+      "templateId": "frame",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-frame",
+      "templateId": "frame",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes.", "accentWord": "reunião", "body": "No Vivr você pratica situações reais. Sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p2-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Só falta praticar ao vivo.", "accentWord": "praticar", "body": "No Vivr você pratica situações reais. Sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "Silêncio custa caro.", "accentWord": "Silêncio", "body": "No Vivr você pratica situações reais. Sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "REUNIÃO AO VIVO", "headline": "Pratica antes.", "accentWord": "antes", "body": "", "cta": "Entra agora" }
+    },
+    {
+      "outputName": "post-p2-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "INGLÊS AO VIVO", "headline": "Só falta falar.", "accentWord": "falar", "body": "", "cta": "Começa agora" }
+    },
+    {
+      "outputName": "post-p3-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "3 SEGUNDOS", "headline": "Trava ainda?", "accentWord": "Trava", "body": "", "cta": "Pratica hoje" }
+    },
+    {
+      "outputName": "post-p1-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Lucas, dev sênior", "headline": "Finalmente pratico o inglês que uso no trabalho.", "accentWord": "pratico", "body": "", "cta": "Experimenta de graça" }
+    },
+    {
+      "outputName": "post-p2-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Camila, gerente de marketing", "headline": "Não trava mais. Respondo de verdade.", "accentWord": "verdade", "body": "", "cta": "Experimenta de graça" }
+    },
+    {
+      "outputName": "post-p3-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Felipe, analista de negócios", "headline": "O silêncio na reunião ficou no passado.", "accentWord": "silêncio", "body": "", "cta": "Experimenta de graça" }
+    },
+    {
+      "outputName": "post-p1-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "REUNIÃO", "headline": "Pratica antes de entrar.", "accentWord": "antes", "body": "Sem legenda. Sem pausa. Sem travar.", "cta": "Começa" }
+    },
+    {
+      "outputName": "post-p2-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "INGLÊS REAL", "headline": "Você sabe. Só falta falar.", "accentWord": "falar", "body": "Sem legenda. Sem pausa. Sem travar.", "cta": "Pratica" }
+    },
+    {
+      "outputName": "post-p3-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "3 SEGUNDOS", "headline": "Ainda vai travar?", "accentWord": "travar", "body": "Sem legenda. Sem pausa. Sem vergonha.", "cta": "Entra" }
+    },
+    {
+      "outputName": "post-p1-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "INGLÊS AO VIVO", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "INGLÊS REAL", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "REUNIÃO AO VIVO", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "INGLÊS AO VIVO", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "INGLÊS REAL", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "REUNIÃO AO VIVO", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "INGLÊS AO VIVO", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p2-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "INGLÊS REAL", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "3 SEGUNDOS", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p1-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "Você sabe a resposta. Mas quando a pergunta vem em inglês ao vivo — apaga.", "headline": "Pratica a reunião antes de entrar nela.", "accentWord": "reunião", "body": "No Vivr você conversa com personagens que fazem perguntas reais, sem pausar, sem traduzir. Treina o momento que mais trava — sem a vergonha de travar de verdade.", "cta": "Pratica a reunião agora" }
+    },
+    {
+      "outputName": "post-p2-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "Você sabe a resposta. Só precisa aprender a falar.", "headline": "Você sabe a resposta. Só precisa aprender a falar.", "accentWord": "falar", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    },
+    {
+      "outputName": "post-p3-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "3 segundos de silêncio. Quanto tempo ainda?", "headline": "3 segundos de silêncio. Quanto tempo ainda?", "accentWord": "silêncio", "body": "No Vivr você pratica situações reais de inglês — sem legenda, sem julgamento, sem travar na hora que importa.", "cta": "Pratica de graça agora" }
+    }
+  ]
+}

@@ -1,15 +1,18 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, BADGE_GRADIENT, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_TOP, STORY_SAFE_BOTTOM } from './shared'
 
 /**
  * IMMERSIVE — Full-bleed com Vinheta Radial (540×675px)
- * Imagem 100%. Vinheta radial escura no centro para legibilidade.
- * Texto centralizado verticalmente, flutuando sobre a imagem.
- * Ideal para: Cenas cinematográficas. Profundidade extrema.
+ * Imagem 100%. Vinheta radial escura nas bordas para legibilidade.
+ * Hook branco no topo, texto centralizado, CTA fixo na base.
  */
-export function buildImmersive(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildImmersive(variant: CopyVariant, imageSrc: string, _styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const H = isStory ? STORY_HEIGHT : 675
+  const hookTop = isStory ? STORY_SAFE_TOP : 28
+  const ctaBottom = isStory ? STORY_SAFE_BOTTOM : 32
+  const headlineSz = isStory ? 50 : 42
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,11 +21,11 @@ export function buildImmersive(variant: CopyVariant, imageSrc: string, styleConf
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #000; }
 
   .post-wrapper {
     width: 540px;
-    height: 675px;
+    height: ${H}px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -76,21 +79,17 @@ ${FONT_LINK}
   /* Hook: top */
   .hook-tag {
     position: absolute;
-    top: 28px;
+    top: ${hookTop}px;
     left: 24px;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.92);
     border-radius: 20px;
     padding: 8px 14px;
     font-size: 11px;
     font-weight: 700;
-    color: rgba(255,255,255,0.85);
+    color: #1a1030;
     letter-spacing: 0.2px;
     max-width: 360px;
     line-height: 1.3;
-    box-shadow: 0 0 0 1px rgba(137,199,254,0.2);
   }
 
   /* Content text: centered vertically */
@@ -105,23 +104,18 @@ ${FONT_LINK}
 
   /* Headline: huge, centered */
   .headline {
-    font-size: 42px;
+    font-size: ${headlineSz}px;
     font-weight: 900;
     color: #ffffff;
     line-height: 1.08;
     letter-spacing: -1px;
-    text-shadow:
-      0 2px 8px rgba(0,0,0,0.4),
-      0 4px 16px rgba(0,0,0,0.3),
-      0 8px 24px rgba(0,0,0,0.2);
   }
 
   .accent {
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    background: ${BADGE_GRADIENT};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 12px rgba(137,199,254,0.35));
   }
 
   /* Body: below headline */
@@ -136,7 +130,7 @@ ${FONT_LINK}
   /* CTA: bottom center */
   .cta-section {
     position: absolute;
-    bottom: 32px;
+    bottom: ${ctaBottom}px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -150,17 +144,10 @@ ${FONT_LINK}
     font-size: 15px;
     font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    background: ${BADGE_GRADIENT};
     letter-spacing: 0.3px;
     white-space: nowrap;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(137,199,254,0.3);
-    transition: all 200ms ease-out;
-  }
-
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(137,199,254,0.4);
+    box-shadow: 0 4px 16px rgba(233,72,153,0.3);
   }
 </style>
 </head>

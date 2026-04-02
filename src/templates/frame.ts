@@ -1,15 +1,27 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, BADGE_GRADIENT, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_BOTTOM } from './shared'
 
 /**
- * FRAME — fundo escuro, imagem centralizada em um frame com borda gradiente.
- * Cria o efeito "portal" — a cena do app como janela para outro mundo.
- * Headline e CTA ficam abaixo do frame.
- * Supports all design variations via StyleConfig parameter.
+ * FRAME — imagem centralizada em frame com borda gradiente.
+ * Dark: fundo #0d0d0d, texto branco. Light: fundo #ffffff, texto #0d0d0d.
  */
-export function buildFrame(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildFrame(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const isLight = styleConfig.colors.background === '#ffffff'
+  const H = isStory ? STORY_HEIGHT : 675
+  const frameSize = isStory ? 420 : 320
+  const textPadBottom = isStory ? STORY_SAFE_BOTTOM : 28
+  const headlineSz = isStory ? 40 : 33
+
+  const bg            = isLight ? '#ffffff' : '#0d0d0d'
+  const glowOpacity   = isLight ? '0.07'    : '0.18'
+  const hookColor     = isLight ? 'rgba(0,0,0,0.4)'       : 'rgba(255,255,255,0.45)'
+  const frameBoxShadow = isLight
+    ? '0 8px 40px rgba(0,0,0,0.12), 0 0 60px rgba(155,93,229,0.12)'
+    : '0 8px 40px rgba(0,0,0,0.6),  0 0 60px rgba(155,93,229,0.25)'
+  const headlineColor = isLight ? '#0d0d0d' : 'white'
+  const bodyColor     = isLight ? 'rgba(0,0,0,0.45)' : 'rgba(255,255,255,0.42)'
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,21 +30,20 @@ export function buildFrame(variant: CopyVariant, imageSrc: string, styleConfig: 
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; }
 
   .post-wrapper {
     position: relative;
     width: 540px;
-    height: 675px;
+    height: ${H}px;
     overflow: hidden;
-    background: ${styleConfig.colors.background || '#1A1030'};
+    background: ${bg};
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px;
+    padding: 24px 28px ${textPadBottom}px;
   }
 
-  /* subtle radial glow on the bg */
   .post-wrapper::before {
     content: '';
     position: absolute;
@@ -41,17 +52,16 @@ ${FONT_LINK}
     transform: translate(-50%, -50%);
     width: 480px;
     height: 480px;
-    background: radial-gradient(ellipse at center, rgba(155,93,229,0.18) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(155,93,229,${glowOpacity}) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  /* ── TOP ROW ── */
   .top-row {
-    width: 100%;
+    width: ${frameSize}px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     position: relative;
     z-index: 1;
   }
@@ -59,7 +69,7 @@ ${FONT_LINK}
   .hook-text {
     font-size: 12px;
     font-weight: 700;
-    color: rgba(255,255,255,0.45);
+    color: ${hookColor};
     letter-spacing: 0.3px;
     max-width: 260px;
     line-height: 1.4;
@@ -73,24 +83,22 @@ ${FONT_LINK}
     font-size: 12px;
     font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    background: ${BADGE_GRADIENT};
     letter-spacing: 0.3px;
     white-space: nowrap;
   }
 
-  /* ── FRAME ── */
   .frame-outer {
-    width: 320px;
-    height: 348px;
+    width: ${frameSize}px;
+    height: ${frameSize}px;
     border-radius: 26px;
     padding: 3px;
-    background: ${styleConfig.colors.primary};
+    background: ${BADGE_GRADIENT};
     flex-shrink: 0;
-    box-shadow:
-      0 8px 40px rgba(0,0,0,0.6),
-      0 0 60px rgba(155,93,229,0.25);
+    box-shadow: ${frameBoxShadow};
     position: relative;
     z-index: 1;
+    align-self: center;
   }
 
   .frame-inner {
@@ -108,29 +116,30 @@ ${FONT_LINK}
     display: block;
   }
 
-  /* ── TEXT BLOCK ── */
   .text-block {
-    width: 100%;
+    width: ${frameSize}px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: justify;
     gap: 9px;
     flex: 1;
-    justify-content: flex-end;
+    justify-content: center;
     position: relative;
     z-index: 1;
   }
 
   .headline {
-    font-size: 33px;
+    font-size: ${headlineSz}px;
     font-weight: 900;
-    color: white;
+    color: ${headlineColor};
     line-height: 1.1;
     letter-spacing: -0.5px;
   }
 
   .accent {
-    background: ${styleConfig.colors.primary};
+    background: ${BADGE_GRADIENT};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -139,9 +148,8 @@ ${FONT_LINK}
   .body-copy {
     font-size: 13px;
     font-weight: 400;
-    color: rgba(255,255,255,0.42);
+    color: ${bodyColor};
     line-height: 1.55;
-    max-width: 440px;
   }
 
   .cta-btn {
@@ -152,11 +160,10 @@ ${FONT_LINK}
     font-size: 15px;
     font-weight: 800;
     color: white;
-    background: ${styleConfig.colors.primary};
+    background: ${BADGE_GRADIENT};
     letter-spacing: 0.2px;
     white-space: nowrap;
-    align-self: flex-start;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 </style>
 </head>

@@ -1,64 +1,24 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, BADGE_GRADIENT, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_BOTTOM } from './shared'
 
-/**
- * SPLIT — imagem ocupa o topo (370px), painel de texto escuro ocupa o rodapé (305px).
- * Hook aparece como tag translúcida sobre a imagem.
- * Layout limpo, tipografia grande, CTA alinhado à esquerda.
- *
- * Supports all design variations via StyleConfig parameter.
- */
-export function buildSplit(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildSplit(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const isLight = styleConfig.colors.background === '#ffffff'
+  const H = isStory ? STORY_HEIGHT : 675
+  const imgH = isStory ? 560 : 370
+  const textPadBottom = isStory ? STORY_SAFE_BOTTOM : 26
+  const headlineSz = isStory ? 42 : 36
 
-  // Build vignette gradient from config
-  const vignetteStops = styleConfig.visual.vignette?.stops
-    .map(stop => `${stop.color} ${stop.position}`)
-    .join(', ') || 'rgba(0,0,0,0) 42%, rgba(0,0,0,0.55) 72%, rgba(13,13,13,1) 100%'
-
-  const vignetteDirection = styleConfig.visual.vignette?.direction || 'to bottom'
-
-  // Build accent word styles
-  let accentStyles = ''
-  if (styleConfig.visual.accentWordStyle === 'gradient') {
-    accentStyles = `
-      background: ${styleConfig.colors.accentWord};
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    `
-  } else if (styleConfig.visual.accentWordStyle === 'glow') {
-    accentStyles = `
-      color: ${styleConfig.colors.accentWord};
-      filter: drop-shadow(0 0 8px ${styleConfig.colors.accentWord});
-    `
-  } else if (styleConfig.visual.accentWordStyle === 'underline') {
-    accentStyles = `
-      color: ${styleConfig.colors.accentWord};
-      text-decoration: underline;
-    `
-  } else {
-    accentStyles = `color: ${styleConfig.colors.accentWord};`
-  }
-
-  // Build glow effects for CTA if applicable
-  let ctaGlowShadow = ''
-  if (styleConfig.cta.boxShadow) {
-    ctaGlowShadow = `box-shadow: ${styleConfig.cta.boxShadow};`
-  } else {
-    ctaGlowShadow = `box-shadow: 0 2px 8px rgba(0,0,0,0.1);`
-  }
-
-  // Build separator line gradient (for dark-bold style)
-  let separatorGradient = 'linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%)'
-  if (styleConfig.slug === 'minimal-clean') {
-    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.primary} 0%, ${styleConfig.colors.primary} 100%)`
-  } else if (styleConfig.slug === 'high-contrast') {
-    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.borders} 0%, ${styleConfig.colors.borders} 100%)`
-  } else if (styleConfig.slug === 'futuristic') {
-    separatorGradient = `linear-gradient(90deg, ${styleConfig.colors.primary} 0%, ${styleConfig.colors.secondary} 100%)`
-  }
+  const bodyBg           = isLight ? '#ffffff' : '#1A1030'
+  const hookBg           = '#ffffff'
+  const hookBorder       = isLight ? '1px solid rgba(0,0,0,0.1)' : 'none'
+  const hookColor        = '#1a1030'
+  const textSectionBg    = isLight ? '#ffffff' : '#1A1030'
+  const separatorBg      = isLight ? BADGE_GRADIENT : 'linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%)'
+  const headlineColor    = isLight ? '#1a1030' : '#ffffff'
+  const bodyColor        = isLight ? 'rgba(26,16,48,0.6)' : 'rgba(255,255,255,0.70)'
+  const ctaShadow        = isLight ? '0 4px 16px rgba(233,72,153,0.25)' : '0 4px 16px rgba(233,72,153,0.3)'
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -67,21 +27,20 @@ export function buildSplit(variant: CopyVariant, imageSrc: string, styleConfig: 
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; background: ${bodyBg}; }
 
   .post-wrapper {
     width: 540px;
-    height: 675px;
+    height: ${H}px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
-  /* ── IMAGE SECTION ── */
   .img-section {
     position: relative;
     width: 540px;
-    height: 370px;
+    height: ${imgH}px;
     flex-shrink: 0;
     overflow: hidden;
   }
@@ -90,34 +49,27 @@ ${FONT_LINK}
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 65%;
+    object-position: center 25%;
     display: block;
   }
 
-  /* Vignette overlay */
-  .img-vignette {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(${vignetteDirection}, ${vignetteStops});
-  }
+  .img-vignette { display: none; }
 
-  /* Hook tag */
   .hook-tag {
     position: absolute;
     top: 18px;
     left: 20px;
-    background: ${styleConfig.visual.hookTag?.background || 'rgba(0,0,0,0.62)'};
-    ${styleConfig.visual.hookTag?.backdropFilter ? `backdrop-filter: ${styleConfig.visual.hookTag.backdropFilter};` : ''}
-    ${styleConfig.visual.hookTag?.backdropFilter ? `-webkit-backdrop-filter: ${styleConfig.visual.hookTag.backdropFilter};` : ''}
-    border: ${styleConfig.visual.hookTag?.border || '1px solid rgba(255,255,255,0.18)'};
+    background: ${hookBg};
+    border: ${hookBorder};
     border-radius: 20px;
     padding: 7px 15px;
-    font-size: ${styleConfig.typography.hook?.size || '11.5px'};
-    font-weight: ${styleConfig.typography.hook?.weight || 700};
-    color: ${styleConfig.colors.textPrimary};
-    letter-spacing: ${styleConfig.typography.hook?.spacing || '0.15px'};
+    font-size: 11.5px;
+    font-weight: 700;
+    color: ${hookColor};
+    letter-spacing: 0.15px;
     max-width: 310px;
-    line-height: ${styleConfig.typography.hook?.lineHeight || 1.35};
+    line-height: 1.35;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   }
 
   .badge-free {
@@ -131,21 +83,18 @@ ${FONT_LINK}
     font-size: 11.5px;
     font-weight: 900;
     color: white;
-    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    background: ${BADGE_GRADIENT};
     letter-spacing: 0.4px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }
 
-  /* ── TEXT SECTION ── */
   .text-section {
     flex: 1;
-    background: #1A1030;
-    padding: ${styleConfig.safeZone.topBuffer} ${styleConfig.safeZone.sidePadding} ${styleConfig.safeZone.bottomBuffer};
+    background: ${textSectionBg};
+    padding: 20px 36px ${textPadBottom}px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: 1.5px solid transparent;
-    background-clip: padding-box;
     position: relative;
   }
 
@@ -154,50 +103,48 @@ ${FONT_LINK}
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1.5px;
-    background: ${separatorGradient};
+    background: ${separatorBg};
   }
 
-  /* Headline */
   .headline {
-    font-size: ${styleConfig.typography.headline.size};
-    font-weight: ${styleConfig.typography.headline.weight};
-    color: ${styleConfig.colors.textPrimary};
-    line-height: ${styleConfig.typography.headline.lineHeight};
-    letter-spacing: ${styleConfig.typography.headline.spacing};
-    ${styleConfig.typography.headline.textShadow ? `text-shadow: ${styleConfig.typography.headline.textShadow};` : ''}
+    font-size: ${headlineSz}px;
+    font-weight: 900;
+    color: ${headlineColor};
+    line-height: 1.08;
+    letter-spacing: -0.8px;
   }
 
-  /* Accent word */
   .accent {
-    ${accentStyles}
+    background: ${BADGE_GRADIENT};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  /* Body copy */
   .body-copy {
-    font-size: ${styleConfig.typography.body.size};
-    font-weight: ${styleConfig.typography.body.weight};
-    color: ${styleConfig.colors.textSecondary};
-    line-height: ${styleConfig.typography.body.lineHeight};
+    font-size: 14px;
+    font-weight: 500;
+    color: ${bodyColor};
+    line-height: 1.6;
     margin-top: 11px;
-    max-width: ${styleConfig.safeZone.maxContentWidth};
-    letter-spacing: ${styleConfig.typography.body.spacing};
+    max-width: 430px;
+    letter-spacing: 0.1px;
   }
 
-  /* CTA button — mandatory pill style with complete brand gradient */
   .cta-btn {
     display: inline-flex;
     align-items: center;
     padding: 13px 28px;
     border-radius: 100px;
-    font-size: ${styleConfig.typography.cta.size};
+    font-size: 14.5px;
     font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
-    letter-spacing: ${styleConfig.typography.cta.spacing};
+    background: ${BADGE_GRADIENT};
+    letter-spacing: 0.3px;
     white-space: nowrap;
     align-self: flex-start;
     min-height: 48px;
-    box-shadow: 0 4px 12px rgba(137,199,254,0.25);
+    box-shadow: ${ctaShadow};
   }
 </style>
 </head>

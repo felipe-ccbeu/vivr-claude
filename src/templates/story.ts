@@ -1,6 +1,6 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord, BRAND_GRADIENT } from './shared'
+import { FONT_LINK, highlightAccentWord, BADGE_GRADIENT } from './shared'
 
 /**
  * STORY — formato 9:16 (540×960px)
@@ -8,7 +8,7 @@ import { FONT_LINK, highlightAccentWord, BRAND_GRADIENT } from './shared'
  * Fonte maior, mais respiração vertical, safe zone no topo para UI do Instagram.
  * Supports all design variations via StyleConfig parameter.
  */
-export function buildStory(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildStory(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, _isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
 
   return `<!DOCTYPE html>
@@ -41,20 +41,12 @@ ${FONT_LINK}
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 22%;
+    object-position: center 35%;
     display: block;
   }
 
-  /* Vignette mais profunda — canvas mais alto exige transição mais longa */
   .img-vignette {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 45%,
-      rgba(0,0,0,0.5) 72%,
-      rgba(13,13,13,1) 100%
-    );
+    display: none;
   }
 
   /* Hook: safe zone top 120px para não conflitar com UI do Instagram */
@@ -62,19 +54,16 @@ ${FONT_LINK}
     position: absolute;
     top: 120px;
     left: 28px;
-    background: rgba(0,0,0,0.62);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: #ffffff;
     border-radius: 20px;
     padding: 8px 16px;
     font-size: 12px;
     font-weight: 700;
-    color: rgba(255,255,255,0.92);
+    color: #1a1030;
     letter-spacing: 0.15px;
     max-width: 380px;
     line-height: 1.4;
-    box-shadow: 0 0 0 1px rgba(249,112,64,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   }
 
   .badge-free {
@@ -113,22 +102,19 @@ ${FONT_LINK}
     background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
   }
 
-  /* Headline maior — canvas mais alto permite mais impacto */
   .headline {
     font-size: 42px;
     font-weight: 900;
     color: #ffffff;
     line-height: 1.07;
     letter-spacing: -1px;
-    text-shadow: 0 1px 20px rgba(0,0,0,0.8);
   }
 
   .accent {
-    background: ${BRAND_GRADIENT};
+    background: ${BADGE_GRADIENT};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 8px rgba(249,112,64,0.35));
   }
 
   /* Body: fonte maior que no feed — story é lido de mais perto */
@@ -151,12 +137,12 @@ ${FONT_LINK}
     font-size: 16px;
     font-weight: 800;
     color: white;
-    background: linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%);
+    background: ${BADGE_GRADIENT};
     letter-spacing: 0.3px;
     white-space: nowrap;
     align-self: flex-start;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(137,199,254,0.3);
+    box-shadow: 0 4px 16px rgba(233,72,153,0.3);
   }
 </style>
 </head>

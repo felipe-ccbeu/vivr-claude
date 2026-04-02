@@ -8,9 +8,9 @@ export const templateGroups: Record<string, string[]> = {
   'cinematic':    ['cinematic'],
   'quote':        ['quote'],
   'bold-text':    ['bold-text'],
-  'split-reverse':['split-reverse'],
+  'split-reverse':['split-reverse-gradient'],
   'immersive':    ['immersive'],
-  'all':          ['split', 'overlay', 'frame', 'phone-float', 'phone-tilt', 'story', 'light-arc', 'cinematic', 'quote', 'bold-text', 'split-reverse', 'immersive'],
+  'all':          ['split', 'overlay', 'frame', 'phone-float', 'phone-tilt', 'story', 'light-arc', 'cinematic', 'quote', 'bold-text', 'split-reverse-gradient', 'immersive'],
 }
 
 export function resolveTemplates(flags: string[]): string[] {

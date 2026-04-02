@@ -1,13 +1,24 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, BADGE_GRADIENT } from './shared'
+import { FONT_LINK, BADGE_GRADIENT, STORY_HEIGHT } from './shared'
 
 /**
  * BOLD-TEXT — Tipografia Oversized (540×675px)
  * Zero imagem. Fundo gradiente badge. Hook pill. Accent gigante 116px.
  * Ideal para: Scroll-stopping power, type-first design, scroll ads.
  */
-export function buildBoldText(variant: CopyVariant, _imageSrc: string, _styleConfig: StyleConfig): string {
+export function buildBoldText(variant: CopyVariant, _imageSrc: string, _styleConfig: StyleConfig, isStory = false): string {
+  const H = isStory ? STORY_HEIGHT : 675
+  const accentSz = isStory ? 130 : 116
+  const headlineTopSz = isStory ? 60 : 52
+
+  // Split headline around accentWord → before + accent + after
+  const accent = variant.accentWord ?? ''
+  const accentIdx = accent ? variant.headline.toLowerCase().indexOf(accent.toLowerCase()) : -1
+  const headlineBefore = accentIdx >= 0 ? variant.headline.slice(0, accentIdx).trim() : variant.headline
+  const headlineAfter  = accentIdx >= 0 ? variant.headline.slice(accentIdx + accent.length).trim() : ''
+  const accentDisplay  = accentIdx >= 0 ? variant.headline.slice(accentIdx, accentIdx + accent.length) : accent
+
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,11 +26,11 @@ export function buildBoldText(variant: CopyVariant, _imageSrc: string, _styleCon
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; }
 
   .post-wrapper {
     width: 540px;
-    height: 675px;
+    height: ${H}px;
     background: ${BADGE_GRADIENT};
     display: flex;
     flex-direction: column;
@@ -63,7 +74,7 @@ ${FONT_LINK}
   }
 
   .headline-top {
-    font-size: 52px;
+    font-size: ${headlineTopSz}px;
     font-weight: 900;
     color: #ffffff;
     letter-spacing: -1px;
@@ -72,7 +83,7 @@ ${FONT_LINK}
   }
 
   .accent {
-    font-size: 116px;
+    font-size: ${accentSz}px;
     font-weight: 900;
     color: #ffffff;
     letter-spacing: -5px;
@@ -130,8 +141,9 @@ ${FONT_LINK}
   <div class="content">
     <div class="hook" data-slot="hook">${variant.hook}</div>
     <div class="headline">
-      <span class="headline-top" data-slot="headline">${variant.headline.replace(variant.accentWord ?? '', '').trim()}</span>
-      <span class="accent" data-slot="accent">${variant.accentWord}</span>
+      ${headlineBefore ? `<span class="headline-top">${headlineBefore}</span>` : ''}
+      <span class="accent">${accentDisplay}</span>
+      ${headlineAfter ? `<span class="headline-top">${headlineAfter}</span>` : ''}
     </div>
     <div class="body-copy" data-slot="body">${variant.body}</div>
     <div class="cta-btn" data-slot="cta">${variant.cta}</div>

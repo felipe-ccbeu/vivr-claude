@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run-render.ts outputs/campaigns/014-reuniao-confianca/content-feed.json)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''outputs/campaigns/014-reuniao-confianca/content-feed.json''\\)\\); print\\(''V2?'', ''items'' in d, ''| campaignId:'', d.get\\(''campaignId''\\), ''| items:'', len\\(d.get\\(''items'',[]\\)\\) if ''items'' in d else ''N/A''\\)\")"
+    ]
+  }
+}

@@ -5,7 +5,15 @@
       "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run.ts)",
       "Bash(grep -n \"BRAND_GRADIENT\" src/templates/*.ts)",
       "Bash(grep -A2 \"import.*shared\" src/templates/*.ts)",
-      "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run-render.ts content-feed.json)"
+      "Bash(PATH=\"/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH\" npx ts-node src/run-render.ts content-feed.json)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''content-feed.json''\\)\\); print\\(''V2?'', ''items'' in d, ''| items:'', len\\(d.get\\(''items'',[]\\)\\)\\)\")",
+      "Edit(/.claude/skills/vivavr-static-campaign/**)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('sceneImageUrl',''\\)[:80] if isinstance\\(d,dict\\) else ''\\)\")",
+      "Bash(npx ts-node:*)",
+      "Bash(node scripts/screenshot-local-html.js outputs/campaigns/016-reuniao-travamento/feed/post-p1-light-arc.html)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\felipe.fadel\\vivavr-claude\\src\\templates"
     ]
   }
 }

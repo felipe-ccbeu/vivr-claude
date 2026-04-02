@@ -1,6 +1,6 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_TOP, STORY_SAFE_BOTTOM } from './shared'
 
 /**
  * OVERLAY — imagem full-bleed com overlay escuro degradê na base.
@@ -8,10 +8,15 @@ import { FONT_LINK, highlightAccentWord } from './shared'
  * Speech bubble com hook curto posicionado no centro-direito, com cauda.
  * Supports all design variations via StyleConfig parameter.
  */
-export function buildOverlay(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildOverlay(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
   // First sentence only — keeps the bubble tight
   const hookShort = variant.hook.split(/[.!?]/)[0].trim()
+  const H = isStory ? STORY_HEIGHT : 675
+  const bubbleTop = isStory ? `${STORY_SAFE_TOP + 280}px` : '42%'
+  const bottomPad = isStory ? STORY_SAFE_BOTTOM : 28
+  const headlineSz = isStory ? 48 : 38
+  const ctaFontSz = isStory ? 16 : 14
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -20,12 +25,12 @@ export function buildOverlay(variant: CopyVariant, imageSrc: string, styleConfig
 ${FONT_LINK}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; }
+  body { width: 540px; height: ${H}px; overflow: hidden; font-family: 'Nunito', sans-serif; }
 
   .post-wrapper {
     position: relative;
     width: 540px;
-    height: 675px;
+    height: ${H}px;
     overflow: hidden;
   }
 
@@ -56,13 +61,13 @@ ${FONT_LINK}
     inset: 0;
     display: flex;
     flex-direction: column;
-    padding: 20px 24px 28px;
+    padding: 20px 24px ${bottomPad}px;
   }
 
   /* Speech bubble — anchored mid-right with tail pointing toward character */
   .speech-bubble {
     position: absolute;
-    top: 42%;
+    top: ${bubbleTop};
     right: 22px;
     transform: translateY(-50%);
     background: white;
@@ -99,7 +104,7 @@ ${FONT_LINK}
   }
 
   .headline {
-    font-size: 38px;
+    font-size: ${headlineSz}px;
     font-weight: 900;
     color: white;
     line-height: 1.08;
@@ -140,7 +145,7 @@ ${FONT_LINK}
     align-items: center;
     padding: 13px 28px;
     border-radius: 100px;
-    font-size: 14px;
+    font-size: ${ctaFontSz}px;
     font-weight: 800;
     color: ${styleConfig.colors.ctaText};
     background: ${styleConfig.colors.ctaBg};

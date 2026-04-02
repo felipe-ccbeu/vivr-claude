@@ -43,12 +43,36 @@ export const TEMPLATE_COPY_CONSTRAINTS = {
     notes:    'Celular centralizado com cards flutuando. Espaço de texto reduzido.'
   },
 
+  'phone-float-gradient': {
+    headline: { maxWords: 6, maxLines: 2 },
+    body:     { maxWords: 14, maxLines: 2 },
+    hook:     { maxWords: 6 },
+    cta:      { maxWords: 3 },
+    notes:    'Fundo BADGE_GRADIENT vibrante. Accent branco itálico. CTA botão branco com texto escuro.'
+  },
+
+  'phone-float-light': {
+    headline: { maxWords: 6, maxLines: 2 },
+    body:     { maxWords: 14, maxLines: 2 },
+    hook:     { maxWords: 6 },
+    cta:      { maxWords: 3 },
+    notes:    'Fundo claro #f5f4f8. Cards dark. Top-line gradiente. Accent gradient no headline, CTA BADGE_GRADIENT.'
+  },
+
   'phone-tilt': {
     headline: { maxWords: 6, maxLines: 2 },
     body:     { maxWords: 12, maxLines: 2 },
     hook:     { maxWords: 6 },
     cta:      { maxWords: 3 },
     notes:    'Layout assimétrico. Copy na esquerda, celular inclinado na direita.'
+  },
+
+  'phone-tilt-light': {
+    headline: { maxWords: 6, maxLines: 2 },
+    body:     { maxWords: 12, maxLines: 2 },
+    hook:     { maxWords: 6 },
+    cta:      { maxWords: 3 },
+    notes:    'Variante clara do phone-tilt. Fundo #f5f4f8, copy escuro. Mesmo layout.'
   },
 
   'light-arc': {
@@ -95,12 +119,12 @@ export const TEMPLATE_COPY_CONSTRAINTS = {
     notes:    'Type-first design (zero imagem). Fundo gradiente de marca. Máxima ousadia.'
   },
 
-  'split-reverse': {
+  'split-reverse-gradient': {
     headline: { maxWords: 7, maxLines: 2 },
     body:     { maxWords: 14, maxLines: 2 },
-    hook:     { maxWords: 6 },
+    hook:     { maxWords: 6, note: 'Uppercase. Aparece como label acima do headline.' },
     cta:      { maxWords: 4 },
-    notes:    'Layout horizontal: imagem esquerda (240px), texto direita (300px). Editorial style.'
+    notes:    'Fundo BADGE_GRADIENT vibrante. Imagem com padding+border-radius. Painel dark glass. Accent branco itálico. CTA botão branco.'
   },
 
   'immersive': {
@@ -110,7 +134,24 @@ export const TEMPLATE_COPY_CONSTRAINTS = {
     cta:      { maxWords: 4, examples: ['Entra agora', 'Comece aqui', 'Vem praticar'] },
     accentWord: { preference: 'substantivo emocional', examples: ['real', 'imersão', 'cena'] },
     notes:    'Full-bleed com vinheta radial. Texto flutua sobre imagem. Foco em profundidade.'
-  }
+  },
+
+  // ── Story variants (540×960) — mesmos constraints dos feeds, com nota de safe zones ──
+  'overlay-story':                { headline: { maxWords: 7, maxLines: 2 }, body: { maxWords: 14, maxLines: 2 }, hook: { maxWords: 8 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Safe zones: topo 120px, base 180px.' },
+  'split-story':                  { headline: { maxWords: 8, maxLines: 2 }, body: { maxWords: 18, maxLines: 2 }, hook: { maxWords: 10 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Imagem topo, texto base.' },
+  'frame-story':                  { headline: { maxWords: 7, maxLines: 2 }, body: { maxWords: 16, maxLines: 2 }, hook: { maxWords: 8 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Frame quadrado maior (420px).' },
+  'phone-float-story':            { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 14, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Celular centralizado, copy na base.' },
+  'phone-float-gradient-story':   { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 14, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Fundo BADGE_GRADIENT vibrante.' },
+  'phone-float-light-story':      { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 14, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Fundo claro #f5f4f8.' },
+  'phone-tilt-story':             { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 12, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Layout assimétrico phone-tilt.' },
+  'phone-tilt-light-story':       { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 12, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Variante clara phone-tilt.' },
+  'story-story':                  { headline: { maxWords: 6, maxLines: 3 }, body: { maxWords: 16, maxLines: 2 }, hook: { maxWords: 8 }, cta: { maxWords: 4 }, notes: 'Story 9:16 — já é story, redundante mas suportado.' },
+  'light-arc-story':              { headline: { maxWords: 5, maxLines: 2 }, body: { maxWords: 12, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Arco mais largo (440px).' },
+  'cinematic-story':              { headline: { maxWords: 4, maxLines: 2, note: 'CRÍTICO: fonte 52px' }, body: { omit: true }, hook: { maxWords: 6 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Safe zones respeitados.' },
+  'quote-story':                  { headline: { maxWords: 8, maxLines: 2 }, body: { omit: true }, hook: { maxWords: 6 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Prova social.' },
+  'bold-text-story':              { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 12, maxLines: 2 }, hook: { maxWords: 4 }, cta: { maxWords: 3 }, notes: 'Story 9:16. Accent 130px.' },
+  'split-reverse-gradient-story': { headline: { maxWords: 7, maxLines: 2 }, body: { maxWords: 14, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Fundo BADGE_GRADIENT. Imagem 280px.' },
+  'immersive-story':              { headline: { maxWords: 6, maxLines: 2 }, body: { maxWords: 12, maxLines: 2 }, hook: { maxWords: 6 }, cta: { maxWords: 4 }, notes: 'Story 9:16. Full-bleed, hook topo 120px, CTA base 180px.' }
 } as const
 
 export type TemplateHint = keyof typeof TEMPLATE_COPY_CONSTRAINTS

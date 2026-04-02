@@ -7,14 +7,17 @@ import { buildSplit } from './templates/split'
 import { buildFrame } from './templates/frame'
 import { buildPhoneFloat } from './templates/phone-float'
 import { buildPhoneTilt } from './templates/phone-tilt'
+import { buildPhoneTiltLight } from './templates/phone-tilt-light'
 import { buildStory } from './templates/story'
 import { getStyleConfig, StyleConfig } from './styles'
 import { buildLightArc } from './templates/light-arc'
 import { buildCinematic } from './templates/cinematic'
 import { buildQuote } from './templates/quote'
 import { buildBoldText } from './templates/bold-text'
-import { buildSplitReverse } from './templates/split-reverse'
+import { buildSplitReverseGradient } from './templates/split-reverse-gradient'
 import { buildImmersive } from './templates/immersive'
+import { buildPhoneFloatGradient } from './templates/phone-float-gradient'
+import { buildPhoneFloatLight } from './templates/phone-float-light'
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RENDER METADATA — para auditoria e versionamento
@@ -41,14 +44,33 @@ export const TEMPLATE_SIZE: Record<string, { width: number; height: number }> = 
   split:         { width: 540, height: 675 },
   frame:         { width: 540, height: 675 },
   'phone-float': { width: 540, height: 675 },
+  'phone-float-gradient': { width: 540, height: 675 },
+  'phone-float-light': { width: 540, height: 675 },
   'phone-tilt':  { width: 540, height: 675 },
+  'phone-tilt-light': { width: 540, height: 675 },
   story:         { width: 540, height: 960 },
   'light-arc': { width: 540, height: 675 },
   'cinematic': { width: 540, height: 675 },
   'quote': { width: 540, height: 675 },
   'bold-text': { width: 540, height: 675 },
-  'split-reverse': { width: 540, height: 675 },
+  'split-reverse-gradient': { width: 540, height: 675 },
   'immersive': { width: 540, height: 675 },
+  // Story variants (540×960)
+  'overlay-story':                { width: 540, height: 960 },
+  'split-story':                  { width: 540, height: 960 },
+  'frame-story':                  { width: 540, height: 960 },
+  'phone-float-story':            { width: 540, height: 960 },
+  'phone-float-gradient-story':   { width: 540, height: 960 },
+  'phone-float-light-story':      { width: 540, height: 960 },
+  'phone-tilt-story':             { width: 540, height: 960 },
+  'phone-tilt-light-story':       { width: 540, height: 960 },
+  'story-story':                  { width: 540, height: 960 },
+  'light-arc-story':              { width: 540, height: 960 },
+  'cinematic-story':              { width: 540, height: 960 },
+  'quote-story':                  { width: 540, height: 960 },
+  'bold-text-story':              { width: 540, height: 960 },
+  'split-reverse-gradient-story': { width: 540, height: 960 },
+  'immersive-story':              { width: 540, height: 960 },
 }
 
 /** Default template per format */
@@ -79,14 +101,33 @@ function applyTemplate(templateName: TemplateName, variant: CopyVariant, imageSr
     case 'split':       return buildSplit(variant, imageSrc, styleConfig)
     case 'frame':       return buildFrame(variant, imageSrc, styleConfig)
     case 'phone-float': return buildPhoneFloat(variant, imageSrc, styleConfig)
+    case 'phone-float-gradient': return buildPhoneFloatGradient(variant, imageSrc, styleConfig)
+    case 'phone-float-light': return buildPhoneFloatLight(variant, imageSrc, styleConfig)
     case 'phone-tilt':  return buildPhoneTilt(variant, imageSrc, styleConfig)
+    case 'phone-tilt-light': return buildPhoneTiltLight(variant, imageSrc, styleConfig)
     case 'story':       return buildStory(variant, imageSrc, styleConfig)
     case 'light-arc':   return buildLightArc(variant, imageSrc, styleConfig)
     case 'cinematic':   return buildCinematic(variant, imageSrc, styleConfig)
     case 'quote':       return buildQuote(variant, imageSrc, styleConfig)
     case 'bold-text':   return buildBoldText(variant, imageSrc, styleConfig)
-    case 'split-reverse': return buildSplitReverse(variant, imageSrc, styleConfig)
+    case 'split-reverse-gradient': return buildSplitReverseGradient(variant, imageSrc, styleConfig)
     case 'immersive':   return buildImmersive(variant, imageSrc, styleConfig)
+    // Story variants
+    case 'overlay-story':                return buildOverlay(variant, imageSrc, styleConfig, true)
+    case 'split-story':                  return buildSplit(variant, imageSrc, styleConfig, true)
+    case 'frame-story':                  return buildFrame(variant, imageSrc, styleConfig, true)
+    case 'phone-float-story':            return buildPhoneFloat(variant, imageSrc, styleConfig, true)
+    case 'phone-float-gradient-story':   return buildPhoneFloatGradient(variant, imageSrc, styleConfig, true)
+    case 'phone-float-light-story':      return buildPhoneFloatLight(variant, imageSrc, styleConfig, true)
+    case 'phone-tilt-story':             return buildPhoneTilt(variant, imageSrc, styleConfig, true)
+    case 'phone-tilt-light-story':       return buildPhoneTiltLight(variant, imageSrc, styleConfig, true)
+    case 'story-story':                  return buildStory(variant, imageSrc, styleConfig, true)
+    case 'light-arc-story':              return buildLightArc(variant, imageSrc, styleConfig, true)
+    case 'cinematic-story':              return buildCinematic(variant, imageSrc, styleConfig, true)
+    case 'quote-story':                  return buildQuote(variant, imageSrc, styleConfig, true)
+    case 'bold-text-story':              return buildBoldText(variant, imageSrc, styleConfig, true)
+    case 'split-reverse-gradient-story': return buildSplitReverseGradient(variant, imageSrc, styleConfig, true)
+    case 'immersive-story':              return buildImmersive(variant, imageSrc, styleConfig, true)
     default:            return buildOverlay(variant, imageSrc, styleConfig)
   }
 }
@@ -177,14 +218,20 @@ export async function renderFromContentV2(
   for (const item of feed.items) {
     const size = TEMPLATE_SIZE[item.templateId] ?? { width: 540, height: 675 }
 
-    // Resolve image path relative to outDir (scene.png is in the same campaign dir)
-    const absImage = path.resolve(outDir, feed.sceneImage)
-    const imageSrc = path.relative(outDir, absImage).replace(/\\/g, '/')
+    // Route to subfolder: story templateIds (ending in -story or = 'story') go to story/, rest to feed/
+    const isStoryItem = item.templateId === 'story' || item.templateId.endsWith('-story')
+    const subDir = isStoryItem ? path.join(outDir, 'story') : path.join(outDir, 'feed')
+    await fs.ensureDir(subDir)
+
+    // Resolve image path relative to subDir (where HTML will be saved)
+    const sceneFile = item.sceneImage ?? feed.sceneImage
+    const absImage = path.resolve(outDir, sceneFile)
+    const imageSrc = path.relative(subDir, absImage).replace(/\\/g, '/')
 
     const html = applyTemplate(item.templateId as TemplateName, item.copy, imageSrc, styleConfig)
-    const htmlPath = path.join(outDir, `${item.outputName}.html`)
+    const htmlPath = path.join(subDir, `${item.outputName}.html`)
     await fs.writeFile(htmlPath, html, 'utf8')
-    console.log(`[renderer] HTML saved: ${item.outputName}.html`)
+    console.log(`[renderer] HTML saved: ${isStoryItem ? 'story' : 'feed'}/${item.outputName}.html`)
 
     results.push({ htmlPath, pngPath: htmlPath.replace('.html', '.png'), size })
   }

@@ -18,10 +18,20 @@ function toImageInput(ref: string) {
   return { file: path.resolve(ref) }
 }
 
+export type WhiskAspectRatio = 'SQUARE' | 'PORTRAIT' | 'LANDSCAPE'
+
+const ASPECT_RATIO_MAP: Record<WhiskAspectRatio, string> = {
+  SQUARE: 'IMAGE_ASPECT_RATIO_SQUARE',
+  PORTRAIT: 'IMAGE_ASPECT_RATIO_PORTRAIT',
+  LANDSCAPE: 'IMAGE_ASPECT_RATIO_LANDSCAPE',
+}
+
 export async function generateSceneImage(
   prompt: string,
   campaignId: string,
-  refs?: WhiskRefs
+  refs?: WhiskRefs,
+  aspectRatio: WhiskAspectRatio = 'SQUARE',
+  outputFileName: string = 'scene'
 ): Promise<string> {
   const cookie = process.env.COOKIE
   if (!cookie) throw new Error('COOKIE not set in .env')
@@ -50,14 +60,15 @@ export async function generateSceneImage(
   const hasRefs = refs?.subject || refs?.scene || refs?.style
   console.log(`[whisk] Generating image${hasRefs ? ' with references' : ''}...`)
 
+  const whiskAspect = ASPECT_RATIO_MAP[aspectRatio] as import('@rohitaryal/whisk-api/dist/Types.js').ImageAspectRatioType
   const media = hasRefs
-    ? await project.generateImageWithReferences({ prompt, aspectRatio: 'IMAGE_ASPECT_RATIO_PORTRAIT' })
-    : await project.generateImage({ prompt, aspectRatio: 'IMAGE_ASPECT_RATIO_PORTRAIT' })
+    ? await project.generateImageWithReferences({ prompt, aspectRatio: whiskAspect })
+    : await project.generateImage({ prompt, aspectRatio: whiskAspect })
 
   const savedPath = media.save(outputDir)
 
   const ext = path.extname(savedPath)
-  const finalPath = path.join(outputDir, `scene${ext}`)
+  const finalPath = path.join(outputDir, `${outputFileName}${ext}`)
   if (savedPath !== finalPath) {
     await fs.move(savedPath, finalPath, { overwrite: true })
   }

@@ -1,0 +1,234 @@
+{
+  "campaignId": "015-taxi-pais-desconhecido",
+  "sceneImage": "scene.png",
+  "items": [
+    {
+      "outputName": "post-p1-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-overlay",
+      "templateId": "overlay",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-split",
+      "templateId": "split",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-split",
+      "templateId": "split",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-split",
+      "templateId": "split",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-frame",
+      "templateId": "frame",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-frame",
+      "templateId": "frame",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-frame",
+      "templateId": "frame",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-phone-float",
+      "templateId": "phone-float",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-phone-float-gradient",
+      "templateId": "phone-float-gradient",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-phone-float-light",
+      "templateId": "phone-float-light",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-phone-tilt",
+      "templateId": "phone-tilt",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-light-arc",
+      "templateId": "light-arc",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-cinematic",
+      "templateId": "cinematic",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-quote",
+      "templateId": "quote",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-bold-text",
+      "templateId": "bold-text",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-split-reverse",
+      "templateId": "split-reverse",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-split-reverse-gradient",
+      "templateId": "split-reverse-gradient",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-immersive",
+      "templateId": "immersive",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    },
+    {
+      "outputName": "post-p1-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "Você chegou no aeroporto, o táxi estava lá, e a boca não abriu.", "headline": "Pratique a situação antes de vivê-la", "accentWord": "situação", "body": "O Vivr simula o táxi, o hotel, o restaurante — você pratica antes de estar lá de verdade. Quando chegar, já é terreno conhecido.", "cta": "Pratique agora, é grátis" }
+    },
+    {
+      "outputName": "post-p2-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "Você sabia o que precisava dizer. Só não conseguiu dizer.", "headline": "Você sabia. Mas na hora, travou", "accentWord": "travou", "body": "Não é falta de vocabulário — é falta de prática real. O Vivr te coloca dentro da situação antes de você viver ela de verdade.", "cta": "Entre e pratique de graça" }
+    },
+    {
+      "outputName": "post-p3-story",
+      "templateId": "story",
+      "sceneImage": "scene-story.png",
+      "copy": { "hook": "Você decorou. Fez o curso. Mas nem o táxi chamou.", "headline": "Saber não é o mesmo que conseguir falar", "accentWord": "falar", "body": "Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.", "cta": "Teste agora, é grátis" }
+    }
+  ]
+}

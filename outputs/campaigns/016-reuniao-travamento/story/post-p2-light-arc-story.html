@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 540px;
+    height: 960px;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    background: #ffffff;
+  }
+
+  .post-wrapper {
+    position: relative;
+    width: 540px;
+    height: 960px;
+    overflow: hidden;
+  }
+
+  .post-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 36px 0;
+    background: #ffffff;
+    gap: 10px;
+  }
+
+  /* ── TOPO: headline + badge ── */
+  .top-bar {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .headline {
+    font-size: 36px;
+    font-weight: 900;
+    color: #0d0d0d;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .badge-free {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 11.5px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.4px;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  /* ── HOOK: texto simples cinza ── */
+  .hook-text {
+    width: 100%;
+    max-width: 440px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999994;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  /* ── ARCH FRAME ── */
+  .arch-frame {
+    position: relative;
+    width: 440px;
+    flex: 1;
+    align-self: center;
+    min-height: 0;
+  }
+
+  /* Borda gradiente da arch */
+  .arch-border {
+    position: absolute;
+    inset: -3px;
+    border-radius: 183px 183px 0 0;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    z-index: 0;
+  }
+
+  /* Container da imagem dentro da borda */
+  .arch-img-wrap {
+    position: absolute;
+    inset: 0;
+    border-radius: 180px 180px 0 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .arch-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  /* ── CTA flutuante sobre a imagem ── */
+  .cta-wrap {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .cta-btn {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 100px;
+    padding: 13px 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+
+  <!-- TOPO -->
+  <div class="top-bar">
+    <div class="headline" data-slot="headline">Você sabia. As palavras não <span class="accent">vieram</span>.</div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook-text" data-slot="hook">Na reunião, você sabia o que dizer. Mas as palavras não vieram.</div>
+
+  <!-- ARCH FRAME -->
+  <div class="arch-frame">
+    <div class="arch-border"></div>
+    <div class="arch-img-wrap">
+      <img src="../scene-story.png" alt="" />
+    </div>
+    <div class="cta-wrap">
+      <div class="cta-btn" data-slot="cta">Experimente antes da próxima reunião</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

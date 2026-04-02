@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 540px; height: 675px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
+
+  .post-wrapper {
+    width: 540px;
+    height: 675px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img-section {
+    position: relative;
+    width: 540px;
+    height: 370px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+
+  .img-vignette { display: none; }
+
+  .hook-tag {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 15px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1a1030;
+    letter-spacing: 0.15px;
+    max-width: 310px;
+    line-height: 1.35;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  .badge-free {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  .text-section {
+    flex: 1;
+    background: #1A1030;
+    padding: 20px 36px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .text-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+  }
+
+  .headline {
+    font-size: 36px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .body-copy {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.6;
+    margin-top: 11px;
+    max-width: 430px;
+    letter-spacing: 0.1px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    border-radius: 100px;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    align-self: flex-start;
+    min-height: 48px;
+    box-shadow: 0 4px 16px rgba(233,72,153,0.3);
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+  <div class="img-section">
+    <img src="../scene.png" alt="" />
+    <div class="img-vignette"></div>
+    <span class="hook-tag" data-slot="hook">Anos de curso. Trinta segundos de reunião. E você travou.</span>
+    <span class="badge-free">Grátis</span>
+  </div>
+  <div class="text-section">
+    <div>
+      <div class="headline" data-slot="headline">Anos de curso não <span class="accent">preparam</span> para 30 segundos de reunião</div>
+      <div class="body-copy" data-slot="body">O Vivr é diferente: você pratica falar, não estudar. Situações reais, resposta na hora.</div>
+    </div>
+    <div class="cta-btn" data-slot="cta">Entre e enfrente a situação agora</div>
+  </div>
+</div>
+</body>
+</html>

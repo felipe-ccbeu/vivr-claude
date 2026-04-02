@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 540px; height: 960px; overflow: hidden; font-family: 'Nunito', sans-serif; background: #1A1030; }
+
+  .post-wrapper {
+    width: 540px;
+    height: 960px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── IMAGE SECTION (620px = 64.6% do canvas) ── */
+  .img-section {
+    position: relative;
+    width: 540px;
+    height: 620px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+
+  .img-vignette {
+    display: none;
+  }
+
+  /* Hook: safe zone top 120px para não conflitar com UI do Instagram */
+  .hook-tag {
+    position: absolute;
+    top: 120px;
+    left: 28px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1030;
+    letter-spacing: 0.15px;
+    max-width: 380px;
+    line-height: 1.4;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .badge-free {
+    position: absolute;
+    top: 120px;
+    right: 28px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  /* ── TEXT SECTION (340px) — bottom safe zone 180px ── */
+  .text-section {
+    flex: 1;
+    background: #1A1030;
+    padding: 32px 40px 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    position: relative;
+  }
+
+  .text-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(249,112,64,0.6) 0%, rgba(155,93,229,0.6) 50%, rgba(38,198,218,0.3) 100%);
+  }
+
+  .headline {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.07;
+    letter-spacing: -1px;
+  }
+
+  .accent {
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Body: fonte maior que no feed — story é lido de mais perto */
+  .body-copy {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.6;
+    margin-top: 14px;
+    max-width: 440px;
+    letter-spacing: 0.1px;
+  }
+
+  /* CTA: mandatory pill style with complete brand gradient */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 34px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    align-self: flex-start;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(233,72,153,0.3);
+  }
+</style>
+</head>
+<body>
+<div class="post-wrapper">
+  <div class="img-section">
+    <img src="scene-story.png" alt="" />
+    <div class="img-vignette"></div>
+    <span class="hook-tag" data-slot="hook">Você decorou. Fez o curso. Mas nem o táxi chamou.</span>
+    <span class="badge-free">Grátis</span>
+  </div>
+  <div class="text-section">
+    <div>
+      <div class="headline" data-slot="headline">Saber não é o mesmo que conseguir <span class="accent">falar</span></div>
+      <div class="body-copy" data-slot="body">Estudo sem prática real te deixa preparado para a prova, não para a vida. O Vivr é a situação antes da situação.</div>
+    </div>
+    <div class="cta-btn" data-slot="cta">Teste agora, é grátis</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { CopyVariant } from '../content-schema'
 import { StyleConfig } from '../styles'
-import { FONT_LINK, highlightAccentWord } from './shared'
+import { FONT_LINK, highlightAccentWord, STORY_HEIGHT, STORY_SAFE_BOTTOM } from './shared'
 
 /**
  * PHONE-FLOAT — celular centralizado com cards visuais flutuando ao redor.
@@ -8,15 +8,18 @@ import { FONT_LINK, highlightAccentWord } from './shared'
  * Cards mostram XP, sequência, cena e diálogo (hook).
  * Supports all design variations via StyleConfig parameter.
  */
-export function buildPhoneFloat(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig): string {
+export function buildPhoneFloat(variant: CopyVariant, imageSrc: string, styleConfig: StyleConfig, isStory = false): string {
   const headlineHtml = highlightAccentWord(variant.headline, variant.accentWord)
+  const H = isStory ? STORY_HEIGHT : 675
+  const copyPadBottom = isStory ? STORY_SAFE_BOTTOM : 36
+  const h1Sz = isStory ? 36 : 34
 
   return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 ${FONT_LINK}
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{width:540px;height:675px;overflow:hidden;font-family:'Nunito',sans-serif;}
-.post{width:540px;height:675px;position:relative;overflow:hidden;border-radius:0;}
+body{width:540px;height:${H}px;overflow:hidden;font-family:'Nunito',sans-serif;}
+.post{width:540px;height:${H}px;position:relative;overflow:hidden;border-radius:0;}
 
 .bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 10%, #4a1a8a 0%, #1a0a3a 35%, #060414 65%, #031820 100%);}
 .bg-accent{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 90%, rgba(38,182,205,0.35) 0%, transparent 55%);}
@@ -52,8 +55,8 @@ body{width:540px;height:675px;overflow:hidden;font-family:'Nunito',sans-serif;}
 .card-streak-label{font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.07em;}
 .card-streak-val{font-size:14px;font-weight:900;color:#fff;}
 
-.copy{position:absolute;bottom:0;left:0;right:0;padding:0 48px 36px;text-align:center;}
-h1{font-size:34px;font-weight:900;color:#fff;line-height:1.04;letter-spacing:-.025em;margin-bottom:14px;}
+.copy{position:absolute;bottom:0;left:0;right:0;padding:0 48px ${copyPadBottom}px;text-align:center;}
+h1{font-size:${h1Sz}px;font-weight:900;color:#fff;line-height:1.04;letter-spacing:-.025em;margin-bottom:14px;}
 .accent{background:linear-gradient(90deg,#f97040,#e94899,#9b5de5,#26c6da,#80e27e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cta-row{display:flex;align-items:center;justify-content:center;gap:14px;}
 .cta-btn{background:linear-gradient(135deg,#f97040,#e94899 45%,#9b5de5 75%,#26c6da);border-radius:100px;padding:11px 26px;font-size:14px;font-weight:800;color:#fff;}

@@ -284,7 +284,7 @@ Descreva em linguagem clara o que deve aparecer:
 
 | Flag | Templates incluídos |
 |------|---------------------|
-| `--phone-screen` | `phone-float`, `phone-tilt` |
+| `--phone-screen` | `phone-float`, `phone-float-gradient`, `phone-float-light`, `phone-tilt`, `phone-tilt-light` |
 | `--overlay` | `overlay` |
 | `--split` | `split` |
 | `--frame` | `frame` |
@@ -293,9 +293,9 @@ Descreva em linguagem clara o que deve aparecer:
 | `--cinematic` | `cinematic` |
 | `--quote` | `quote` |
 | `--bold-text` | `bold-text` |
-| `--split-reverse` | `split-reverse` |
+| `--split-reverse` | `split-reverse`, `split-reverse-gradient` |
 | `--immersive` | `immersive` |
-| `--all` | todos os 12 templates |
+| `--all` | todos os 15 templates feed + 15 variantes story (30 templates, 90 PNGs com 3 copies) |
 
 **Múltiplas flags são cumulativas:**
 ```
@@ -309,18 +309,34 @@ Descreva em linguagem clara o que deve aparecer:
 
 | Nome | Formato | Descrição |
 |------|---------|-----------|
-| `overlay` | feed | Imagem full-bleed com overlay escuro, headline/CTA na base |
-| `split` | feed | Imagem no topo (55%), painel de texto escuro na base (45%) — **padrão** |
-| `frame` | feed | Fundo escuro sólido, imagem em moldura com borda gradiente |
-| `phone-float` | feed | Celular centralizado com cards flutuando ao redor |
-| `phone-tilt` | feed | Copy à esquerda, celular inclinado à direita |
-| `story` | story (9:16) | Imagem topo (60%), texto base (40%), safe zones 120px/180px |
-| `light-arc` | feed | Fundo branco, arco SVG na transição, estética clean/premium |
-| `cinematic` | feed | Imagem full-bleed, letterbox, overlay ultra-suave |
-| `quote` | feed | Fundo escuro, testimonial em destaque, imagem circular |
-| `bold-text` | feed | Zero imagem, headline gigante 72px, fundo gradiente |
-| `split-reverse` | feed | Layout horizontal: imagem esquerda (240px), texto direita |
-| `immersive` | feed | Full-bleed com vinheta radial, texto centralizado |
+| `overlay` | feed 4:5 | Imagem full-bleed com overlay escuro, headline/CTA na base |
+| `split` | feed 4:5 | Imagem no topo (55%), painel de texto escuro na base (45%) — **padrão** |
+| `frame` | feed 4:5 | Fundo escuro sólido, imagem em moldura com borda gradiente |
+| `phone-float` | feed 4:5 | Celular centralizado com cards flutuando ao redor (dark) |
+| `phone-float-gradient` | feed 4:5 | Celular centralizado, fundo BADGE_GRADIENT vibrante |
+| `phone-float-light` | feed 4:5 | Celular centralizado, fundo claro #f5f4f8 |
+| `phone-tilt` | feed 4:5 | Copy à esquerda, celular inclinado à direita (dark) |
+| `phone-tilt-light` | feed 4:5 | Copy à esquerda, celular inclinado à direita (claro) |
+| `story` | story 9:16 | Imagem topo (60%), texto base (40%), safe zones 120px/180px |
+| `light-arc` | feed 4:5 | Fundo branco, moldura arco gradiente, estética clean/premium |
+| `cinematic` | feed 4:5 | Imagem full-bleed, overlay ultra-suave, headline grande |
+| `quote` | feed 4:5 | Fundo branco, testimonial destaque, imagem circular |
+| `bold-text` | feed 4:5 | Zero imagem, headline gigante 116px, fundo gradiente |
+| `split-reverse` | feed 4:5 | Layout horizontal: imagem esquerda (240px), texto direita |
+| `split-reverse-gradient` | feed 4:5 | Layout horizontal, fundo BADGE_GRADIENT, painel dark glass |
+| `immersive` | feed 4:5 | Full-bleed com vinheta radial, texto centralizado |
+
+**Story variants** (sufixo `-story`): cada template feed tem uma versão 9:16 (540×960px) com safe zones aplicadas automaticamente. Ex: `split-story`, `overlay-story`, `phone-float-story`, etc.
+
+**`--all`** gera 30 templates (15 feed + 15 story) × 3 copies = **90 PNGs** organizados em:
+- `outputs/campaigns/{id}/feed/` — 45 PNGs (15 templates × 3 copies)
+- `outputs/campaigns/{id}/story/` — 45 PNGs (15 story variants × 3 copies)
+
+**Regra de sceneImage para story items:** items com templateId terminando em `-story` ou igual a `story` devem usar `"sceneImage": "scene-story.png"` para garantir a imagem em proporção PORTRAIT. Items de feed herdam `feed.sceneImage = "scene.png"`.
+
+```json
+{ "outputName": "post-p1-split-story", "templateId": "split-story", "sceneImage": "scene-story.png", "copy": {...} }
+```
 
 ---
 
@@ -349,7 +365,77 @@ Nunca repita a mesma combinação de personagem + cenário + ângulo da campanha
 
 ## ETAPA AUTOMÁTICA — após gerar o brief, execute o pipeline completo
 
-Depois de exibir o brief ao usuário, **sem perguntar**, execute as etapas abaixo automaticamente.
+O fluxo tem **duas fases distintas**:
+
+1. **Fase 1 — Brief + Copy:** gerar o brief estratégico e as copies via agente content-creator → **parar e aguardar aprovação do usuário**
+2. **Fase 2 — Pipeline:** só executar após aprovação explícita do usuário (qualquer mensagem de confirmação: "ok", "aprovado", "gera", etc.)
+
+---
+
+### FASE 1 — Brief e Copy (executa automaticamente)
+
+#### Passo 1a — Gerar o brief estratégico
+Exibe ao usuário as seções 1–5 (Campanha, Copy, Direção Visual, Whisk Brief, Canva Brief) conforme o output structure acima.
+
+#### Passo 1b — Invocar o agente content-creator para refinar as copies
+
+Após gerar o brief, use o agente `.agents/content-creator.md` para:
+
+1. **Revisar e refinar** as 3 copies (P1/P2/P3) geradas no brief
+2. **Garantir qualidade linguística** — concordância PT-BR, tom correto, termos proibidos ausentes
+3. **Propor variações** se alguma copy não passar no checklist de qualidade
+
+O agente content-creator deve entregar:
+
+```
+## COPIES PARA APROVAÇÃO
+
+### P1 — Principal
+**Hook:** ...
+**Headline:** ...
+**Body:** ...
+**CTA:** ...
+**accentWord:** ...
+
+### P2 — Emocional
+**Hook:** ...
+**Headline:** ...
+**Body:** ...
+**CTA:** ...
+**accentWord:** ...
+
+### P3 — Provocativa
+**Hook:** ...
+**Headline:** ...
+**Body:** ...
+**CTA:** ...
+**accentWord:** ...
+
+---
+✅ Checklist de qualidade:
+- [ ] Hooks nomeiam cena específica
+- [ ] Zero termos proibidos
+- [ ] 3 variantes tonalmente distintas
+- [ ] CTAs no imperativo PT-BR
+- [ ] Nenhuma frase poderia ser do Duolingo/Open English
+```
+
+#### Passo 1c — PARAR e aguardar aprovação
+
+**⚠️ OBRIGATÓRIO: após exibir as copies, pare completamente.**
+
+Exiba ao usuário:
+
+> **Copies prontas para revisão.** Responda com:
+> - **"aprovado"** ou **"ok"** → pipeline executa com as copies acima
+> - **Edições diretas** → ajuste e reexiba antes de executar
+> - **"refaz P2"** (ou qualquer variante) → regenera apenas aquela copy
+
+**NÃO execute nenhum Bash, Write ou pipeline até receber aprovação explícita.**
+
+---
+
+### FASE 2 — Pipeline (só executa após aprovação)
 
 > **Arquitetura:** Claude gera apenas o `content.json` (copy puro, ~20 linhas). O TypeScript cuida do render e screenshot. Não gere HTML — isso é responsabilidade do pipeline.
 
@@ -377,8 +463,21 @@ Monte **dois arquivos** separados:
     { "hook": "...", "headline": "P2", "accentWord": "...", "body": "...", "cta": "..." },
     { "hook": "...", "headline": "P3", "accentWord": "...", "body": "...", "cta": "..." }
   ],
-  "visual": { "whiskPrompt": "...", "scene": "...", "mood": "..." }
+  "visual": {
+    "whiskPrompt": "...",
+    "scene": "...",
+    "mood": "...",
+    "generateStoryImage": true
+  }
 }
+```
+
+> **Regra de `generateStoryImage`:** setar como `true` quando as flags incluem `--story` ou `--all`. Quando `true`, o pipeline gera **duas imagens Whisk**:
+> - `scene.png` → proporção `SQUARE` (1:1) — usada por todos os templates de feed
+> - `scene-story.png` → proporção `PORTRAIT` (9:16) — usada exclusivamente pelos items de story
+>
+> Quando `--story` é a **única** flag, setar `"aspectRatio": "PORTRAIT"` em vez de `generateStoryImage: true` (apenas uma imagem, vertical).
+
 ```
 
 **`content-feed.json`** — formato V2 multi-template (gerado com base nas flags da chamada):
@@ -409,6 +508,12 @@ Monte **dois arquivos** separados:
 **Convenção de `outputName`:** `post-{p1|p2|p3}-{templateId}`
 
 **Expansão:** para cada uma das 3 copies × cada template das flags = N itens. Ex: `--phone-screen` com 3 copies → 6 itens.
+
+**Regra de `sceneImage` por item:** quando as flags incluem story ou `--all`, todos os items com templateId terminando em `-story` ou igual a `"story"` devem incluir `"sceneImage": "scene-story.png"`. Os demais items não precisam do campo (herdam `feed.sceneImage = "scene.png"`).
+
+```json
+{ "outputName": "post-p1-split-story", "templateId": "split-story", "sceneImage": "scene-story.png", "copy": {...} }
+```
 
 ---
 
