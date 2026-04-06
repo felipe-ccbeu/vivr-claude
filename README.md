@@ -140,8 +140,7 @@ Todas as regras estão em `.agents/vivavr-context.md` (fonte de verdade).
 |---|---|
 | Background dark | `#1A1030` (NUNCA preto puro) |
 | Background light | `#ffffff` |
-| Brand gradient (CTA/accent) | `linear-gradient(135deg, #89c7fe 0%, #8bfbd1 20%, #ae90fb 45%, #f599b5 70%, #fdd38a 100%)` |
-| Badge gradient | `linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%)` |
+| Brand gradient (CTA/accent) | `linear-gradient(135deg, #f7c948 0%, #f97040 20%, #e94899 45%, #9b5de5 65%, #26c6da 83%, #80e27e 100%)` |
 | Botão CTA | `border-radius: 100px`, `font-weight: 800`, `padding: 13px 28px` mínimo |
 | Overlay start | A partir de 55–60% da altura do frame |
 | Story safe zones | 120px topo, 180px base |
@@ -195,9 +194,53 @@ cp .env.example .env   # cole o cookie do Whisk
 | `/vivavr-static-campaign [--flags]` | Gera brief + executa pipeline (Whisk → HTML → PNG) |
 | `/vivavr-whisk-hero` | Gera prompts estruturados para o Whisk |
 | `/vivavr-canva-assembly` | Monta design no Canva via MCP |
+| `/vivavr-heygen-video` | Gera vídeo promocional do Vivr via HeyGen MCP com script emocional completo |
+| `/vivavr-heygen-avatar` | Cria avatar no HeyGen a partir de imagem gerada pelo Whisk (Whisk → asset upload → Photo Avatar) |
 | `/brand-voice-extractor` | Analisa voz dos concorrentes |
 | `/icp-persona-builder` | Constrói ICPs detalhados |
 | `/review-scraper` | Raspa reviews negativos (Trustpilot) |
+
+---
+
+## HeyGen — geração de vídeo
+
+A API do HeyGen está conectada via MCP e via API REST direta (chave em `.env`).
+
+### Via MCP (Claude Code)
+```bash
+/vivavr-heygen-video   # gera vídeo com script da marca, escolhe persona/cena/duração
+/vivavr-heygen-avatar  # cria avatar: Whisk → upload → Photo Avatar
+```
+
+### Via API REST direta
+```bash
+# Criar avatar a partir de imagem Whisk
+PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node src/create-heygen-avatar.ts \
+  --name "Protagonista Vivr" \
+  --prompt "3D stylized adult cartoon..." \
+  --aspect PORTRAIT
+```
+
+### Regras de vídeo HeyGen (críticas)
+| Elemento | Valor |
+|---|---|
+| Brand gradient (6 cores obrigatórias) | `#f7c948 → #f97040 → #e94899 → #9b5de5 → #26c6da → #80e27e` |
+| Avatar customizado | ID `4acfe2a00a2f417d806c357f46f59e5a` (cabelo branco, aeroporto) |
+| Layout | 3 zonas fixas: logo (0–15%), avatar (15–65%), texto+CTA (65–100%) |
+| Legendas | Apenas na zona do avatar — nunca sobre CTA |
+| Imperativo PT-BR | "Pratique", "Entre", "Comece" — nunca "Pratica", "Entra" |
+
+---
+
+## Estrutura de arquivos (adições recentes)
+
+```
+src/
+└── create-heygen-avatar.ts   # Pipeline Whisk → HeyGen asset upload → Photo Avatar
+
+outputs/
+└── heygen-avatars/           # JSONs com IDs dos avatares criados
+```
 
 ---
 
@@ -205,6 +248,8 @@ cp .env.example .env   # cole o cookie do Whisk
 
 - **TypeScript + Node.js** — pipeline principal
 - **@rohitaryal/whisk-api** — geração de imagem via Google Whisk
+- **HeyGen API** — geração de vídeo e criação de avatares
+- **HeyGen MCP** — integração Claude Code ↔ HeyGen
 - **Playwright** — captura de tela headless (viewport dinâmico por template)
 - **chokidar** — watch de arquivos HTML para re-render automático
-- **Claude Code skills** — automação de brief, intel e design
+- **Claude Code skills** — automação de brief, intel, vídeo e design

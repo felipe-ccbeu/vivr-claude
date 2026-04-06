@@ -12,8 +12,12 @@
   },
   "dependencies": {
     "@rohitaryal/whisk-api": "^4.0.1",
+    "@types/form-data": "^2.2.1",
+    "@types/node-fetch": "^2.6.13",
     "dotenv": "^16.6.1",
+    "form-data": "^4.0.5",
     "fs-extra": "^11.3.4",
+    "node-fetch": "^2.7.0",
     "playwright": "^1.58.2"
   },
   "devDependencies": {
