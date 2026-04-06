@@ -15,7 +15,7 @@
 import * as dotenv from 'dotenv'
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import { generateSceneImage } from './whisk-client'
+import { generateSceneImage, WhiskAspectRatio } from './whisk-client'
 import { DEFAULT_REFS } from './config'
 
 dotenv.config()
@@ -125,6 +125,12 @@ const CHARACTER_PROMPTS: Record<string, string> = {
 // Main
 // ---------------------------------------------------------------------------
 
+const ASPECT_RATIOS: Array<{ key: WhiskAspectRatio; label: string }> = [
+  { key: 'PORTRAIT',  label: 'portrait'  },
+  { key: 'SQUARE',    label: 'square'    },
+  { key: 'LANDSCAPE', label: 'landscape' },
+]
+
 async function main() {
   const prompt = customPrompt ?? CHARACTER_PROMPTS[character]
   if (!prompt) {
@@ -133,35 +139,44 @@ async function main() {
     process.exit(1)
   }
 
-  const outputDir  = path.resolve('outputs/avatar-images')
-  const campaignId = `avatar-${character}-${Date.now()}`
+  const outputDir = path.resolve('outputs/avatar-images')
+  await fs.ensureDir(outputDir)
+  const ts = Date.now()
 
   console.log('╔══════════════════════════════════════╗')
   console.log('║   Vivr Avatar Image Generator        ║')
   console.log('╚══════════════════════════════════════╝')
   console.log(`  Personagem: ${character}`)
+  console.log(`  Proporções: portrait + square + landscape`)
   console.log(`  Output:     outputs/avatar-images/`)
 
-  const imagePath = await generateSceneImage(
-    prompt,
-    campaignId,
-    DEFAULT_REFS,
-    'PORTRAIT',
-    character
-  )
+  const generated: string[] = []
 
-  // Mover para outputs/avatar-images/
-  await fs.ensureDir(outputDir)
-  const finalPath = path.join(outputDir, `${character}-${Date.now()}.png`)
-  await fs.copy(imagePath, finalPath)
+  for (const { key, label } of ASPECT_RATIOS) {
+    console.log(`\n[${label}] Gerando...`)
+    const campaignId = `avatar-${character}-${label}-${ts}`
+
+    const imagePath = await generateSceneImage(
+      prompt,
+      campaignId,
+      DEFAULT_REFS,
+      key,
+      character
+    )
+
+    const finalPath = path.join(outputDir, `${character}-${label}-${ts}.png`)
+    await fs.copy(imagePath, finalPath)
+    generated.push(finalPath)
+    console.log(`[${label}] ✓ ${finalPath}`)
+  }
 
   console.log('\n╔══════════════════════════════════════╗')
-  console.log('║   ✓ Imagem gerada!                   ║')
+  console.log('║   ✓ 3 imagens geradas!               ║')
   console.log('╚══════════════════════════════════════╝')
-  console.log(`  Arquivo: ${finalPath}`)
+  generated.forEach(f => console.log(`  ${f}`))
   console.log(`\n  Próximo passo:`)
   console.log(`  1. Acesse app.heygen.com`)
-  console.log(`  2. Crie o avatar com esta imagem`)
+  console.log(`  2. Crie o avatar com a imagem que preferir`)
   console.log(`  3. Me mande o avatar_id para gerar vídeos`)
 }
 
