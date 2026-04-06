@@ -106,6 +106,36 @@ const CHARACTER_PROMPTS: Record<string, string> = {
     'NOT Pixar, NOT Disney rounded. No text, no speech bubbles.',
   ].join(' '),
 
+  'woman-black': [
+    '3D stylized adult cartoon character, elongated proportions,',
+    'expressive exaggerated features, slightly prominent nose, large but non-infantile eyes,',
+    'lean body, thin limbs, skin texture with subtle bump not smooth or shiny,',
+    'high-fidelity 3D render, cinematic warm lighting, soft shadows, subtle rim light.',
+    'Adult Black woman, natural coily afro hair, warm dark brown skin,',
+    'casual chic outfit — fitted white blouse, high-waist beige trousers, white sneakers.',
+    'Confident relaxed posture, warm open expression.',
+    'Character centered, full body visible, plain white background.',
+    'Style: adult animated series, elongated proportions.',
+    'NOT Pixar, NOT Disney rounded, NOT smooth faces, NOT childish proportions.',
+    'No text, no speech bubbles, no objects in hands.',
+  ].join(' '),
+
+  'woman-black-meeting': [
+    '3D stylized adult cartoon character, elongated proportions,',
+    'expressive exaggerated features, slightly prominent nose, large but non-infantile eyes,',
+    'lean body, thin limbs, skin texture with subtle bump not smooth or shiny,',
+    'high-fidelity 3D render, cinematic warm lighting, soft shadows, subtle purple rim light.',
+    'Adult Black woman, natural coily afro hair, warm dark brown skin,',
+    'black blazer, white dress shirt, gold earrings.',
+    'Sitting at a modern desk in front of a laptop, speaking confidently during a video call,',
+    'one hand gesturing naturally mid-sentence, eyes engaged and bright.',
+    'Modern home office background, soft natural window light, monitor glow,',
+    'bookshelves slightly blurred in background. Depth of field. Medium shot, eye level.',
+    'Expression: confident and articulate, fully in command of the conversation.',
+    'Style: adult animated series, elongated proportions.',
+    'NOT Pixar, NOT Disney rounded. No text, no speech bubbles.',
+  ].join(' '),
+
   'protagonist-airport': [
     '3D stylized adult cartoon character, elongated proportions,',
     'expressive exaggerated features, slightly prominent nose, large but non-infantile eyes,',
@@ -164,7 +194,9 @@ async function main() {
       character
     )
 
-    const finalPath = path.join(outputDir, `${character}-${label}-${ts}.png`)
+    const subDir = path.join(outputDir, label)
+    await fs.ensureDir(subDir)
+    const finalPath = path.join(subDir, `${character}-${ts}.png`)
     await fs.copy(imagePath, finalPath)
     generated.push(finalPath)
     console.log(`[${label}] ✓ ${finalPath}`)
