@@ -2,12 +2,12 @@
  * generate-avatar-image.ts
  *
  * Gera imagens de personagens do Vivr no Whisk para uso como avatar no HeyGen.
- * Salva em outputs/avatar-images/{portrait|square|landscape}/{character}-{timestamp}.png
+ * Salva em outputs/avatar-images/{portrait|square|landscape}/{character}-{scene}-{timestamp}.png
  *
  * Usage:
- *   npx ts-node src/generate-avatar-image.ts --character protagonist
- *   npx ts-node src/generate-avatar-image.ts --character woman-black-cafe
+ *   npx ts-node src/generate-avatar-image.ts --character protagonist --scene cafe
  *   npx ts-node src/generate-avatar-image.ts --all
+ *   npx ts-node src/generate-avatar-image.ts --all --character protagonist
  */
 
 import * as dotenv from 'dotenv'
@@ -26,147 +26,60 @@ const args = process.argv.slice(2)
 const getArg = (flag: string) => { const i = args.indexOf(flag); return i !== -1 ? args[i + 1] : undefined }
 const hasFlag = (flag: string) => args.includes(flag)
 
-const character    = getArg('--character') ?? 'protagonist'
-const customPrompt = getArg('--prompt')
+const charArg      = getArg('--character')
+const sceneArg     = getArg('--scene')
 const generateAll  = hasFlag('--all')
 
 // ---------------------------------------------------------------------------
-// Base de estilo — aplicada em todos os personagens
+// Base de estilo — aplicada em todos
 // ---------------------------------------------------------------------------
 
-const BASE = [
-  '3D stylized adult cartoon character, elongated proportions,',
-  'expressive exaggerated features, slightly prominent nose, large but non-infantile eyes,',
-  'lean body, thin limbs, skin texture with subtle bump not smooth or shiny,',
-  'high-fidelity 3D render, cinematic warm lighting, soft shadows, subtle rim light.',
-  'Style: adult animated series, elongated proportions.',
-  'NOT Pixar, NOT Disney rounded, NOT smooth faces, NOT childish proportions.',
-  'No text, no speech bubbles, no written words anywhere.',
-].join(' ')
+const BASE = `3D stylized adult cartoon character, elongated proportions,
+expressive exaggerated features, slightly prominent nose, large but non-infantile eyes,
+lean body, thin limbs, skin texture with subtle bump not smooth or shiny,
+high-fidelity 3D render, cinematic warm lighting, soft shadows, subtle rim light.
+Style: adult animated series, elongated proportions.
+NOT Pixar, NOT Disney rounded, NOT smooth faces, NOT childish proportions.
+No text, no speech bubbles, no written words anywhere in the image.`
 
 // ---------------------------------------------------------------------------
-// Personagens × Cenários
+// Personagens canônicos
 // ---------------------------------------------------------------------------
 
-const CHARACTER_PROMPTS: Record<string, string> = {
+const CHARACTERS: Record<string, string> = {
+  protagonist: `Adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers. Open curious expression.`,
+  woman:       `Professional adult woman, short auburn red bob hair cut above shoulders, black blazer, white dress shirt, red bow tie, dark slim trousers, red pointed-toe shoes. Confident posture.`,
+  bald:        `Bald adult man, red long-sleeve shirt with the number 25 printed on chest, gray pants, blue sneakers. Friendly expression.`,
+  blonde:      `Young adult man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers. Relaxed friendly posture.`,
+  'woman-black': `Adult Black woman, natural coily afro hair, warm dark brown skin, fitted white blouse, high-waist beige trousers, white sneakers. Confident warm expression.`,
 
-  // ── PROTAGONISTA (homem, barba escura, camiseta roxa) ────────────────────
+  'woman-suit': `Professional adult woman, straight red hair in a sleek cut, sharp fitted dark navy suit jacket with matching trousers, white shirt underneath, oxford heels. Poised authoritative posture, sharp confident expression.`,
 
-  'protagonist': `${BASE}
-    Adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers.
-    Open curious expression. Character centered, full body visible, plain white background.`,
+  'elder-crochet': `Older adult man, late 50s, round wire-frame glasses, warm grandfatherly expression, wearing a handmade crochet sweater in earthy tones — cream, brown, and mustard patterns — relaxed-fit chinos, comfortable loafers. Gentle wise expression, slightly silver temples.`,
 
-  'protagonist-cafe': `${BASE}
-    Adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers.
-    Sitting at a round wooden table in a cozy brick-wall café, warm pendant lights overhead,
-    large window with city view, evening atmosphere. Leaning forward engaged, relaxed confident expression.
-    Depth of field, background slightly blurred. Medium shot, eye level.`,
+  'young-black-man': `Young adult Black man, short natural hair, clean-shaven smooth dark brown skin, bright eyes, casual smart outfit — fitted light blue shirt, dark slim chinos, white sneakers. Open friendly expression, relaxed confident posture.`,
+}
 
-  'protagonist-airport': `${BASE}
-    Adult man, full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers.
-    Standing in airport departure hall, travel bag over shoulder, looking at gate signage,
-    expression of focused calm. Cool blue-white overhead lighting, travelers blurred in background.
-    Depth of field. Medium shot.`,
+// ---------------------------------------------------------------------------
+// Cenários
+// ---------------------------------------------------------------------------
 
-  'protagonist-meeting': `${BASE}
-    Adult man, full dark beard, short brown hair, purple t-shirt.
-    Sitting at a desk in front of a laptop during a video call, one hand gesturing mid-sentence,
-    eyes confident and engaged. Modern home office, soft natural window light, monitor glow,
-    bookshelves blurred in background. Medium shot, eye level.`,
+const SCENES: Record<string, string> = {
+  airport: `Standing in a busy airport departure hall, travel bag over shoulder, looking up at gate signage with a calm focused expression. Cool blue-white overhead fluorescent lighting, gate numbers and flight boards visible, blurred travelers in background. Depth of field, wide shot showing full environment.`,
 
-  // ── MULHER PROFISSIONAL (bob ruivo, blazer preto) ────────────────────────
+  cafe: `Sitting at a round wooden table in a cozy brick-wall café, warm amber pendant lights hanging overhead, large window with city view outside, evening atmosphere. Relaxed engaged posture, coffee cup on table, other patrons softly blurred in background. Cinematic warm lighting, depth of field. Medium shot.`,
 
-  'woman': `${BASE}
-    Professional adult woman, short auburn red bob hair cut above shoulders,
-    black blazer, white dress shirt, red bow tie, dark slim trousers, red pointed-toe shoes.
-    Hand on hip, confident upright posture. Character centered, full body visible, plain white background.`,
+  meeting: `Sitting at a modern office desk in front of an open laptop during a video call, one hand gesturing confidently mid-sentence, eyes bright and engaged. Modern home office: soft natural light from side window, monitor glow, bookshelves blurred in background. Medium shot, eye level.`,
 
-  'woman-cafe': `${BASE}
-    Professional adult woman, short auburn red bob hair, black blazer, white dress shirt, red bow tie.
-    Sitting at a round wooden table in a brick-wall café, warm pendant lights, city view through large window.
-    Talking naturally, hands expressive, warm confident smile.
-    Depth of field, background slightly blurred. Medium shot.`,
+  street: `Standing on a city street asking for directions, turning to speak with a passing local, one hand pointing ahead, expression open and confident. Urban backdrop: café awnings, parked bikes, city buildings, natural daylight. Slight depth of field, street scene blurred behind. Medium shot.`,
 
-  'woman-meeting': `${BASE}
-    Professional adult woman, short auburn red bob hair, black blazer, white dress shirt, red bow tie.
-    Sitting at a modern desk in front of a laptop, speaking confidently during a video call,
-    one hand gesturing naturally mid-sentence, eyes engaged and bright.
-    Modern home office, soft natural window light, monitor glow, bookshelves blurred in background.
-    Depth of field. Medium shot, eye level. Expression: confident and articulate.`,
+  interview: `Sitting across a desk from a hiring manager in a modern bright office, upright professional posture, hands on table, confident eye contact, slight smile. Clean office environment: plants, whiteboards, large windows with city view. Formal but approachable expression. Medium shot, eye level.`,
 
-  'woman-airport': `${BASE}
-    Professional adult woman, short auburn red bob hair, black blazer, white dress shirt, red bow tie, red shoes.
-    Standing in airport departure hall, carry-on luggage beside her, looking at departure board,
-    expression of calm confidence. Cool blue-white overhead lighting, travelers blurred in background.
-    Depth of field. Medium shot.`,
+  tourist: `Standing in front of a famous landmark — historic European city square, cobblestone plaza, grand architecture in background. Holding a small map or phone, looking around with curiosity and excitement. Warm golden afternoon light, tourists softly blurred in background. Wide shot.`,
 
-  // ── HOMEM CARECA (camiseta vermelha nº25) ────────────────────────────────
+  restaurant: `Sitting at an elegant restaurant table with a menu open, speaking to a waiter who is taking notes, gesturing naturally at the menu with a confident relaxed expression. Restaurant ambiance: white tablecloths, wine glasses, warm candlelight, other diners blurred in background. Medium shot.`,
 
-  'bald': `${BASE}
-    Bald adult man, red long-sleeve shirt with the number 25 printed on chest,
-    gray pants, blue sneakers. Neutral friendly expression.
-    Character centered, full body visible, plain white background.`,
-
-  'bald-cafe': `${BASE}
-    Bald adult man, red long-sleeve shirt with number 25, gray pants, blue sneakers.
-    Sitting at a café table, brick wall background, warm pendant lights overhead.
-    Relaxed open posture, friendly expression, coffee mug on table.
-    Depth of field, background slightly blurred. Medium shot.`,
-
-  'bald-airport': `${BASE}
-    Bald adult man, red long-sleeve shirt with number 25, gray pants, blue sneakers.
-    Walking through airport departure hall, small backpack, looking up at gate signs,
-    expression of focused determination. Cool blue-white lighting, travelers in background.
-    Depth of field. Medium shot.`,
-
-  // ── JOVEM LOIRO (camisa xadrez verde) ────────────────────────────────────
-
-  'blonde': `${BASE}
-    Young adult man, platinum blonde hair, green plaid button-up shirt,
-    gray pants, green sneakers. Relaxed friendly posture.
-    Character centered, full body visible, plain white background.`,
-
-  'blonde-cafe': `${BASE}
-    Young adult man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers.
-    Sitting at a café table with a laptop open, brick wall background, warm pendant lights.
-    Relaxed creative posture, slight smile, headphones around neck.
-    Depth of field, background slightly blurred. Medium shot.`,
-
-  'blonde-living-room': `${BASE}
-    Young adult man, platinum blonde hair, green plaid button-up shirt, gray pants, green sneakers.
-    Sitting on a modern sofa in a living room, wooden coffee table, natural window light, warm tones.
-    Holding a phone, looking up with a surprised-but-pleased expression.
-    Depth of field, background slightly blurred. Medium shot.`,
-
-  // ── MULHER NEGRA (afro, blusa branca) ────────────────────────────────────
-
-  'woman-black': `${BASE}
-    Adult Black woman, natural coily afro hair, warm dark brown skin,
-    fitted white blouse, high-waist beige trousers, white sneakers.
-    Confident relaxed posture, warm open expression.
-    Character centered, full body visible, plain white background.`,
-
-  'woman-black-cafe': `${BASE}
-    Adult Black woman, natural coily afro hair, warm dark brown skin,
-    fitted white blouse, high-waist beige trousers, white sneakers.
-    Sitting at a round wooden table in a brick-wall café, warm pendant lights overhead,
-    large window with city view, evening atmosphere. Animated conversation gesture, bright smile.
-    Depth of field, background slightly blurred. Medium shot.`,
-
-  'woman-black-meeting': `${BASE}
-    Adult Black woman, natural coily afro hair, warm dark brown skin,
-    black blazer, white dress shirt, gold stud earrings.
-    Sitting at a modern desk in front of a laptop, speaking confidently during a video call,
-    one hand gesturing naturally mid-sentence, eyes engaged and bright.
-    Modern home office, soft natural window light, monitor glow, bookshelves blurred in background.
-    Depth of field. Medium shot, eye level. Expression: confident and articulate.`,
-
-  'woman-black-living-room': `${BASE}
-    Adult Black woman, natural coily afro hair, warm dark brown skin,
-    casual chic — fitted white blouse, high-waist beige trousers, white sneakers.
-    Sitting on a modern sofa in a living room, wooden coffee table, natural window light.
-    Holding a phone, smiling at the screen with a proud relieved expression.
-    Depth of field, background slightly blurred. Medium shot.`,
+  bar: `Standing at a lively bar counter ordering a drink, leaning on the bar relaxed, speaking naturally to the bartender, casual confident expression. Bar atmosphere: shelves of bottles backlit in amber, low warm lighting, blurred patrons in background, wooden bar counter. Medium shot, slightly low angle.`,
 }
 
 // ---------------------------------------------------------------------------
@@ -180,28 +93,30 @@ const ASPECT_RATIOS: Array<{ key: WhiskAspectRatio; label: string }> = [
 ]
 
 // ---------------------------------------------------------------------------
-// Gerar um personagem (3 proporções)
+// Gerar uma combinação personagem × cena (3 proporções)
 // ---------------------------------------------------------------------------
 
-async function generateCharacter(char: string, prompt: string): Promise<void> {
+async function generateOne(char: string, scene: string): Promise<void> {
+  const charDesc  = CHARACTERS[char]
+  const sceneDesc = SCENES[scene]
+  const prompt    = `${BASE} ${charDesc} ${sceneDesc}`
   const outputDir = path.resolve('outputs/avatar-images')
-  const ts = Date.now()
+  const ts        = Date.now()
+  const slug      = `${char}-${scene}`
 
-  console.log(`\n${'═'.repeat(50)}`)
-  console.log(`  Personagem: ${char}`)
-  console.log('═'.repeat(50))
+  console.log(`\n${'─'.repeat(52)}`)
+  console.log(`  ${slug}`)
+  console.log('─'.repeat(52))
 
   for (const { key, label } of ASPECT_RATIOS) {
-    console.log(`  [${label}] Gerando...`)
-    const campaignId = `avatar-${char}-${label}-${ts}`
-
-    const imagePath = await generateSceneImage(prompt, campaignId, DEFAULT_REFS, key, char)
-
-    const subDir = path.join(outputDir, label)
+    process.stdout.write(`  [${label}] Gerando... `)
+    const campaignId = `avatar-${slug}-${label}-${ts}`
+    const imagePath  = await generateSceneImage(prompt, campaignId, DEFAULT_REFS, key, slug)
+    const subDir     = path.join(outputDir, label)
     await fs.ensureDir(subDir)
-    const finalPath = path.join(subDir, `${char}-${ts}.png`)
+    const finalPath  = path.join(subDir, `${slug}-${ts}.png`)
     await fs.copy(imagePath, finalPath)
-    console.log(`  [${label}] ✓ avatar-images/${label}/${char}-${ts}.png`)
+    console.log(`✓`)
   }
 }
 
@@ -210,29 +125,48 @@ async function generateCharacter(char: string, prompt: string): Promise<void> {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('╔══════════════════════════════════════════════════╗')
-  console.log('║        Vivr Avatar Image Generator               ║')
-  console.log('╚══════════════════════════════════════════════════╝')
+  const allChars  = Object.keys(CHARACTERS)
+  const allScenes = Object.keys(SCENES)
+
+  console.log('╔════════════════════════════════════════════════════╗')
+  console.log('║         Vivr Avatar Image Generator                ║')
+  console.log('╚════════════════════════════════════════════════════╝')
 
   if (generateAll) {
-    const all = Object.keys(CHARACTER_PROMPTS)
-    console.log(`  Modo: TODOS os personagens (${all.length} × 3 proporções = ${all.length * 3} imagens)`)
-    for (const char of all) {
-      await generateCharacter(char, CHARACTER_PROMPTS[char])
+    const chars  = charArg ? [charArg] : allChars
+    const scenes = sceneArg ? [sceneArg] : allScenes
+    const total  = chars.length * scenes.length * 3
+
+    console.log(`  Personagens: ${chars.join(', ')}`)
+    console.log(`  Cenários:    ${scenes.join(', ')}`)
+    console.log(`  Total:       ${chars.length} × ${scenes.length} × 3 proporções = ${total} imagens`)
+
+    for (const char of chars) {
+      for (const scene of scenes) {
+        await generateOne(char, scene)
+      }
     }
   } else {
-    const prompt = customPrompt ?? CHARACTER_PROMPTS[character]
-    if (!prompt) {
-      console.error(`\nPersonagem desconhecido: "${character}"`)
-      console.error(`Disponíveis:\n  ${Object.keys(CHARACTER_PROMPTS).join('\n  ')}`)
+    const char  = charArg ?? 'protagonist'
+    const scene = sceneArg ?? 'cafe'
+
+    if (!CHARACTERS[char]) {
+      console.error(`\nPersonagem desconhecido: "${char}"`)
+      console.error(`Disponíveis: ${allChars.join(', ')}`)
       process.exit(1)
     }
-    await generateCharacter(character, prompt)
+    if (!SCENES[scene]) {
+      console.error(`\nCenário desconhecido: "${scene}"`)
+      console.error(`Disponíveis: ${allScenes.join(', ')}`)
+      process.exit(1)
+    }
+
+    await generateOne(char, scene)
   }
 
-  console.log('\n╔══════════════════════════════════════════════════╗')
-  console.log('║   ✓ Geração concluída!                           ║')
-  console.log('╚══════════════════════════════════════════════════╝')
+  console.log('\n╔════════════════════════════════════════════════════╗')
+  console.log('║   ✓ Geração concluída!                             ║')
+  console.log('╚════════════════════════════════════════════════════╝')
   console.log('  Arquivos em: outputs/avatar-images/portrait|square|landscape/')
   console.log('\n  Próximo passo:')
   console.log('  1. Acesse app.heygen.com e crie o avatar com a imagem que preferir')

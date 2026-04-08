@@ -32,10 +32,13 @@ When creating marketing materials, always include when relevant:
 - visual direction
 
 ## File organization
-- Save campaign drafts in outputs/campaigns/
+- Save static campaign drafts in outputs/campaigns/static/
 - Save landing page drafts in outputs/landing-pages/
 - Save creative prompts in outputs/creatives/
 - Save ASO drafts in outputs/aso/
+- HeyGen registries (avatars, videos): outputs/heygen/
+- Video reports: outputs/reports/
+- Campaign briefs: briefs/
 
 ## Restrictions
 - Do not create generic “learn English fast” messaging.

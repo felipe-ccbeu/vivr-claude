@@ -100,8 +100,8 @@ PATH="/c/Users/felipe.fadel/tools/node/node-v24.14.0-win-x64:$PATH" npx ts-node 
 ## Output
 
 Após execução bem-sucedida:
-- Imagem salva em `outputs/heygen-avatars/`
-- JSON com IDs salvo em `outputs/heygen-avatars/{photo_avatar_id}.json`
+- Imagem salva em `outputs/heygen/`
+- JSON com IDs salvo em `outputs/heygen/{photo_avatar_id}.json`
 - Avatar disponível em https://app.heygen.com/photo-avatar após treinamento (~5-10 min)
 
 O `photo_avatar_id` retornado pode ser usado diretamente no parâmetro `avatarId` da skill `vivavr-heygen-video`.

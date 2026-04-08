@@ -216,7 +216,7 @@ async function waitForNewAvatar(existingIds: string[], avatarName: string): Prom
 // ---------------------------------------------------------------------------
 
 async function saveResult(result: Record<string, any>): Promise<void> {
-  const outputDir = path.resolve('outputs/heygen-avatars')
+  const outputDir = path.resolve('outputs/heygen')
   await fs.ensureDir(outputDir)
   const outputFile = path.join(outputDir, `${result.talkingPhotoId ?? result.assetId}.json`)
   await fs.writeJson(outputFile, result, { spaces: 2 })
@@ -252,7 +252,7 @@ async function main() {
 
   // Modo --skip-upload: apenas gera a imagem e encerra
   if (skipUpload && imagePath) {
-    const outputDir = path.resolve('outputs/heygen-avatars')
+    const outputDir = path.resolve('outputs/heygen')
     await fs.ensureDir(outputDir)
     const destPath = path.join(outputDir, `${avatarName.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}.png`)
     await fs.copy(imagePath, destPath)

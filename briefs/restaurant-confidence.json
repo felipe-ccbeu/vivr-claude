@@ -1,0 +1,47 @@
+{
+  "id": "restaurant-confidence",
+  "title": "Pedindo no restaurante em inglês",
+  "audience": "Adultos que estudaram inglês mas travam em situações reais",
+  "pain": "Chegar no restaurante e não saber como pedir, chamar o garçom ou perguntar o cardápio",
+  "angle": "O Vivr te coloca dentro do restaurante antes de você chegar lá de verdade",
+  "targetCharacters": ["old-man", "white-hair", "woman-red-head"],
+  "copy": {
+    "hook": "Você já travou na hora de pedir no restaurante?",
+    "headline": "Fale inglês de verdade",
+    "accentWord": "verdade",
+    "body": "Com o Vivr, pratique situações reais e fale inglês com confiança.",
+    "cta": "Baixe grátis"
+  },
+  "copyVariants": [
+    {
+      "hook": "Cardápio em inglês, boca fechada?",
+      "headline": "Pratique antes de chegar lá",
+      "accentWord": "Pratique",
+      "body": "O Vivr te coloca dentro do restaurante para você treinar de verdade.",
+      "cta": "Experimente grátis"
+    },
+    {
+      "hook": "Meia dúzia de palavras e aquele silêncio constrangedor.",
+      "headline": "Sem mais travas",
+      "accentWord": "travas",
+      "body": "Pratique pedir no restaurante com o Vivr — situações reais, resposta real.",
+      "cta": "Comece agora"
+    }
+  ],
+  "visual": {
+    "scene": "restaurant",
+    "mood": "warm, evening, intimate restaurant atmosphere",
+    "zones": {
+      "A": "logo watermark top-left (0–15%)",
+      "B": "avatar + subtitles only (15–65%)",
+      "C": "dark overlay + headline + CTA (65–100%)"
+    }
+  },
+  "scriptConstraints": {
+    "maxWords": 30,
+    "targetDurationSec": 10,
+    "language": "pt-BR",
+    "imperativeForm": true,
+    "structure": "hook → benefício → CTA"
+  }
+}

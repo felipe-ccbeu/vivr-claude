@@ -1,0 +1,47 @@
+{
+  "id": "airport-checkin",
+  "title": "Navegando no aeroporto em inglês",
+  "audience": "Pessoas se preparando para viagem que querem confiança prática no idioma",
+  "pain": "Chegar no aeroporto internacional e não entender os anúncios, não saber perguntar o portão, travar no check-in",
+  "angle": "Com o Vivr você pratica o aeroporto antes de embarcar — sem surpresas lá na hora",
+  "targetCharacters": ["black-woman", "white-bald", "woman-red-head"],
+  "copy": {
+    "hook": "Antes de embarcar, pratique inglês no aeroporto com o Vivr.",
+    "headline": "Não trave no aeroporto",
+    "accentWord": "trave",
+    "body": "Chegue ao seu destino sem travar.",
+    "cta": "Baixe agora"
+  },
+  "copyVariants": [
+    {
+      "hook": "Anúncio em inglês no aeroporto e você perdido?",
+      "headline": "Pratique antes de embarcar",
+      "accentWord": "embarcar",
+      "body": "O Vivr te prepara para cada situação — do check-in até o gate.",
+      "cta": "Comece grátis"
+    },
+    {
+      "hook": "O portão mudou. O anúncio foi em inglês. E agora?",
+      "headline": "Entre preparado",
+      "accentWord": "preparado",
+      "body": "Pratique no aeroporto com o Vivr antes de enfrentar o real.",
+      "cta": "Experimente grátis"
+    }
+  ],
+  "visual": {
+    "scene": "airport",
+    "mood": "cool blue-white lighting, departure hall, travelers in background",
+    "zones": {
+      "A": "logo watermark top-left (0–15%)",
+      "B": "avatar + subtitles only (15–65%)",
+      "C": "dark overlay + headline + CTA (65–100%)"
+    }
+  },
+  "scriptConstraints": {
+    "maxWords": 30,
+    "targetDurationSec": 10,
+    "language": "pt-BR",
+    "imperativeForm": true,
+    "structure": "hook → benefício → CTA"
+  }
+}

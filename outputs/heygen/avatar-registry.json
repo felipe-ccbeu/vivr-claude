@@ -1,0 +1,546 @@
+{
+  "avatars": [
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "tourist-info",
+      "sceneLabel": "Turistando e pedindo informações",
+      "avatarLookId": "7dacef68869443a08d7a9e42fda5b3d4"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Turistando e apontando pros lugares",
+      "avatarLookId": "d73aebc03469414a9a6eb9806bc82022"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "restaurant",
+      "sceneLabel": "Fazendo pedido pro garçom no restaurante",
+      "avatarLookId": "acb67f1e82bf4e2a9e679f065c1f995e"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "meeting",
+      "sceneLabel": "Em uma reunião online",
+      "avatarLookId": "6b5a1723850b4cb48451d37604d0ac85"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "cafe",
+      "sceneLabel": "Em um café",
+      "avatarLookId": "8b5ea10e440a4de5b80dc5b68bec890f"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "bar",
+      "sceneLabel": "No balcão de um barzinho",
+      "avatarLookId": "7e1e64f2e5084de2afe6db1a5bb741aa"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "airport",
+      "sceneLabel": "Aeroporto",
+      "avatarLookId": "86d3f358ae694472a8feeabacd86c8c0"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "tourist-pointing-2",
+      "sceneLabel": "Turistando e apontando pros lugares (2)",
+      "avatarLookId": "b91d75553baf454ba832546e87e65eef"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "cafe-2",
+      "sceneLabel": "Em um café (2)",
+      "avatarLookId": "9d89f90268b747c8b6bf36db333587cc"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "tourist-map",
+      "sceneLabel": "Turistando com um mapa na mão",
+      "avatarLookId": "8c70a13593224734bb06bef79938ab31"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "meeting-2",
+      "sceneLabel": "Em uma reunião online (2)",
+      "avatarLookId": "67643e1fe7f8429c8ff3acd560789dfe"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "bar-2",
+      "sceneLabel": "No balcão de um barzinho (2)",
+      "avatarLookId": "f93b29793c374ae8a246c6c6a645c5ad"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "cafe-3",
+      "sceneLabel": "Em um café (3)",
+      "avatarLookId": "e0654b4888754086a365b23c45859902"
+    },
+    {
+      "character": "old-man",
+      "characterLabel": "Vivr - Old Man",
+      "scene": "meeting-3",
+      "sceneLabel": "Em uma reunião online (3)",
+      "avatarLookId": "1b01ae21bf604cefa4841a50d2694ec3"
+    }
+  ],
+  "white-bald": [
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "tourist-info",
+      "sceneLabel": "Turistando e pedindo informações",
+      "avatarLookId": "bb451281deff4800b10c30d5171f58a1"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "restaurant",
+      "sceneLabel": "Fazendo pedido pro garçom no restaurante",
+      "avatarLookId": "ab7c9e2cc65e4cef8994c14e09235fb4"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "meeting",
+      "sceneLabel": "Em uma reunião online",
+      "avatarLookId": "15bf0a1b88154e30a2e3548d09018cd1"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "bar-group",
+      "sceneLabel": "No balcão de um barzinho (3 personagens)",
+      "avatarLookId": "d823b7d5a71b4720bba839c3c865a9be"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "cafe",
+      "sceneLabel": "Em um café",
+      "avatarLookId": "d4ef23468f2e4dad8c6b5ef99d1aa4d9"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "interview",
+      "sceneLabel": "Em uma entrevista de emprego",
+      "avatarLookId": "7bf44c539eb341d58468c6b17585f31f"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "airport",
+      "sceneLabel": "No aeroporto",
+      "avatarLookId": "311c95a746134fecb312351bbaaff364"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "bar",
+      "sceneLabel": "No balcão do bar",
+      "avatarLookId": "f9cd5638b69b4cb196f4cffb6bf4b34c"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "tourist-map-phone",
+      "sceneLabel": "Turistando com mapa e celular na mão",
+      "avatarLookId": "d43e734ed5f8419d85b604f0583e22c9"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "meeting-2",
+      "sceneLabel": "Reunião online (2)",
+      "avatarLookId": "7ed89f1e1faa464b8f0693fc7657b334"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Turista apontando para as coisas",
+      "avatarLookId": "17365ecad0444e5d9bee518509fa67ed"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "restaurant-2",
+      "sceneLabel": "Conversando com o garçom no restaurante",
+      "avatarLookId": "14ffba2a3b6b4f4781ea6d8a6c9f9089"
+    },
+    {
+      "character": "white-bald",
+      "characterLabel": "Vivr - White Bald",
+      "scene": "airport-2",
+      "sceneLabel": "No aeroporto (2)",
+      "avatarLookId": "778becbdaff74b4cb63ef14feb3f5a1c"
+    }
+  ],
+  "white-hair": [
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "meeting",
+      "sceneLabel": "Em uma reunião online",
+      "avatarLookId": "ea0dde33889147fb9258eaed67237a3b"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "restaurant",
+      "sceneLabel": "Fazendo pedido para o garçom no restaurante",
+      "avatarLookId": "de237c86ec6e4b0e8459fbb7d51b07fe"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "interview",
+      "sceneLabel": "Em uma entrevista de emprego",
+      "avatarLookId": "fc411081e1c946d8b8602f946dbce0cd"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "cafe",
+      "sceneLabel": "Em um café",
+      "avatarLookId": "d3b907215dfb443ebadacf980293bff5"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "tourist-info",
+      "sceneLabel": "Pedindo informações na rua",
+      "avatarLookId": "c4f6a56d76c440bab670669f6069cf82"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Turista em um belo cenário",
+      "avatarLookId": "30b2776fe74e409cbd458f6f71f54b50"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "tourist-info-2",
+      "sceneLabel": "Pedindo informações na rua (2)",
+      "avatarLookId": "41e79b51b28c43a08af782347fc0bb85"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "restaurant-2",
+      "sceneLabel": "Fazendo pedido para o garçom no restaurante (2)",
+      "avatarLookId": "a13e9a4bd36b4af7b5ffd8b62b55b6b5"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "interview-2",
+      "sceneLabel": "Em uma entrevista de emprego com a outra personagem canônica",
+      "avatarLookId": "313771569a754c77b0db7ad6875bef82"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "cafe-2",
+      "sceneLabel": "Em um café (2)",
+      "avatarLookId": "27994062c7e04cd68f39e7c495bbabfa"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "airport",
+      "sceneLabel": "No aeroporto",
+      "avatarLookId": "6bca4b33474045f493e5af335d25eea6"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "airport-2",
+      "sceneLabel": "No aeroporto (2)",
+      "avatarLookId": "ab3042b16d95407fb5e81cfee742fb5c"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "airport-3",
+      "sceneLabel": "No aeroporto (3)",
+      "avatarLookId": "4acfe2a00a2f417d806c357f46f59e5a"
+    },
+    {
+      "character": "white-hair",
+      "characterLabel": "Vivr - White Hair",
+      "scene": "tourist-map",
+      "sceneLabel": "Turista com mapa na mão",
+      "avatarLookId": "2438041d3a254cbbbd6942204d72674d"
+    }
+  ],
+  "black-woman": [
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "restaurant",
+      "sceneLabel": "No restaurante olhando o cardápio",
+      "avatarLookId": "27efe43c1e5342d6b92cd373b30bdda3"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "restaurant-waiter",
+      "sceneLabel": "No restaurante olhando o cardápio com garçom",
+      "avatarLookId": "ed75e8e7588844928b180a5fdc374279"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "cafe",
+      "sceneLabel": "No café",
+      "avatarLookId": "32c1ae441a9e488a95b4a9bd47000c63"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "cafe-2",
+      "sceneLabel": "No café (2)",
+      "avatarLookId": "b65699aed45d449ab41f3c21726fea83"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "meeting",
+      "sceneLabel": "Na reunião online",
+      "avatarLookId": "26645d4e603543b8adc2300c985679cc"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "bar",
+      "sceneLabel": "No balcão do bar",
+      "avatarLookId": "c86f23acd1154660aebeb6ee0f9e02c7"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "bar-2",
+      "sceneLabel": "No balcão do bar (2)",
+      "avatarLookId": "2c0276f342ed45af8a79f4c60e052273"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "airport",
+      "sceneLabel": "No aeroporto",
+      "avatarLookId": "3411fbcf38534a77b7d3e363ce9c229a"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "airport-2",
+      "sceneLabel": "No aeroporto (2)",
+      "avatarLookId": "a8709724679e4e36986444b98a4d83af"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Apontando informações para os turistas",
+      "avatarLookId": "ec7dfa88f6784cae95682d27248e1004"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "interview",
+      "sceneLabel": "Em uma entrevista de emprego",
+      "avatarLookId": "6c49cd07433d48ef9a986c3a40164444"
+    },
+    {
+      "character": "black-woman",
+      "characterLabel": "Vivr - Black Woman",
+      "scene": "white-bg",
+      "sceneLabel": "Fundo branco",
+      "avatarLookId": "e051bb7fa2bb476d84607e7746d113db"
+    }
+  ],
+  "woman-red-head": [
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "airport",
+      "sceneLabel": "No aeroporto",
+      "avatarLookId": "dce4909022c24d62b92d4afffa554645"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "airport-2",
+      "sceneLabel": "No aeroporto (2)",
+      "avatarLookId": "9af0f0270e16419c9ee7fd29d0233f7f"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "tourist-map",
+      "sceneLabel": "Turistando com um mapa na mão",
+      "avatarLookId": "97086c30383b42acb9015ab9093552ad"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Apontando informações",
+      "avatarLookId": "fec767b95442414889845862aafffdd4"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "restaurant",
+      "sceneLabel": "Fazendo pedido ao garçom no restaurante",
+      "avatarLookId": "8f0334f97d2e4f66b73cf19f4028d1a3"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "meeting",
+      "sceneLabel": "Em uma reunião online",
+      "avatarLookId": "7d2d79f5811a48d4a617eba09ead4111"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "interview",
+      "sceneLabel": "Em uma entrevista de emprego",
+      "avatarLookId": "4cd45c4d06ee4e829b92276338243e31"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "tourist-map-2",
+      "sceneLabel": "Turistando com um mapa na mão (2)",
+      "avatarLookId": "0f565136e36141798de6562ba51ec196"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "tourist-phone",
+      "sceneLabel": "Turistando com o celular na mão",
+      "avatarLookId": "8dcadb42ff3a4a3abf05f8d5cf710f4a"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "tourist-info",
+      "sceneLabel": "Dando informações a outra pessoa",
+      "avatarLookId": "59e878a0ba9f46869f0af50d29b494d1"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "cafe",
+      "sceneLabel": "Em um café",
+      "avatarLookId": "ee3dcda06cbc47b5b6d9f120b23e0d7b"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "meeting-2",
+      "sceneLabel": "Em uma reunião online (2)",
+      "avatarLookId": "193fd815bdb2403c939f5be3d440212f"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "cafe-2",
+      "sceneLabel": "Em um café (2)",
+      "avatarLookId": "6afffb06ea664f7dbe4d6966a3440714"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "meeting-3",
+      "sceneLabel": "Em uma reunião online (3)",
+      "avatarLookId": "e0f1689bd021440c8b86bbfee40b56c9"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "meeting-4",
+      "sceneLabel": "Em uma reunião online (4)",
+      "avatarLookId": "765eed0488764a08b50e2cb9d92d5db9"
+    },
+    {
+      "character": "woman-red-head",
+      "characterLabel": "Vivr - Woman Red Head",
+      "scene": "meeting-5",
+      "sceneLabel": "Em uma reunião online (5)",
+      "avatarLookId": "3bc2087b8f4c42b4a7f833734529b6bb"
+    }
+  ],
+  "black-man": [
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "tourist-map",
+      "sceneLabel": "Turistando com um mapa na mão",
+      "avatarLookId": "91a25276ec9e4cd2b72c19711b26bd30"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "tourist-pointing",
+      "sceneLabel": "Apontando informações",
+      "avatarLookId": "1535faff7c3a43d4b294e5b82ca6b634"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "bar",
+      "sceneLabel": "No balcão do bar",
+      "avatarLookId": "06e9e522adcb4712822f944205b34fab"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "airport",
+      "sceneLabel": "Aeroporto",
+      "avatarLookId": "fec386e516924ffd8127170d862cee9f"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "cafe",
+      "sceneLabel": "No café",
+      "avatarLookId": "eb4db7f507dd4cf4b833207961bb2f7a"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "interview",
+      "sceneLabel": "Em uma entrevista de emprego",
+      "avatarLookId": "c79dc175e029402a991d86b6d026e912"
+    },
+    {
+      "character": "black-man",
+      "characterLabel": "Vivr - Black Man",
+      "scene": "meeting",
+      "sceneLabel": "Em uma reunião online",
+      "avatarLookId": "1516b9a4e38949eea7ffcc1dcb167cb8"
+    }
+  ]
+}
