@@ -31,12 +31,15 @@ export async function generateSceneImage(
   campaignId: string,
   refs?: WhiskRefs,
   aspectRatio: WhiskAspectRatio = 'SQUARE',
-  outputFileName: string = 'scene'
+  outputFileName: string = 'scene',
+  outputDirOverride?: string
 ): Promise<string> {
   const cookie = process.env.COOKIE
   if (!cookie) throw new Error('COOKIE not set in .env')
 
-  const outputDir = path.resolve(`outputs/campaigns/${campaignId}`)
+  const outputDir = outputDirOverride
+    ? path.resolve(outputDirOverride)
+    : path.resolve(`outputs/campaigns/${campaignId}`)
   await fs.ensureDir(outputDir)
 
   const whisk = new Whisk(cookie)

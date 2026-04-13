@@ -1,0 +1,66 @@
+{
+  "campaignId": "001-aeroporto",
+  "sceneImage": "scene.png",
+  "scene": "Aeroporto",
+
+  "visual": {
+    "whiskPrompt": "3D stylized adult cartoon character with elongated proportions, expressive exaggerated features, slightly prominent nose, large but non-infantile eyes, lean body, thin limbs, small hands, skin texture with subtle bump. Adult man with full dark beard, short brown hair, purple t-shirt, gray denim shorts, white sneakers. Open curious expression. Airport departure hall environment, gate signage visible, travelers in background, cool blue-white overhead lighting, wide airy terminal space. Cinematic warm lighting with soft shadows and subtle rim light. High-fidelity 3D render. No text, no speech bubbles, no written words.",
+    "refs": {}
+  },
+
+
+  "slide1": {
+    "tag": "✈️ Situação real",
+    "headline": "Você trava no check-in?",
+    "accentWord": "trava",
+    "sub": "Sabe o inglês — mas na fila do aeroporto, as palavras somem.",
+    "cardLabel": "Praticado no app",
+    "cardValue": "+40 cenas do cotidiano"
+  },
+
+  "slide2": {
+    "contextLabel": "Cena do app · Aeroporto",
+    "title": "Como você pede informação sobre o gate?",
+    "accentWord": "gate",
+    "userLine": "\"Excuse me, which gate is flight UA204?\"",
+    "userTranslation": "Com licença, qual o portão do voo UA204?",
+    "replyLine": "\"It's gate <span class=\"hl\">B12</span> — but hurry, boarding starts in 10 minutes.\"",
+    "replyTranslation": "É o portão B12 — mas corre, o embarque começa em 10 minutos.",
+    "note": "No Vivr você pratica essa cena antes de precisar — personagens que respondem de verdade, sem julgamento."
+  },
+
+  "slide3": {
+    "sectionLabel": "Frases essenciais · Aeroporto",
+    "title": "4 frases que salvam sua viagem",
+    "accentWord": "salvam",
+    "items": [
+      { "color": "#89c7fe", "english": "\"I'd like a window seat, please.\"", "portuguese": "Eu quero um assento na janela.", "example": "\"I'd like a window seat, please — it's a long flight.\"" },
+      { "color": "#ae90fb", "english": "\"Is this flight delayed?\"",         "portuguese": "Esse voo está atrasado?",         "example": "\"Excuse me, is this flight delayed? The board hasn't updated.\"" },
+      { "color": "#f599b5", "english": "\"Where do I pick up my luggage?\"",  "portuguese": "Onde eu pego minha bagagem?",      "example": "\"Where do I pick up my luggage for flight BA390?\"" },
+      { "color": "#fdd38a", "english": "\"I missed my connection.\"",          "portuguese": "Perdi minha conexão.",             "example": "\"I missed my connection — can you help me rebook?\"" }
+    ],
+    "progressLabel": "Cena 2 de 4",
+    "progressPct": 60
+  },
+
+  "slide4": {
+    "eyebrow": "Por que funciona",
+    "stat": "78%",
+    "statLabel": "dos usuários se sentem\nmais confiantes em 2 semanas",
+    "body": "Você aprende praticando situações reais — não decorando lista. Cada cena simula o que vai acontecer na viagem.",
+    "bullets": [
+      { "color": "#8bfbd1", "text": "Cenários reais: viagem, trabalho, social" },
+      { "color": "#ae90fb", "text": "Personagens que respondem de verdade" },
+      { "color": "#f599b5", "text": "Erra, aprende e repete — sem julgamento" }
+    ]
+  },
+
+  "slide5": {
+    "eyebrow": "É agora",
+    "headline": "Pare de travar.\nComece a falar.",
+    "accentWord": "falar",
+    "body": "Pratica inglês em cenas reais — aeroporto, hotel, trabalho — antes de precisar de verdade.",
+    "cta": "Baixa grátis agora",
+    "freeTag": "Grátis para começar · Sem cartão"
+  }
+}
